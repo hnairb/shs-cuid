@@ -1,0 +1,4315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ProfileSoap"
+	targetNamespace="http://www.epsilon.com/webservices/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://www.epsilon.com/webservices/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:tns="http://www.epsilon.com/webservices/">
+
+	<wsdl:types>
+		<xs:schema elementFormDefault="qualified"
+			targetNamespace="http://www.epsilon.com/webservices/" version="1.0"
+			xmlns:tns="http://www.epsilon.com/webservices/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:import namespace="http://www.epsilon.com/webservices/" /> 
+			<xs:element name="DollarValueOfPointsRedeemedOnBaseOffer"
+				type="xs:string" />
+			<xs:element name="DollarValueOfPointsRedeemedOnBonusOffer"
+				type="xs:string" />
+			<xs:element name="MemberSavingsDollarValue" type="xs:string" />
+			<xs:element name="Offer" type="ns1:Offer" />
+			<xs:element name="AddMemberToGroupReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="memberNumber" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AddMemberToGroupResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="unqualified" minOccurs="0"
+							name="AddMemberToGroupResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Additional">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Status" type="xs:string" />
+						<xs:element minOccurs="0" name="StatusText" type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="msg1" type="xs:string" />
+						<xs:element minOccurs="0" name="msg2" type="xs:string" />
+						<xs:element minOccurs="0" name="SysPulse" type="xs:string" />
+						<xs:element minOccurs="0" name="TrackingID" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AdditionalOptions">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:Cities" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:States" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:Zipcodes" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Address1" type="xs:string" />
+			<xs:element name="Address2" type="xs:string" />
+			<xs:element name="AddressLine1" type="xs:string" />
+			<xs:element name="AddressLine2" type="xs:string" />
+			<xs:element name="Affinities">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="Affinity"
+							type="tns:Affinity" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:AffinityExtended" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:AffinityForMemberPricing" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AffinityExtended">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="tns:Affinity">
+							<xs:sequence>
+								<xs:element name="CreatedBy" type="xs:string" />
+								<xs:element name="AffinityStartDate" type="xs:anySimpleType" />
+								<xs:element name="AffinityEndDate" type="xs:anySimpleType" />
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AffinityForMemberPricing">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="tns:Affinity">
+							<xs:sequence>
+								<xs:element name="RequestorID" type="xs:string" />
+								<xs:element name="StoreNumber" type="xs:string" />
+								<xs:element name="Terminal" type="xs:string" />
+								<xs:element name="AssociateId" type="xs:string" />
+								<xs:element name="CreatedBy" type="xs:string" />
+								<xs:element name="AffinityStartDate" type="xs:anySimpleType" />
+								<xs:element name="AffinityEndDate" type="xs:anySimpleType" />
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AgeEligible" type="xs:string" />
+			<xs:element name="AgeEligibleFlag" type="xs:string" />
+			<xs:element name="AlternateCouponDecision" type="xs:string" />
+			<xs:element name="AlternateCouponFlag" type="xs:string" />
+			<xs:element name="AlternateCouponOfferPoints" type="xs:integer" />
+			<xs:element name="ApplicableCardType">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CardTypeName" type="xs:string" />
+						<xs:element name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableCoupons">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CouponNumber" type="xs:string" />
+						<xs:element name="Qualifying" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableMemberCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:MemberEarnTypes" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:MemberNumbers" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:MemberGroups" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:YearToDate" />
+						<xs:element form="unqualified" minOccurs="0"
+							name="EnrollmentTrackingCode" type="xs:string" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:CurrentPointBalance" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:MemberAdditionalOptions" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableMemberNumber">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Number" type="xs:string" />
+						<xs:element name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableOffer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Conditional" type="xs:string" />
+						<xs:element name="Stackable" type="xs:string" />
+						<xs:element name="OfferRewardType" type="xs:string" />
+						<xs:element name="RewardBasis" type="xs:string" />
+						<xs:element name="RewardCalculationType" type="xs:string" />
+						<xs:element name="OfferCode" type="xs:string" />
+						<xs:element name="OfferName" type="xs:string" />
+						<xs:element name="Description" type="xs:string" />
+						<xs:element name="StartDTTM" type="xs:dateTime" />
+						<xs:element name="EndDTTM" type="xs:dateTime" />
+						<xs:element minOccurs="0" name="OfferRewardPotential"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="XRFlatOffer" type="xs:string" />
+						<xs:element minOccurs="0" name="XRMultiplier" type="xs:string" />
+						<xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Rules" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableOfferTier">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Min" type="xs:string" />
+						<xs:element name="Max" type="xs:string" />
+						<xs:element name="PointsPerDollar" type="xs:string" />
+						<xs:element name="Flat" type="xs:string" />
+						<xs:element name="ForEvery" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableOfferTiers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableOfferTier" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableProductCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ProductInfo" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:PriceFilter" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:Brands" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ProductGroups" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableQuantity">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Multiplier" type="xs:string" />
+						<xs:element name="ItemThreshold" type="xs:string" />
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableOfferTiers" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableStoreCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:StoreNumbers" />
+						<xs:element maxOccurs="unbounded" ref="tns:StoreTypes" />
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableStoreFormats" />
+						<xs:element maxOccurs="unbounded" ref="tns:AdditionalOptions" />
+						<xs:element maxOccurs="unbounded" ref="tns:LocationGroups" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableStoreFormats">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ApplicableStoreFormat" type="xs:string" />
+						<xs:element name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableStoreNumber">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Number" type="xs:string" />
+						<xs:element name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableXRQuantity">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Multiplier" type="xs:string" />
+						<xs:element name="ItemThreshold" type="xs:string" />
+						<xs:element maxOccurs="unbounded" ref="tns:XRTiers" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AssociateID" type="xs:string" />
+			<xs:element name="Attr">
+				<xs:complexType>
+					<xs:sequence />
+					<xs:attribute name="attrname" type="xs:string" />
+					<xs:attribute name="attrvalue" type="xs:string" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Attributes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:Attr" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AuthorizationCode" type="xs:string" />
+			<xs:element name="AvailableDollars" type="xs:decimal" />
+			<xs:element name="AvailablePoints" type="xs:integer" />
+			<xs:element name="AvailableSurprisePoints" nillable="true"
+				type="xs:anyType" />
+			<xs:element name="AvailableXRPoints">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="XROfferPointsAvailableFor" type="xs:string" />
+						<xs:element name="XROfferMultiplier" type="xs:string" />
+						<xs:element name="XROfferQualifier" type="xs:string" />
+						<xs:element name="XROfferExpiryDate" type="xs:string" />
+						<xs:element name="XRPointsExclusion" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BasePointsEarned" type="xs:string" />
+			<xs:element name="BasePointsEarnedTxt" type="xs:string" />
+			<xs:element name="BirthDate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="BirthDateCondition" type="xs:string" />
+						<xs:element name="Date" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BirthMonth">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="BirthMonthCondition" type="xs:string" />
+						<xs:element name="Month" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BonusDescription" type="xs:string" />
+			<xs:element name="BonusExtended">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="tns:Bonus">
+							<xs:sequence>
+								<xs:element name="BonusCode" type="xs:string" />
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BonusID" type="xs:string" />
+			<xs:element name="BonusName" type="xs:string" />
+			<xs:element name="BonusPoints" type="xs:integer" />
+			<xs:element name="BonusPointsEarned" type="xs:integer" />
+			<xs:element name="BonusPointsEarnedTxt" type="xs:string" />
+			<xs:element name="BonusPointsSummary">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" ref="tns:TxnEarnOffers" />
+						<xs:element minOccurs="0" name="CouponBonusPointsEarned"
+							type="xs:integer" />
+						<xs:element minOccurs="0" name="CouponBonusPointsEarnedTxt"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="OtherBonusPointsEarned"
+							type="xs:integer" />
+						<xs:element minOccurs="0" name="OtherBonusPointsEarnedTxt"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="TotalBonusPointsEarned"
+							type="xs:integer" />
+						<xs:element minOccurs="0" name="TotalBonusPointsEarnedTxt"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Bonuses">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="Bonus"
+							type="tns:Bonus" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:BonusExtended" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Brand">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="BrandName" type="xs:string" />
+						<xs:element name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Brands">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:Brand" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CampaignControlID" type="xs:integer" />
+			<xs:element name="Caps">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="OfferTimes" type="xs:string" />
+						<xs:element name="OfferPoints" type="xs:string" />
+						<xs:element name="MemberTimes" type="xs:string" />
+						<xs:element name="MemberPoints" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardDesignType" type="xs:string" />
+			<xs:element name="CardDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							name="CardDetail" type="tns:CardDetail" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardNumber" type="xs:string" />
+			<xs:element name="CardType" type="xs:string" />
+			<xs:element name="CardTypes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableCardType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CashierID" type="xs:string" />
+			<xs:element name="Category" type="xs:string" />
+			<xs:element name="CategoryID" type="xs:integer" />
+			<xs:element name="ChallengeOffer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Name" type="xs:string" />
+						<xs:element name="Completed" type="xs:string" />
+						<xs:element ref="tns:TargetValue" />
+						<xs:element name="CurrentValue" type="xs:decimal" />
+						<xs:element name="ChallengeStatusText" type="xs:string" />
+						<xs:element name="OfferStartDate" type="xs:anySimpleType" />
+						<xs:element name="OfferEndDate" type="xs:anySimpleType" />
+						<xs:element ref="tns:TimeLeft" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ProductInfo" />
+					</xs:sequence>
+					<xs:attribute name="Type" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Cities">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CityName" type="xs:string" />
+						<xs:element name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="City" type="xs:string" />
+			<xs:element name="ClaimNumber" type="xs:string" />
+			<xs:element name="CloseDate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Condition" type="xs:string" />
+						<xs:element name="Date" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ClubDNPStatus" type="xs:string" />
+			<xs:element name="ClubEmailOptStatus" type="xs:string" />
+			<xs:element name="ClubMembershipCreatedBy" type="xs:string" />
+			<xs:element name="ClubMembershipUpdatedBy" type="xs:string" />
+			<xs:element name="ClubStatus" type="xs:string" />
+			<xs:element name="ContractNumber" type="xs:string" />
+			<xs:element name="CountryCode" type="xs:string" />
+			<xs:element name="Coupon">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CouponNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="DiscountAmount" type="xs:string" />
+						<xs:element minOccurs="0" name="CouponType" type="xs:string" />
+						<xs:element minOccurs="0" name="AlternateCouponDecision"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="AlternateCouponFlag"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="AlternateCouponOfferPoints"
+							type="xs:string" />
+						<xs:element minOccurs="0" ref="tns:CouponOffers" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CouponBonusPointsEarned" type="xs:integer" />
+			<xs:element name="CouponBonusPointsEarnedTxt" type="xs:string" />
+			<xs:element name="CouponItemLevelOffer" type="xs:string" />
+			<xs:element name="CouponNumber" type="xs:string" />
+			<xs:element name="CouponOffer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="CouponOfferCode" type="xs:string" />
+						<xs:element minOccurs="0" name="CouponOfferName" type="xs:string" />
+						<xs:element minOccurs="0" name="CouponPointsEarned"
+							type="xs:integer" />
+						<xs:element minOccurs="0" name="CouponItemLevelOffer"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="CouponPointsEarnedTxt"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CouponOfferCode" type="xs:string" />
+			<xs:element name="CouponOfferDetail">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="CouponNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="CouponType" type="xs:string" />
+						<xs:element minOccurs="0" name="StartDateTime" type="xs:string" />
+						<xs:element minOccurs="0" name="EndDateTime" type="xs:string" />
+						<xs:element minOccurs="0" name="OfferDescription" type="xs:string" />
+						<xs:element minOccurs="0" ref="tns:StoreFormats" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CouponOfferDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:CouponOfferDetail" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CouponOfferName" type="xs:string" />
+			<xs:element name="CouponOffers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:CouponOffer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CouponPointsEarned" type="xs:integer" />
+			<xs:element name="CouponPointsEarnedTxt" type="xs:string" />
+			<xs:element name="CouponType" type="xs:string" />
+			<xs:element name="Coupons">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:Coupon" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateMember">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="EmailAddress" type="xs:string" />
+						<xs:element minOccurs="0" name="Prefix" type="xs:string" />
+						<xs:element minOccurs="0" name="Suffix" type="xs:string" />
+						<xs:element minOccurs="0" name="FirstName" type="xs:string" />
+						<xs:element minOccurs="0" name="MiddleInitial" type="xs:string" />
+						<xs:element minOccurs="0" name="TestAccount" type="xs:string" />
+						<xs:element minOccurs="0" name="LastName" type="xs:string" />
+						<xs:element minOccurs="0" name="Address1" type="xs:string" />
+						<xs:element minOccurs="0" name="Address2" type="xs:string" />
+						<xs:element minOccurs="0" name="City" type="xs:string" />
+						<xs:element minOccurs="0" name="State" type="xs:string" />
+						<xs:element minOccurs="0" name="ZipCode" type="xs:string" />
+						<xs:element minOccurs="0" name="ZipCodeExtension" type="xs:string" />
+						<xs:element minOccurs="0" name="CountryCode" type="xs:string" />
+						<xs:element minOccurs="0" name="DOB" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentDate" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentTime" type="xs:string" />
+						<xs:element minOccurs="0" name="ClubMembershipCreatedBy"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="ClubDNPStatus" type="xs:string" />
+						<xs:element minOccurs="0" name="SHCAssociateInd" type="xs:string" />
+						<xs:element minOccurs="0" name="CardDesignType" type="xs:string" />
+						<xs:element minOccurs="0" name="WirelessPermissionFlag"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="ClubEmailOptStatus"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="PreferredLanguage"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="StoreNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="Terminal" type="xs:string" />
+						<xs:element minOccurs="0" name="RequestorID" type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="EnrollmentOfferCode"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="PinNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="TnCStatus" type="xs:string" />
+						<xs:element minOccurs="0" name="TnCVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="PhoneNumbers" type="tns:ArrayOfPhone" />
+						<xs:element minOccurs="0" name="Affinities" type="tns:ArrayOfAffinity" />
+						<xs:element minOccurs="0" name="Attributes" type="tns:ArrayOfAttr" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateMemberResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="CreateMemberResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreatePartnerEnrollmentDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MemberUniqueId" type="xs:string" />
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="RegistrationUniqueId"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="ServiceRegistrationNumber"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="EnrollmentDate" type="xs:string" />
+						<xs:element minOccurs="0" name="UnenrollmentDate" type="xs:string" />
+						<xs:element minOccurs="0" name="MobileNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="RegistrationIndicator"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="EnrollmentIndicator"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="Source" type="xs:string" />
+						<xs:element minOccurs="0" name="ServiceEnrollmentDate"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="ServiceUnenrollmentDate"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="StoreNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="RequestorID" type="xs:string" />
+						<xs:element minOccurs="0" name="RegisterNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="TransactionNumber"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="AssociateID" type="xs:string" />
+						<xs:element minOccurs="0" name="Date" type="xs:string" />
+						<xs:element minOccurs="0" name="Time" type="xs:string" />
+						<xs:element minOccurs="0" name="AliasName" type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreatePartnerEnrollmentDetailsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0"
+							name="CreatePartnerEnrollmentDetailsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreatedBy" type="xs:string" />
+			<xs:element name="CreationChannel" type="xs:string" />
+			<xs:element name="CurrencyDebit" type="xs:string" />
+			<xs:element name="CurrentBalance" type="xs:integer" />
+			<xs:element name="CurrentDate" type="xs:anySimpleType" />
+			<xs:element name="CurrentPointBalance">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Condition" type="xs:string" />
+						<xs:element name="CurrentPointBalanceAmount" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CurrentTier" type="xs:string" />
+			<xs:element name="CurrentTime" type="xs:string" />
+			<xs:element name="DOB" type="xs:anySimpleType" />
+			<xs:element name="DateIssued" type="xs:anySimpleType" />
+			<xs:element name="DateTimeOnServer" nillable="true" type="xs:anyType" />
+			<xs:element name="DateTimeOnServerResponse" nillable="true"
+				type="xs:anyType" />
+			<xs:element name="DateUpdated" type="xs:anySimpleType" />
+			<xs:element name="Deceased" type="xs:boolean" />
+			<xs:element name="Description" type="xs:string" />
+			<xs:element name="DiscountAmount" type="xs:string" />
+			<xs:element name="Division" type="xs:string" />
+			<xs:element name="DollarValuePostDisc" type="xs:string" />
+			<xs:element name="DollarValuePreDisc" type="xs:string" />
+			<xs:element name="DollarsToThreshold" type="xs:decimal" />
+			<xs:element name="EarnCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ApplicableQuantity" />
+						<xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Spend" />
+						<xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Caps" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="EarnFlag" type="xs:string" />
+			<xs:element name="EarnOffer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="EarnOfferCode" type="xs:string" />
+						<xs:element minOccurs="0" name="EarnOfferName" type="xs:string" />
+						<xs:element minOccurs="0" name="EarnOfferType" type="xs:string" />
+						<xs:element minOccurs="0" name="PointsEarned" type="xs:integer" />
+						<xs:element minOccurs="0" name="ItemLevelOffer" type="xs:string" />
+						<xs:element minOccurs="0" name="PointsEarnedTxt" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="EarnOfferCode" type="xs:string" />
+			<xs:element name="EarnOfferName" type="xs:string" />
+			<xs:element name="EarnOfferType" type="xs:string" />
+			<xs:element name="EarnOffers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:EarnOffer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ElevatedTier" type="xs:string" />
+			<xs:element name="EligibleDollarAmount" type="xs:decimal" />
+			<xs:element name="EmailAddress" type="xs:string" />
+			<xs:element name="EmailConfirmed" type="xs:string" />
+			<xs:element name="EmailStatusReturn" type="xs:string" />
+			<xs:element name="EndDTTM" type="xs:anySimpleType" />
+			<xs:element name="EndDTTMstr" type="xs:string" />
+			<xs:element name="EndingBalance" type="xs:integer" />
+			<xs:element name="EnrollmentDTTM" type="xs:anySimpleType" />
+			<xs:element name="EnrollmentOfferCode" type="xs:string" />
+			<xs:element name="EnrollmentSourceCode" type="xs:string" />
+			<xs:element name="EnrollmentStoreFormat" type="xs:string" />
+			<xs:element name="EnrollmentStoreNumber" type="xs:string" />
+			<xs:element name="EnrolmentDate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="EnrolmentDateCondition" type="xs:string" />
+						<xs:element name="Date" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Epsilon">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MTServerName" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" ref="tns:Response" />
+						<xs:element minOccurs="0" ref="tns:Additional" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ErrorDesc">
+				<xs:complexType>
+					<xs:sequence />
+					<xs:attribute name="Type" type="xs:string" use="required" />
+					<xs:attribute name="Number" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ExtendedProfilePreference">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice maxOccurs="unbounded" minOccurs="0">
+							<xs:element ref="tns:PreferenceCode" />
+							<xs:element ref="tns:PreferenceResponseCode" />
+							<xs:element ref="tns:PreferenceValue" />
+						</xs:choice>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ExtendedProfilePreferences">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ExtendedProfilePreference" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FasttrackChallenge">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ChallengeDesc" type="xs:string" />
+						<xs:element maxOccurs="unbounded" ref="tns:ChallengeOffer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FasttrackChallenges">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:FasttrackChallenge" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FinalPayment">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Condition" type="xs:string" />
+						<xs:element name="Date" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FinalPaymentDate" type="xs:anySimpleType" />
+			<xs:element name="FirstName" type="xs:string" />
+			<xs:element name="Function" type="xs:string" />
+			<xs:element name="GetApplicableOffersReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberNumber" type="xs:string" />
+						<xs:element ref="tns:RewardsSummary" />
+						<xs:element minOccurs="0" ref="tns:OffersSet" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetApplicableOffersResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetApplicableOffersResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetAvailableOffers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="StartDTTM" type="xs:string" />
+						<xs:element minOccurs="0" name="EndDTTM" type="xs:string" />
+						<xs:element minOccurs="0" name="MaxRecords" type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="LanguagePreference"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetAvailableOffersReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="StartDTTM" type="xs:string" />
+						<xs:element name="EndDTTM" type="xs:string" />
+						<xs:element default="50" name="MaxRecords" type="xs:integer" />
+						<xs:element ref="tns:Offers" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetAvailableOffersResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetAvailableOffersResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetCouponOfferDetailsReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="tns:CouponOfferDetails" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetCouponOfferDetailsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetCouponOfferDetailsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetLineItemDetailReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TransactionID" type="xs:string" />
+						<xs:element name="TransactionDTTM" type="xs:anySimpleType" />
+						<xs:element name="TotalPoints" type="xs:integer" />
+						<xs:element name="tenderDetailList">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded" ref="tns:TenderDetail" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element minOccurs="0" ref="tns:Coupons" />
+						<xs:element ref="tns:LineItems" />
+						<xs:element name="PointsRedeemedOnBaseOffer" type="xs:integer" />
+						<xs:element name="PointsRedeemedOnBonusOffer" type="xs:integer" />
+						<xs:element name="TotalDollarSaving" type="xs:decimal" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetLineItemDetailResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetLineItemDetailResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberActivityDetailReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="tns:TransactionDetails" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberActivityDetailResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetMemberActivityDetailResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberActivityReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberNumber" type="xs:string" />
+						<xs:element name="StartDTTM" type="xs:dateTime" />
+						<xs:element name="EndDTTM" type="xs:dateTime" />
+						<xs:element name="StartingBalance" type="xs:integer" />
+						<xs:element name="EndingBalance" type="xs:integer" />
+						<xs:element name="TotalEarned" type="xs:integer" />
+						<xs:element name="TotalRedeemed" type="xs:integer" />
+						<xs:element name="TotalExpired" type="xs:integer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberActivitySummaryResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetMemberActivitySummaryResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberAffinitySubscriptions">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="RequestorID" type="xs:string" />
+						<xs:element minOccurs="0" name="StoreNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="Terminal" type="xs:string" />
+						<xs:element minOccurs="0" name="AssociateId" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentDate" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentTime" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberAffinitySubscriptionsReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberNumber" type="xs:string" />
+						<xs:element ref="tns:Affinities" />
+					</xs:sequence>
+					<xs:attribute name="Type" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberAffinitySubscriptionsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0"
+							name="GetMemberAffinitySubscriptionsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberAuditLookup">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="AuditType" type="xs:string" />
+						<xs:element minOccurs="0" name="RequestorID" type="xs:string" />
+						<xs:element minOccurs="0" name="StartDateTime" type="xs:string" />
+						<xs:element minOccurs="0" name="EndDateTime" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberAuditLookupReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							name="profileNameAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="NamePrefix" type="xs:string" />
+									<xs:element name="FirstName" type="xs:string" />
+									<xs:element name="MiddleInitial" type="xs:string" />
+									<xs:element name="LastName" type="xs:string" />
+									<xs:element name="NameSuffix" type="xs:string" />
+									<xs:element name="BirthDate" type="xs:string" />
+									<xs:element name="AssocIndicator" type="xs:string" />
+									<xs:element name="Deceased" type="xs:string" />
+									<xs:element name="EarnType" type="xs:string" />
+									<xs:element name="NameStatusUpdateDate" type="xs:string" />
+									<xs:element name="NameStatusUpdateUser" type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							name="profileStatusAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="status" type="xs:string" />
+									<xs:element name="statusUpdateDate" type="xs:string" />
+									<xs:element name="statusUpdateUser" type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							name="profileEmailAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="emailAddress" type="xs:string" />
+									<xs:element name="emailDeliveryStatus" type="xs:string" />
+									<xs:element name="emailUpdateDate" type="xs:string" />
+									<xs:element name="emailUpdateUser" type="xs:string" />
+									<xs:element name="emailConfirmed" type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							name="profilePhoneAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="phoneNumber" type="xs:string" />
+									<xs:element name="prefferedFlag" type="xs:string" />
+									<xs:element name="phoneType" type="xs:string" />
+									<xs:element name="mobileValid" type="xs:string" />
+									<xs:element name="phoneUpdateDate" type="xs:string" />
+									<xs:element name="phoneUpdateUser" type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							name="profileAddressAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="address1" type="xs:string" />
+									<xs:element name="address2" type="xs:string" />
+									<xs:element name="city" type="xs:string" />
+									<xs:element name="zipCode" type="xs:string" />
+									<xs:element name="updateDate" type="xs:string" />
+									<xs:element name="updateUser" type="xs:string" />
+									<xs:element name="addressType" type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							name="profileMergeAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="dateMerged" type="xs:string" />
+									<xs:element name="mergedMemberNumber" type="xs:string" />
+									<xs:element name="mergeUpdateDate" type="xs:string" />
+									<xs:element name="mergeUpdateUser" type="xs:string" />
+									<xs:element name="postedStoreNumber" type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							name="ProfileReceiptAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="recieptStatus" type="xs:string" />
+									<xs:element name="recieptUpdateDate" type="xs:string" />
+									<xs:element name="recieptUpdateUser" type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							name="ProfileTnCAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="tncStatus" type="xs:string" />
+									<xs:element name="tncVersion" type="xs:string" />
+									<xs:element name="tncStoreNumber" type="xs:string" />
+									<xs:element name="tncRegisterNumber" type="xs:string" />
+									<xs:element name="tncUpdateUser" type="xs:string" />
+									<xs:element name="tncUpdateDate" type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberAuditLookupResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetMemberAuditResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberExtendedProfile">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberExtendedProfileReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ExtendedProfilePreference" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberExtendedProfileResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetMemberExtendedProfileResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberLevel">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="RequestorID" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberLevelReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberNumber" type="xs:string" />
+						<xs:element name="CurrentBalance" type="xs:integer" />
+						<xs:element name="CurrentTier" type="xs:string" />
+						<xs:element name="TotalSpentYTD" type="xs:decimal" />
+						<xs:element ref="tns:Tiers" />
+						<xs:element ref="tns:FasttrackChallenges" />
+						<xs:element ref="tns:TierHistory" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberLevelResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetMemberLevelResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberLookup">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="EmailAddress" type="xs:string" />
+						<xs:element minOccurs="0" name="PhoneNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="StoreNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="Terminal" type="xs:string" />
+						<xs:element minOccurs="0" name="RequestorID" type="xs:string" />
+						<xs:element minOccurs="0" name="SearchType" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentDate" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentTime" type="xs:string" />
+						<xs:element minOccurs="0" name="MaxRecords" type="xs:string" />
+						<xs:element minOccurs="0" name="MaxPOSPrompt" type="xs:string" />
+						<xs:element minOccurs="0" name="FirstName" type="xs:string" />
+						<xs:element minOccurs="0" name="LastName" type="xs:string" />
+						<xs:element minOccurs="0" name="ZipCode" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberLookupReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ResponseDate" type="xs:date" />
+						<xs:element name="ResponseTime" type="xs:time" />
+						<xs:element name="NumRecordsReturned" type="xs:integer" />
+						<xs:element minOccurs="0" ref="tns:Members" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberLookupResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetMemberLookupResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberPrimaryProfile">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberPrimaryProfileReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberNumber" type="xs:string" />
+						<xs:element name="EmailAddress" type="xs:string" />
+						<xs:element minOccurs="0" name="Prefix" type="xs:string" />
+						<xs:element name="FirstName" type="xs:string" />
+						<xs:element name="LastName" type="xs:string" />
+						<xs:element name="Address1" type="xs:string" />
+						<xs:element minOccurs="0" name="Address2" type="xs:string" />
+						<xs:element name="City" type="xs:string" />
+						<xs:element name="State" type="xs:string" />
+						<xs:element name="ZipCode" type="xs:string" />
+						<xs:element minOccurs="0" name="ZipCodeExtension" type="xs:string" />
+						<xs:element name="DOB" type="xs:date" />
+						<xs:element name="CardType" type="xs:string" />
+						<xs:element minOccurs="0" name="SHCAssociateInd" type="xs:string" />
+						<xs:element name="EnrollmentDTTM" type="xs:dateTime" />
+						<xs:element name="EnrollmentStoreFormat" type="xs:string" />
+						<xs:element name="PinNumber" type="xs:string" />
+						<xs:element ref="tns:PhoneNumbers" />
+						<xs:element name="CurrentBalance" type="xs:integer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberPrimaryProfileResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetMemberPrimaryProfileResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberTargetedOffers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="StartDTTM" type="xs:string" />
+						<xs:element minOccurs="0" name="EndDTTM" type="xs:string" />
+						<xs:element minOccurs="0" name="LanguagePreference"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="RequestorID" type="xs:string" />
+						<xs:element minOccurs="0" name="OfferNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="CouponNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="LiveDate" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberTargetedOffersResponse"
+				nillable="true" type="xs:anyType" />
+			<xs:element name="GetOrderTransactionsDetailReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="tns:TransactionDetails" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetOrderTransactionsDetailResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0"
+							name="GetOrderTransactionsDetailResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetPartnerEnrollmentDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="Source" type="xs:string" />
+						<xs:element minOccurs="0" name="RequestorID" type="xs:string" />
+						<xs:element minOccurs="0" name="StoreNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="RegisterNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="TransactionNumber"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="AssociateID" type="xs:string" />
+						<xs:element minOccurs="0" name="Date" type="xs:string" />
+						<xs:element minOccurs="0" name="Time" type="xs:string" />
+						<xs:element minOccurs="0" name="AliasName" type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetPartnerEnrollmentDetailsReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberNumber" type="xs:string" />
+						<xs:element name="MessageVersion" type="xs:string" />
+						<xs:element ref="tns:CardDetails" />
+						<xs:element name="StatusCode" type="xs:string" />
+						<xs:element name="StatusText" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetPartnerEnrollmentDetailsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0"
+							name="GetPartnerEnrollmentDetailsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetRewardBalance">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="RequestorID" type="xs:string" />
+						<xs:element minOccurs="0" name="StoreNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentDate" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentTime" type="xs:string" />
+						<xs:element minOccurs="0" name="AssociateID" type="xs:string" />
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetRewardBalanceReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberNumber" type="xs:unsignedLong" />
+						<xs:element name="EmailAddress" type="xs:string" />
+						<xs:element name="AvailablePoints" type="xs:integer" />
+						<xs:element name="AvailableDollars" type="xs:string" />
+						<xs:element name="Multiplier" type="xs:decimal" />
+						<xs:element minOccurs="0" name="PointsToExpire" type="xs:string" />
+						<xs:element minOccurs="0" name="PointExpirationDate"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="ExpiryPointsList" type="tns:PointsDetails" />
+						<xs:element minOccurs="0" ref="tns:TotalAvailablePointsSummary" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetRewardBalanceResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetRewardBalanceResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetSystemRewards">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetSystemRewardsReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" ref="tns:SystemRewards" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetSystemRewardsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetSystemRewardsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetTransactionBonusDetailsReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TransactionID" type="xs:string" />
+						<xs:element ref="tns:Bonuses" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetTransactionBonusDetailsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0"
+							name="GetTransactionBonusDetailsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GrossDollarAmount" type="xs:decimal" />
+			<xs:element name="ImageName" type="xs:string" />
+			<xs:element name="IncompleteProfileInd" type="xs:string" />
+			<xs:element name="ItemDescription" type="xs:string" />
+			<xs:element name="ItemLevelOffer" type="xs:string" />
+			<xs:element name="ItemNumber" type="xs:string" />
+			<xs:element name="ItemType" type="xs:string" />
+			<xs:element name="KmartPriceType">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TypeName" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LanguagePreference" type="xs:string" />
+			<xs:element name="LastName" type="xs:string" />
+			<xs:element name="LastUpdateChannel" type="xs:string" />
+			<xs:element name="LastUpdateDate" type="xs:anySimpleType" />
+			<xs:element name="LayAway">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:OpenDate" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:CloseDate" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:FinalPayment" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:PriceTypes" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LayawayNumber" type="xs:string" />
+			<xs:element name="LevelData">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="LevelValue" type="xs:string" />
+						<xs:element minOccurs="0" name="LevelValueDesc" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LevelInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" ref="tns:LevelMetaData" />
+						<xs:element minOccurs="0" ref="tns:LevelData" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LevelMetaData">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="LevelDesig" type="xs:string" />
+						<xs:element minOccurs="0" name="LevelDesigDesc" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LineItem" nillable="true" type="xs:anyType" />
+			<xs:element name="LineItemAmountTypeCode" type="xs:string" />
+			<xs:element name="LineItems" nillable="true" type="xs:anyType" />
+			<xs:element name="LineNumber" type="xs:string" />
+			<xs:element name="LocationGroups">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="LocationGroupName" type="xs:string" />
+						<xs:element name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MTServerName" type="xs:string" />
+			<xs:element name="MaxRecords" type="xs:integer" />
+			<xs:element name="MaxRedeemableSurprisePointsList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:RedeemableSurprisePoints" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MaxRedeemableXRPointsList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="RedeemableXRPoints">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="XROfferPointsAvailableFor" type="xs:string" />
+									<xs:element name="XROfferMultiplier" type="xs:string" />
+									<xs:element name="XROfferQualifier" type="xs:string" />
+									<xs:element name="XROfferExpiryDate" type="xs:string" />
+									<xs:element name="XRPointsExclusion" type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Member" type="tns:Member" />
+			<xs:element name="MemberAdditionalOptions">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:BirthDate" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:BirthMonth" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:EnrolmentDate" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:CardTypes" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:SubClubs" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:VIPStatusList" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableMemberCriteria" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberEarnType" type="xs:string" />
+			<xs:element name="MemberEarnTypes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberEarnType" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberExtended">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="tns:Member">
+							<xs:sequence />
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberGroup">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberGroupName" type="xs:string" />
+						<xs:element name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberGroups">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:MemberGroup" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberMergeReplaceReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberNumber" type="xs:string" />
+						<xs:element name="NewMemberNumber" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberNumber" type="xs:string" />
+			<xs:element name="MemberNumbers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableMemberNumber" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberOwnPointsToExpire" type="tns:MemberOwnPointsList" />
+			<xs:element name="MemberReplaceCard">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="OriginalMemberNumber"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="NewMemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberReplaceCardReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="NewMemberNumber" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberReplaceCardResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MemberReplaceCardResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberSinceDate" type="xs:anySimpleType" />
+			<xs:element name="Members">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="Member"
+							type="tns:Member" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:MemberExtended" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MessageVersion" type="xs:string" />
+			<xs:element name="Messages">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="Message" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MiddleInitial" type="xs:string" />
+			<xs:element name="MobileValid" type="xs:string" />
+			<xs:element name="Multiplier" type="xs:decimal" />
+			<xs:element name="NewMemberNumber" type="xs:string" />
+			<xs:element name="NumRecordsReturned" type="xs:integer" />
+			<xs:element name="NumberOfPhoneEntries" type="xs:integer" />
+			<xs:element name="OfferExtended">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="tns:Offer">
+							<xs:sequence>
+								<xs:element name="OfferNumber" type="xs:string" />
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OfferId" type="xs:string" />
+			<xs:element name="OfferMemberGroupList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							name="OfferMemberGroupResponse" type="tns:OfferMemberGroupResponse" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OfferName" type="xs:string" />
+			<xs:element name="OfferNumber" type="xs:string" />
+			<xs:element name="OfferPointsRedeemed" type="xs:integer" />
+			<xs:element name="OfferRegistrationReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="memberNumber" type="xs:string" />
+						<xs:element name="offerMemberGroupList">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded" minOccurs="0"
+										name="OfferMemberGroupResponse" type="tns:OfferMemberGroupResponse" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OfferRegistrationResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="unqualified" minOccurs="0"
+							name="OfferRegistrationResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OfferType" type="xs:string" />
+			<xs:element name="Offers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="Offer"
+							type="tns:Offer" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:OfferExtended" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OffersSet">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ApplicableOffer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OnlineValidationDate" type="xs:anySimpleType" />
+			<xs:element name="OnlineValidationFlag" type="xs:string" />
+			<xs:element name="OpenDate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Condition" type="xs:string" />
+						<xs:element name="Date" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OrderStoreNumber" type="xs:string" />
+			<xs:element name="OriginalLineNumber" type="xs:string" />
+			<xs:element name="OriginalMemberNumber" type="xs:string" />
+			<xs:element name="OriginalRegisterNumber" type="xs:string" />
+			<xs:element name="OriginalStoreNumber" type="xs:string" />
+			<xs:element name="OriginalTransactionDate" type="xs:string" />
+			<xs:element name="OriginalTransactionNumber" type="xs:string" />
+			<xs:element name="OriginalTransactionTime" type="xs:string" />
+			<xs:element name="OtherBonusPointsEarned" type="xs:integer" />
+			<xs:element name="OtherBonusPointsEarnedTxt" type="xs:string" />
+			<xs:element name="PhoneNumber" type="xs:string" />
+			<xs:element name="PhoneNumbers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="Phone" type="tns:Phone" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PhoneType" type="xs:string" />
+			<xs:element name="PickUpStoreNumber" type="xs:string" />
+			<xs:element name="PinNumber" type="xs:string" />
+			<xs:element name="PointBalance" type="xs:integer" />
+			<xs:element name="PointDebit" type="xs:string" />
+			<xs:element name="PointsDetails" type="tns:PointsDetails" />
+			<xs:element name="PointsEarned" type="xs:integer" />
+			<xs:element name="PointsEarnedTxt" type="xs:string" />
+			<xs:element name="PointsRedeemedOnBaseOffer" type="xs:string" />
+			<xs:element name="PointsRedeemedOnBonusOffer" type="xs:string" />
+			<xs:element name="PointsToAdd" type="xs:integer" />
+			<xs:element name="PointsToThreshold" type="xs:integer" />
+			<xs:element name="PostAdjustmentPointsReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="memberNumber" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PostAdjustmentPointsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="unqualified" minOccurs="0"
+							name="PostAdjustmentPointsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PostExternalBonusReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberNumber" type="xs:string" />
+						<xs:element name="CurrentBalance" type="xs:integer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PostExternalBonusResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="PostExternalBonusResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PostPartnerPointsReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberNumber" type="xs:string" />
+						<xs:element name="BasePointsEarned" type="xs:string" />
+						<xs:element name="BasePointsEarnedTxt" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PostPartnerPointsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="PostPartnerPointsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PostSalesAdjustmentAmount" type="xs:string" />
+			<xs:element name="PreferenceCode" type="xs:string" />
+			<xs:element name="PreferenceResponseCode" type="xs:string" />
+			<xs:element name="PreferenceValue" type="xs:string" />
+			<xs:element name="PreferredLanguage" type="xs:string" />
+			<xs:element name="Prefix" type="xs:string" />
+			<xs:element name="PriceFilter">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:UnitPriceBeforeDiscount" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:UnitPriceAfterDiscount" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PriceMatchAmount" type="xs:string" />
+			<xs:element name="PriceMatchBonusAmount" type="xs:string" />
+			<xs:element name="PriceTypes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:SearsPriceType" />
+						<xs:element maxOccurs="unbounded" ref="tns:KmartPriceType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProcessAlternateCouponReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MessageVersion" type="xs:string" />
+						<xs:element name="RequestorID" type="xs:string" />
+						<xs:element name="MemberNumber" type="xs:string" />
+						<xs:element name="PickUpStoreNumber" type="xs:string" />
+						<xs:element name="OrderStoreNumber" type="xs:string" />
+						<xs:element name="RegisterNumber" type="xs:string" />
+						<xs:element name="TransactionDate" type="xs:string" />
+						<xs:element name="TransactionTime" type="xs:string" />
+						<xs:element name="TimeZone" type="xs:string" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:LineItem" />
+						<xs:element name="ResponseText" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProcessAlternateCouponResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="ProcessAlternateCouponResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProcessRedemptionReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberNumber" type="xs:string" />
+						<xs:element name="PickUpStoreNumber" type="xs:string" />
+						<xs:element name="OrderStoreNumber" type="xs:string" />
+						<xs:element name="RegisterNumber" type="xs:string" />
+						<xs:element name="TransactionDate" type="xs:date" />
+						<xs:element name="TransactionTime" type="xs:time" />
+						<xs:element name="TimeZone" type="xs:string" />
+						<xs:element name="AssociateID" type="xs:string" />
+						<xs:element name="RedemptionPoints" type="xs:integer" />
+						<xs:element name="RedemptionDollarValue" type="xs:string" />
+						<xs:element name="MaxRedeemablePoints" type="xs:integer" />
+						<xs:element name="MaxRedeemableDollarValue" type="xs:string" />
+						<xs:element name="TotalAvailableRewardPoints" type="xs:integer" />
+						<xs:element name="LayawayFlag" type="xs:string" />
+						<xs:element name="AuthorizationCode" type="xs:string" />
+						<xs:element minOccurs="0" name="MaxRedeemableMemberOwnPoints"
+							type="xs:integer" />
+						<xs:element minOccurs="0"
+							name="MaxRedeemableMemberOwnPointsDollarValue" type="xs:string" />
+						<xs:element minOccurs="0" name="MaxRedeemableSurprisePoints"
+							type="xs:integer" />
+						<xs:element minOccurs="0"
+							name="MaxRedeemableSurprisePointsDollarValue" type="xs:string" />
+						<xs:element minOccurs="0" name="TotalAvailableMemberOwnPoints"
+							type="xs:integer" />
+						<xs:element minOccurs="0"
+							name="TotalAvailableMemberOwnPointsDollarValue" type="xs:string" />
+						<xs:element minOccurs="0" name="TotalAvailableSurprisePoints"
+							type="xs:integer" />
+						<xs:element minOccurs="0"
+							name="TotalAvailableSurprisePointsDollarValue" type="xs:string" />
+						<xs:element minOccurs="0"
+							ref="tns:MaxRedeemableSurprisePointsList" />
+						<xs:element minOccurs="0"
+							name="TotalAvailableSurprisePointsList">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded" ref="tns:AvailableSurprisePoints" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element minOccurs="0" ref="tns:MaxRedeemableXRPointsList" />
+						<xs:element minOccurs="0" ref="tns:TotalAvailableXRPointsList" />
+						<xs:element minOccurs="0" ref="tns:LineItems" />
+						<xs:element name="ResponseText" type="xs:string" />
+						<xs:element name="PointsToExpire" type="xs:integer" />
+						<xs:element name="PointExpirationDate" type="xs:string" />
+						<xs:element minOccurs="0" name="PointsRedeemedOnBaseOffer"
+							type="xs:string" />
+						<xs:element minOccurs="0"
+							name="DollarValueOfPointsRedeemedOnBaseOffer" type="xs:string" />
+						<xs:element minOccurs="0" name="PointsRedeemedOnBonusOffer"
+							type="xs:string" />
+						<xs:element minOccurs="0"
+							name="DollarValueOfPointsRedeemedOnBonusOffer" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProcessRedemptionResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="ProcessRedemptionResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProcessSuspendedMembersResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="ProcessSuspendedMembersResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProcessTransactionReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberNumber" type="xs:string" />
+						<xs:element name="BasePointsEarned" type="xs:string" />
+						<xs:element name="BasePointsEarnedTxt" type="xs:string" />
+						<xs:element name="BonusPointsEarned" type="xs:integer" />
+						<xs:element name="BonusPointsEarnedTxt" type="xs:string" />
+						<xs:element minOccurs="0" name="PointsRedeemedOnBaseOffer"
+							type="xs:string" />
+						<xs:element minOccurs="0"
+							name="DollarValueOfPointsRedeemedOnBaseOffer" type="xs:string" />
+						<xs:element minOccurs="0" name="PointsRedeemedOnBonusOffer"
+							type="xs:string" />
+						<xs:element minOccurs="0"
+							name="DollarValueOfPointsRedeemedOnBonusOffer" type="xs:string" />
+						<xs:element name="TotalPointsEarned" type="xs:string" />
+						<xs:element name="TotalPointsEarnedTxt" type="xs:string" />
+						<xs:element name="PointDebit" type="xs:string" />
+						<xs:element name="CurrencyDebit" type="xs:string" />
+						<xs:element name="MemberSavingsDollarValue" type="xs:string" />
+						<xs:element name="TimeZone" type="xs:string" />
+						<xs:element name="LayawayContractNumber" type="xs:string" />
+						<xs:element name="LayawayOpeningDate" type="xs:string" />
+						<xs:element name="LayawayScheduledClosingDate" type="xs:string" />
+						<xs:element name="LayawayFinalPaymentDate" type="xs:string" />
+						<xs:element minOccurs="0" ref="tns:BonusPointsSummary" />
+						<xs:element minOccurs="0" name="PointsToExpire" type="xs:string" />
+						<xs:element minOccurs="0" name="PointExpirationDate"
+							type="xs:string" />
+						<xs:element minOccurs="0" ref="tns:Messages" />
+						<xs:element minOccurs="0" ref="tns:TenderList" />
+						<xs:element minOccurs="0" ref="tns:LineItems" />
+						<xs:element name="ResponseText" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProcessTransactionResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="ProcessTransactionResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableProductCriteria" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductGroup">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ProductGroupName" type="xs:string" />
+						<xs:element name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductGroups">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ProductGroup" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" ref="tns:ProductLevelSets" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductLevel">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" ref="tns:LevelInfo" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductLevelSet">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ProductLevels" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductLevelSets">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ProductLevelSet" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductLevels">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ProductLevel" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Quantity" type="xs:string" />
+			<xs:element name="QuestionGroupID" type="xs:anyType" />
+			<xs:element name="QuestionID" type="xs:anyType" />
+			<xs:element name="QuestionText" type="xs:string" />
+			<xs:element name="RedeemablePointsInd" type="xs:string" />
+			<xs:element name="RedeemableSurprisePoints" nillable="true"
+				type="xs:anyType" />
+			<xs:element name="RedeemedDollarValue" type="xs:string" />
+			<xs:element name="RedeemedPoints" type="xs:integer" />
+			<xs:element name="RedeemedPointsOriginalDollarValue" type="xs:decimal" />
+			<xs:element name="RedeemedPointsXRDollarValue" type="xs:decimal" />
+			<xs:element name="RedeemedValue" type="xs:decimal" />
+			<xs:element name="RedeemedXRPointsWorth" type="xs:integer" />
+			<xs:element name="RedemptionCapDollarValue" type="xs:decimal" />
+			<xs:element name="RedemptionDollarValue" type="xs:decimal" />
+			<xs:element name="RedemptionMultiplier" type="xs:string" />
+			<xs:element name="RedemptionOffer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="OfferCode" type="xs:string" />
+						<xs:element name="RedemptionMultiplier" type="xs:string" />
+						<xs:element minOccurs="0" name="OfferPointsRedeemed"
+							type="xs:integer" />
+						<xs:element minOccurs="0"
+							name="RedeemedPointsOriginalDollarValue" type="xs:decimal" />
+						<xs:element minOccurs="0" name="RedeemedPointsXRDollarValue"
+							type="xs:decimal" />
+						<xs:element minOccurs="0" name="RedeemedXRPointsWorth"
+							type="xs:integer" />
+						<xs:element minOccurs="0" name="RedemptionCapDollarValue"
+							type="xs:decimal" />
+						<xs:element name="OfferType" type="xs:string" />
+						<xs:element name="RedemptionOfferMultiplierAndCapTxt"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="MemberOwnPointsRedeemed"
+							type="xs:string" />
+						<xs:element minOccurs="0"
+							name="DollarValueOfMemberOwnPointsRedeemed" type="xs:string" />
+						<xs:element minOccurs="0" name="SurprisePointsRedeemed"
+							type="xs:string" />
+						<xs:element minOccurs="0"
+							name="DollarValueOfSurprisePointsRedeemed" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RedemptionOfferCode" type="xs:string" />
+			<xs:element name="RedemptionOfferMultiplierAndCapTxt"
+				type="xs:string" />
+			<xs:element name="RedemptionOffersList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:RedemptionOffer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RedemptionPoints" type="xs:integer" />
+			<xs:element name="RedemptionReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberNumber" type="xs:string" />
+						<xs:element name="PointBalance" type="xs:integer" />
+						<xs:element name="AuthorizationCode" type="xs:string" />
+						<xs:element name="RedeemedPoints" type="xs:integer" />
+						<xs:element name="RedeemedDollarValue" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RedemptionResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="RedemptionResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RedemptionSystemCode" type="xs:string" />
+			<xs:element name="RegisterMember">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="EmailAddress" type="xs:string" />
+						<xs:element minOccurs="0" name="ZipCode" type="xs:string" />
+						<xs:element minOccurs="0" name="ZipCodeExtension" type="xs:string" />
+						<xs:element minOccurs="0" name="SHCAssociateInd" type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentDate" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentTime" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RegisterMemberCardDetailsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="StatusCode" type="xs:string" />
+						<xs:element name="StatusText" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RegisterMemberResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="RegisterMemberResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RegisterNumber" type="xs:string" />
+			<xs:element name="RequestMissingTransactionReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MemberNumber" type="xs:string" />
+						<xs:element name="StoreFlag" type="xs:string" />
+						<xs:element minOccurs="0" name="StoreNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="TransactionID" type="xs:string" />
+						<xs:element minOccurs="0" name="Terminal" type="xs:string" />
+						<xs:element name="TransactionDTTM" type="xs:date" />
+						<xs:element name="ClaimNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="SalesCheckNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="ContractNumber" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RequestMissingTransactionResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="RequestMissingTransactionResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RequestorID" type="xs:string" />
+			<xs:element name="Response">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="tns:GetMemberPrimaryProfileReply" />
+						<xs:element ref="tns:GetMemberExtendedProfileReply" />
+						<xs:element ref="tns:GetMemberAffinitySubscriptionsReply" />
+						<xs:element ref="tns:GetMemberLookupReply" />
+						<xs:element name="GetMemberTargetedOffersReply">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="CardNumber" type="xs:string" />
+									<xs:element name="StartDTTM" type="xs:string" />
+									<xs:element name="EndDTTM" type="xs:string" />
+									<xs:element ref="tns:Offers" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="tns:GetRewardBalanceReply" />
+						<xs:element ref="tns:GetPartnerEnrollmentDetailsReply" />
+						<xs:element ref="tns:MemberReplaceCardReply" />
+						<xs:element ref="tns:MemberMergeReplaceReply" />
+						<xs:element ref="tns:GetMemberLevelReply" />
+						<xs:element ref="tns:GetSystemRewardsReply" />
+						<xs:element ref="tns:GetAvailableOffersReply" />
+						<xs:element ref="tns:GetTransactionBonusDetailsReply" />
+						<xs:element ref="tns:GetLineItemDetailReply" />
+						<xs:element ref="tns:GetMemberActivityReply" />
+						<xs:element ref="tns:GetMemberActivityDetailReply" />
+						<xs:element ref="tns:PostExternalBonusReply" />
+						<xs:element ref="tns:ProcessTransactionReply" />
+						<xs:element ref="tns:ProcessRedemptionReply" />
+						<xs:element minOccurs="0" ref="tns:RedemptionReply" />
+						<xs:element name="PartnerEnrollmentDetailsResponse">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="StatusCode" type="xs:string" />
+									<xs:element name="StatusText" type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="tns:RequestMissingTransactionReply" />
+						<xs:element ref="tns:PostAdjustmentPointsReply" />
+						<xs:element ref="tns:PostPartnerPointsReply" />
+						<xs:element name="MemberNumber" type="xs:string" />
+						<xs:element ref="tns:ProcessAlternateCouponReply" />
+						<xs:element ref="tns:ErrorDesc" />
+						<xs:element ref="tns:Affinities" />
+						<xs:element ref="tns:AddMemberToGroupReply" />
+						<xs:element ref="tns:OfferRegistrationReply" />
+						<xs:element ref="tns:GetMemberAuditLookupReply" />
+						<xs:element ref="tns:GetCouponOfferDetailsReply" />
+						<xs:element ref="tns:GetOrderTransactionsDetailReply" />
+						<xs:element ref="tns:GetApplicableOffersReply" />
+					</xs:sequence>
+					<xs:attribute name="Type" type="xs:string" use="required" />
+					<xs:attribute name="ErrorType" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ResponseCode" type="xs:string" />
+			<xs:element name="ResponseDate" type="xs:anySimpleType" />
+			<xs:element name="ResponseText" type="xs:string" />
+			<xs:element name="ResponseTime" type="xs:anySimpleType" />
+			<xs:element name="ReturnCode" type="xs:string" />
+			<xs:element name="RewardDescription" type="xs:string" />
+			<xs:element name="RewardID" type="xs:string" />
+			<xs:element name="RewardPotential">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="RewardPotentialUnit" type="xs:string" />
+						<xs:element name="RewardPotentialValue" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RewardPotentialDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Conditional" type="xs:string" />
+						<xs:element name="RewardType" type="xs:string" />
+						<xs:element maxOccurs="unbounded" ref="tns:RewardPotential" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RewardsSummary">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:RewardPotentialDetails" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Rules">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:StoreCriteria" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:MemberCriteria" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ProductCriteria" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:TransactionCriteria" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:EarnCriteria" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:XRCriteria" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SHCAssociateInd" type="xs:string" />
+			<xs:element name="SalesCheckNumber" type="xs:string" />
+			<xs:element name="SearchType" type="xs:string" />
+			<xs:element name="SearsEmailOptStatus" type="xs:string" />
+			<xs:element name="SearsPriceType">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TypeName" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Spend">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Multiplier" type="xs:string" />
+						<xs:element name="SpendThreshold" type="xs:string" />
+						<xs:element maxOccurs="unbounded" ref="tns:SpendTiers" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SpendNextTierLevel" type="xs:string" />
+			<xs:element name="SpendTier">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Min" type="xs:string" />
+						<xs:element name="Max" type="xs:string" />
+						<xs:element name="PointsPerDollar" type="xs:string" />
+						<xs:element name="Flat" type="xs:string" />
+						<xs:element name="ForEvery" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SpendTiers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:SpendTier" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="StartDTTM" type="xs:anySimpleType" />
+			<xs:element name="StartDTTMstr" type="xs:string" />
+			<xs:element name="StartingBalance" type="xs:integer" />
+			<xs:element name="State" type="xs:string" />
+			<xs:element name="States">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="StateName" type="xs:string" />
+						<xs:element name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Status" type="xs:string" />
+			<xs:element name="StatusText" type="xs:string" />
+			<xs:element name="Store">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="StoreType" type="xs:string" />
+						<xs:element name="TenderCode" type="xs:string" />
+						<xs:element name="Min" type="xs:string" />
+						<xs:element name="Max" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="StoreCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableStoreCriteria" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="StoreFlag" type="xs:string" />
+			<xs:element name="StoreFormat" type="xs:string" />
+			<xs:element name="StoreFormats">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="StoreFormat"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="StoreLocation" type="xs:string" />
+			<xs:element name="StoreNumber" type="xs:string" />
+			<xs:element name="StoreNumbers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableStoreNumber" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="StoreTypes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="StoreType" type="xs:string" />
+						<xs:element name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SubCategory" type="xs:string" />
+			<xs:element name="SubClub">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="SubClubName" type="xs:string" />
+						<xs:element name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SubClubs">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:SubClub" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Suffix" type="xs:string" />
+			<xs:element name="Survey">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="CampaignControlID"
+							type="xs:integer" />
+						<xs:element name="SurveyID" type="xs:integer" />
+						<xs:element minOccurs="0" name="CategoryID" type="xs:integer" />
+						<xs:element name="SurveyDescription" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SurveyAnswer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="unqualified" minOccurs="0"
+							name="AnswerGroupID" type="xs:anyType" />
+						<xs:element form="unqualified" name="AnswerID" type="xs:anyType" />
+						<xs:element form="unqualified" name="AnswerType" type="xs:anyType" />
+						<xs:element form="unqualified" name="AnswerText" type="xs:anyType" />
+						<xs:element form="unqualified" name="AnswerValue" type="xs:anyType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SurveyDescription" type="xs:string" />
+			<xs:element name="SurveyID" type="xs:integer" />
+			<xs:element name="SurveyQuestion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="QuestionGroupID" type="xs:anyType" />
+						<xs:element name="QuestionID" type="xs:anyType" />
+						<xs:element name="QuestionText" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SysPulse" type="xs:string" />
+			<xs:element name="SystemReward">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="RewardID" type="xs:string" />
+						<xs:element name="RewardDescription" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SystemRewards">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:SystemReward" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TargetValue">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:decimal">
+							<xs:attribute name="Type" type="xs:string" use="required" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TaxAmount" type="xs:string" />
+			<xs:element name="Tender">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TenderType" type="xs:string" />
+						<xs:element name="TenderAmount" type="xs:string" />
+						<xs:element minOccurs="0" name="AuthorizationCode"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TenderAmount" type="xs:string" />
+			<xs:element name="TenderDetail">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TenderType" type="xs:string" />
+						<xs:element name="TenderAmount" type="xs:string" />
+						<xs:element minOccurs="0" name="ExcludeIndicator" type="xs:string" />
+						<xs:element minOccurs="0" name="TenderCode" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TenderDetailList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:TenderDetail" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TenderGroup">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TenderGroupName" type="xs:string" />
+						<xs:element name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TenderGroups">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:TenderGroup" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TenderList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:Tender" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TenderStoreNumber" type="xs:string" />
+			<xs:element name="TenderType" type="xs:string" />
+			<xs:element name="Tenders">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Store" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:TenderGroups" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Terminal" type="xs:string" />
+			<xs:element name="Terms" type="xs:string" />
+			<xs:element name="TermsAndConditions">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="TermAndCondition"
+							type="tns:TermAndCondition" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TestCardIndicator" type="xs:string" />
+			<xs:element name="Tier">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ElevatedTier" type="xs:string" />
+						<xs:element name="TierThreshold" type="xs:decimal" />
+						<xs:element name="DollarsToThreshold" type="xs:decimal" />
+						<xs:element name="Description" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TierData">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ElevatedTier" type="xs:string" />
+						<xs:element name="StartDate" type="xs:anySimpleType" />
+						<xs:element name="EndDate" type="xs:anySimpleType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TierHistory">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:TierData" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TierThreshold" type="xs:decimal" />
+			<xs:element name="Tiers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Tier" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TimeLeft">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:integer">
+							<xs:attribute name="Type" type="xs:string" use="required" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TotalAllocatedBasePoints" type="xs:integer" />
+			<xs:element name="TotalAllocatedPoints" type="xs:integer" />
+			<xs:element name="TotalAvailablePointsSummary">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="TotalAvailablePoints"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="TotalAvailableMemberOwnPoints"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="TotalAvailableSurprisePoints"
+							type="xs:string" />
+						<xs:element minOccurs="0"
+							name="TotalAvailableMemberOwnPointsList" type="tns:MemberOwnPointsList" />
+						<xs:element minOccurs="0"
+							name="TotalAvailableSurprisePointsList">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded" ref="tns:AvailableSurprisePoints" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element minOccurs="0" ref="tns:TotalAvailableXROfferList" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TotalAvailableXROfferList" type="tns:TotalAvailableXROfferList" />
+			<xs:element name="TotalAvailableXRPointsList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:AvailableXRPoints" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TotalBasePoints" type="xs:integer" />
+			<xs:element name="TotalBonusPoints" type="xs:integer" />
+			<xs:element name="TotalBonusPointsEarned" type="xs:integer" />
+			<xs:element name="TotalBonusPointsEarnedTxt" type="xs:string" />
+			<xs:element name="TotalEarned" type="xs:integer" />
+			<xs:element name="TotalExpired" type="xs:integer" />
+			<xs:element name="TotalPoints" type="xs:integer" />
+			<xs:element name="TotalPointsEarned" type="xs:string" />
+			<xs:element name="TotalPointsEarnedTxt" type="xs:string" />
+			<xs:element name="TotalPointsRedeemed" type="xs:integer" />
+			<xs:element name="TotalRedeemablePoints" type="xs:integer" />
+			<xs:element name="TotalRedeemed" type="xs:integer" />
+			<xs:element name="TotalSpentYTD" type="xs:decimal" />
+			<xs:element name="TrackingID" type="xs:string" />
+			<xs:element name="TransactionCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ApplicableCoupons" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:LayAway" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:Tenders" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TransactionDTTM" type="xs:anySimpleType" />
+			<xs:element name="TransactionDate" type="xs:anySimpleType" />
+			<xs:element name="TransactionDescription" type="xs:string" />
+			<xs:element name="TransactionDetail">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TransactionDTTM" type="xs:anySimpleType" />
+						<xs:element name="TransactionID" type="xs:string" />
+						<xs:element name="TransactionDescription" type="xs:string" />
+						<xs:element name="TransactionType" type="xs:string" />
+						<xs:element name="TotalPoints" type="xs:integer" />
+						<xs:element name="TotalBasePoints" type="xs:integer" />
+						<xs:element name="TotalBonusPoints" type="xs:integer" />
+						<xs:element name="TotalPointsRedeemed" type="xs:integer" />
+						<xs:element name="DollarValueOfPointsRedeemed" type="xs:decimal" />
+						<xs:element name="TotalExpired" type="xs:integer" />
+						<xs:element name="StoreLocation" type="xs:string" />
+						<xs:element name="StoreFormat" type="xs:string" />
+						<xs:element name="EarnType" type="xs:string" />
+						<xs:element name="GrossSpend" type="xs:string" />
+						<xs:element name="ReasonCode" type="xs:string" />
+						<xs:element name="PostTS" type="xs:anySimpleType" />
+						<xs:element name="PickUpStoreNumber" type="xs:string" />
+						<xs:element name="TotalTax" type="xs:string" />
+						<xs:element name="AssociateID" type="xs:string" />
+						<xs:element name="ProcessStatus" type="xs:string" />
+						<xs:element name="TransactionNumber" type="xs:string" />
+						<xs:element name="RegisterNumber" type="xs:string" />
+						<xs:element name="TotalDollarSaving" type="xs:decimal" />
+						<xs:element name="OrderId" type="xs:string" />
+						<xs:element name="OrderSource" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TransactionDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:TransactionDetail" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TransactionID" type="xs:string" />
+			<xs:element name="TransactionNumber" type="xs:string" />
+			<xs:element name="TransactionTime" type="xs:anySimpleType" />
+			<xs:element name="TransactionTotal" type="xs:string" />
+			<xs:element name="TransactionTotalTax" type="xs:string" />
+			<xs:element name="TransactionType" type="xs:string" />
+			<xs:element name="TxnEarnOffer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="TxnEarnOfferCode" type="xs:string" />
+						<xs:element minOccurs="0" name="TxnEarnOfferName" type="xs:string" />
+						<xs:element minOccurs="0" name="TxnEarnOfferType" type="xs:string" />
+						<xs:element minOccurs="0" name="TxnPointsEarned" type="xs:integer" />
+						<xs:element minOccurs="0" name="TxnItemLevelOffer"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="TxnPointsEarnedTxt"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TxnEarnOfferCode" type="xs:string" />
+			<xs:element name="TxnEarnOfferName" type="xs:string" />
+			<xs:element name="TxnEarnOfferType" type="xs:string" />
+			<xs:element name="TxnEarnOffers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:TxnEarnOffer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TxnItemLevelOffer" type="xs:string" />
+			<xs:element name="TxnPointsEarned" type="xs:integer" />
+			<xs:element name="TxnPointsEarnedTxt" type="xs:string" />
+			<xs:element name="UPC" type="xs:string" />
+			<xs:element name="UnitPriceAfterDiscount">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Condition" type="xs:string" />
+						<xs:element name="Amount" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UnitPriceBeforeDiscount">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Condition" type="xs:string" />
+						<xs:element name="Amount" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateEmailConfirmed">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="RequestorID" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentDate" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentTime" type="xs:string" />
+						<xs:element minOccurs="0" name="EmailAddress" type="xs:string" />
+						<xs:element minOccurs="0" name="EmailConfirmed" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateEmailConfirmedResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="UpdateEmailConfirmedResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateMemberAffinitySubscriptions">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="Affinities" type="tns:ArrayOfAffinity" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="RequestorID" type="xs:string" />
+						<xs:element minOccurs="0" name="StoreNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="Terminal" type="xs:string" />
+						<xs:element minOccurs="0" name="AssociateId" type="xs:string" />
+						<xs:element minOccurs="0" name="User" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateMemberAffinitySubscriptionsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0"
+							name="UpdateMemberAffinitySubscriptionsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateMemberEmail">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="RequestorID" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentDate" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentTime" type="xs:string" />
+						<xs:element minOccurs="0" name="EmailAddress" type="xs:string" />
+						<xs:element minOccurs="0" name="ClubEmailOptStatus"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="ClubMembershipUpdatedBy"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateMemberEmailResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="UpdateMemberEmailResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateMemberExtendedProfile">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="ExtendedProfilePreferences"
+							type="tns:ArrayOfExtendedProfilePreference" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateMemberExtendedProfileResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0"
+							name="UpdateMemberExtendedProfileResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateMemberPin">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="RequestorID" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentDate" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentTime" type="xs:string" />
+						<xs:element minOccurs="0" name="PinNumber" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateMemberPinResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="UpdateMemberPinResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateMemberPrimaryProfile">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="RequestorID" type="xs:string" />
+						<xs:element minOccurs="0" name="StoreNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="Terminal" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentDate" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentTime" type="xs:string" />
+						<xs:element minOccurs="0" name="Prefix" type="xs:string" />
+						<xs:element minOccurs="0" name="FirstName" type="xs:string" />
+						<xs:element minOccurs="0" name="LastName" type="xs:string" />
+						<xs:element minOccurs="0" name="MiddleInitial" type="xs:string" />
+						<xs:element minOccurs="0" name="Suffix" type="xs:string" />
+						<xs:element minOccurs="0" name="ClubDNPStatus" type="xs:string" />
+						<xs:element minOccurs="0" name="ClubMembershipUpdatedBy"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="DateUpdated" type="xs:string" />
+						<xs:element minOccurs="0" name="DOB" type="xs:string" />
+						<xs:element minOccurs="0" name="TestAccount" type="xs:string" />
+						<xs:element minOccurs="0" name="AccountStatus" type="xs:string" />
+						<xs:element minOccurs="0" name="SHCAssociateInd" type="xs:string" />
+						<xs:element minOccurs="0" name="WirelessPermissionFlag"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="LanguagePreference"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="Address1" type="xs:string" />
+						<xs:element minOccurs="0" name="Address2" type="xs:string" />
+						<xs:element minOccurs="0" name="City" type="xs:string" />
+						<xs:element minOccurs="0" name="State" type="xs:string" />
+						<xs:element minOccurs="0" name="ZipCode" type="xs:string" />
+						<xs:element minOccurs="0" name="ZipCodeExtension" type="xs:string" />
+						<xs:element minOccurs="0" name="CountryCode" type="xs:string" />
+						<xs:element minOccurs="0" name="EmailAddress" type="xs:string" />
+						<xs:element minOccurs="0" name="ClubEmailOptStatus"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="TnCStatus" type="xs:string" />
+						<xs:element minOccurs="0" name="TnCVersion" type="xs:string" />
+						<xs:element minOccurs="0" name="Charity" type="xs:string" />
+						<xs:element minOccurs="0" name="ProfileUpdate" type="xs:string" />
+						<xs:element minOccurs="0" name="POSPrompt" type="tns:ArrayOfPOSPrompt" />
+						<xs:element minOccurs="0" name="AdditionalAttributes"
+							type="tns:AdditionalAttributes" />
+						<xs:element minOccurs="0" name="PhoneNumbers" type="tns:ArrayOfPhone" />
+						<xs:element minOccurs="0" name="Affinities" type="tns:ArrayOfAffinity" />
+						<xs:element minOccurs="0" name="Attributes" type="tns:ArrayOfAttr" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateMemberPrimaryProfileResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0"
+							name="UpdateMemberPrimaryProfileResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="VIPStatus">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="VipName" type="xs:string" />
+						<xs:element name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="VIPStatusList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:VIPStatus" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="VIPTier" type="xs:string" />
+			<xs:element name="ValidateMember">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="FirstName" type="xs:string" />
+						<xs:element minOccurs="0" name="LastName" type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ValidateMemberResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="ValidateMemberResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ValidatePin">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="MemberNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="RequestorID" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentDate" type="xs:string" />
+						<xs:element minOccurs="0" name="CurrentTime" type="xs:string" />
+						<xs:element minOccurs="0" name="PinNumber" type="xs:string" />
+						<xs:element minOccurs="0" name="MessageVersion" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ValidatePinResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="ValidatePinResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="WirelessPermissionFlag" type="xs:string" />
+			<xs:element name="XRCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ApplicableXRQuantity" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:XRSpend" />
+						<xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Caps" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="XRSpend">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Multiplier" type="xs:string" />
+						<xs:element name="SpendThreshold" type="xs:string" />
+						<xs:element maxOccurs="unbounded" ref="tns:XRTiers" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="XRTier">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Min" type="xs:string" />
+						<xs:element name="Max" type="xs:string" />
+						<xs:element name="DollarValueOfPoints" type="xs:string" />
+						<xs:element name="Cap" type="xs:string" />
+						<xs:element name="Flat" type="xs:string" />
+						<xs:element name="ForEvery" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="XRTiers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:XRTier" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="YearToDate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="SpendCondition" type="xs:string" />
+						<xs:element name="SpendAmount" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ZipCode" type="xs:string" />
+			<xs:element name="ZipCodeExtension" type="xs:string" />
+			<xs:element name="Zipcodes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Zipcode" type="xs:string" />
+						<xs:element name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="msg1" type="xs:string" />
+			<xs:element name="msg2" type="xs:string" />
+			<xs:element name="msg3" type="xs:string" />
+			<xs:element name="msg4" type="xs:string" />
+			<xs:element name="msg5" type="xs:string" />
+			<xs:complexType name="ArrayOfAffinity">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Affinity"
+						nillable="true" type="tns:Affinity" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Affinity">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="AffinityID" type="xs:string" />
+					<xs:element name="AffinityStatus" type="xs:string" />
+					<xs:element name="AffiliationCode" type="xs:string" />
+					<xs:element minOccurs="0" name="OfferCode" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Phone">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="PhoneType" type="xs:string" />
+					<xs:element minOccurs="0" name="PreferredPhoneType"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="PhoneNumber" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Offer">
+				<xs:sequence>
+					<xs:element name="OfferName" type="xs:string" />
+					<xs:element name="Description" type="xs:string" />
+					<xs:element name="Terms" type="xs:string" />
+					<xs:element name="StartDTTM" type="xs:dateTime" />
+					<xs:element name="EndDTTM" type="xs:dateTime" />
+					<xs:element name="ImageName" type="xs:string" />
+					<xs:element name="Category" type="xs:string" />
+					<xs:element name="SubCategory" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Member">
+				<xs:sequence>
+					<xs:element name="EmailAddress" type="xs:string" />
+					<xs:element minOccurs="0" name="Prefix" type="xs:string" />
+					<xs:element minOccurs="0" name="FirstName" type="xs:string" />
+					<xs:element minOccurs="0" name="LastName" type="xs:string" />
+					<xs:element minOccurs="0" name="MiddleInitial" type="xs:string" />
+					<xs:element minOccurs="0" name="Address1" type="xs:string" />
+					<xs:element minOccurs="0" name="Address2" type="xs:string" />
+					<xs:element minOccurs="0" name="City" type="xs:string" />
+					<xs:element minOccurs="0" name="State" type="xs:string" />
+					<xs:element minOccurs="0" name="ZipCode" type="xs:string" />
+					<xs:element minOccurs="0" name="ZipCodeExtension" type="xs:string" />
+					<xs:element minOccurs="0" name="Suffix" type="xs:string" />
+					<xs:element name="MemberNumber" type="xs:string" />
+					<xs:element name="ClubStatus" type="xs:string" />
+					<xs:element name="ClubStatusChangeDate" type="xs:anySimpleType" />
+					<xs:element name="CreatedBy" type="xs:string" />
+					<xs:element name="DateIssued" type="xs:anySimpleType" />
+					<xs:element name="MemberSinceDate" type="xs:anySimpleType" />
+					<xs:element name="ClubDNPStatus" type="xs:string" />
+					<xs:element name="AgeEligible" type="xs:string" />
+					<xs:element minOccurs="0" name="DOB" type="xs:date" />
+					<xs:element name="OnlineValidationFlag" type="xs:string" />
+					<xs:element name="OnlineValidationDate" type="xs:anySimpleType" />
+					<xs:element minOccurs="0" name="WirelessPermissionFlag"
+						type="xs:string" />
+					<xs:element name="LanguagePreference" type="xs:string" />
+					<xs:element name="VIPTier" type="xs:string" />
+					<xs:element name="TotalSpentYTD" type="xs:decimal" />
+					<xs:element name="SpendNextTierLevel" type="xs:string" />
+					<xs:element name="CardDesignType" type="xs:string" />
+					<xs:element name="SHCAssociateInd" type="xs:string" />
+					<xs:element name="TotalRedeemablePoints" type="xs:integer" />
+					<xs:element minOccurs="0" name="EmailStatusReturn" type="xs:string" />
+					<xs:element default="M" minOccurs="0" name="RedemptionSystemCode"
+						type="xs:string" />
+					<xs:element name="ClubEmailOptStatus" type="xs:string" />
+					<xs:element name="SearchType" type="xs:string" />
+					<xs:element minOccurs="0" name="Deceased" type="xs:boolean" />
+					<xs:element default="US" name="CountryCode" type="xs:string" />
+					<xs:element name="msg1" type="xs:string" />
+					<xs:element name="msg2" type="xs:string" />
+					<xs:element name="msg3" type="xs:string" />
+					<xs:element name="msg4" type="xs:string" />
+					<xs:element name="msg5" type="xs:string" />
+					<xs:element minOccurs="0" name="EmailConfirmed" type="xs:string" />
+					<xs:element minOccurs="0" name="MemberEarnType" type="xs:string" />
+					<xs:element minOccurs="0" name="TestCardIndicator" type="xs:string" />
+					<xs:element minOccurs="0" name="MobileValid" type="xs:string" />
+					<xs:element ref="tns:PhoneNumbers" />
+					<xs:element name="IncompleteProfileInd" type="xs:string" />
+					<xs:element minOccurs="0" ref="tns:Affinities" />
+					<xs:element minOccurs="0" ref="tns:Attributes" />
+					<xs:element minOccurs="0" ref="tns:TermsAndConditions" />
+					<xs:element minOccurs="0" name="CheckoutPrompt">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element maxOccurs="unbounded" name="CheckoutPromptQuestions"
+									type="tns:CheckoutPromptQuestions" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="EnrollmentSourceCode" type="xs:string" />
+					<xs:element name="EnrollmentStoreNumber" type="xs:string" />
+					<xs:element name="Charity" type="xs:string" />
+					<xs:element minOccurs="0" name="SurvivorMemberNumber"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="TermAndCondition">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="TnCStatus" type="xs:string" />
+					<xs:element minOccurs="0" name="Version" type="xs:string" />
+					<xs:element minOccurs="0" name="Date" type="xs:anySimpleType" />
+					<xs:element minOccurs="0" name="Time" type="xs:anySimpleType" />
+					<xs:element minOccurs="0" name="StoreNumber" type="xs:string" />
+					<xs:element minOccurs="0" name="RegisterNumber" type="xs:string" />
+					<xs:element minOccurs="0" name="AssociateID" type="xs:string" />
+					<xs:element minOccurs="0" name="Prompt" type="xs:string" />
+					<xs:element minOccurs="0" name="LatestVersion" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="CheckoutPromptQuestions">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="AttributeID" type="xs:string" />
+					<xs:element minOccurs="0" name="QuestionPackageID" type="xs:string" />
+					<xs:element minOccurs="0" name="QuestionRuleID" type="xs:string" />
+					<xs:element minOccurs="0" name="QuestionTextID" type="xs:string" />
+					<xs:element minOccurs="0" name="QuestionTitle" type="xs:string" />
+					<xs:element minOccurs="0" name="QuestionLine1" type="xs:string" />
+					<xs:element minOccurs="0" name="QuestionLine2" type="xs:string" />
+					<xs:element minOccurs="0" name="QuestionLine3" type="xs:string" />
+					<xs:element minOccurs="0" name="QuestionLine4" type="xs:string" />
+					<xs:element minOccurs="0" name="QuestionLine5" type="xs:string" />
+					<xs:element minOccurs="0" name="AnswerTemplate" type="xs:string" />
+					<xs:element minOccurs="0" name="AnswerChoice" type="xs:string" />
+					<xs:element minOccurs="0" name="AnswerChoices">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element maxOccurs="unbounded" name="AnswerOption">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element minOccurs="0" name="AnswerChoiceID"
+												type="xs:string" />
+											<xs:element minOccurs="0" name="ButtonTxt" type="xs:string" />
+											<xs:element minOccurs="0" name="AnswerTxt" type="xs:string" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="ApiToUse" type="xs:string" />
+					<xs:element minOccurs="0" name="MemberAttribute" type="xs:string" />
+					<xs:element minOccurs="0" name="AttrName" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Bonus">
+				<xs:sequence>
+					<xs:element name="BonusID" type="xs:string" />
+					<xs:element name="BonusName" type="xs:string" />
+					<xs:element name="BonusDescription" type="xs:string" />
+					<xs:element name="TotalAllocatedPoints" type="xs:integer" />
+					<xs:element name="BonusPoints" type="xs:integer" />
+					<xs:element name="PointsRedeemed" type="xs:integer" />
+					<xs:element name="DollarValueOfPointsRedeemed" type="xs:decimal" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="CardDetail">
+				<xs:sequence>
+					<xs:element name="MemberUniqueId" type="xs:string" />
+					<xs:element name="RegistrationUniqueId" type="xs:string" />
+					<xs:element name="ServiceRegistrationNumber" type="xs:string" />
+					<xs:element name="LastUpdatedTime" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfLineItem">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="LineItem"
+						nillable="true" type="tns:LineItem" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="LineItem">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="LineNumber" type="xs:string" />
+					<xs:element minOccurs="0" name="ItemType" type="xs:string" />
+					<xs:element minOccurs="0" name="Division" type="xs:string" />
+					<xs:element minOccurs="0" name="ItemNumber" type="xs:string" />
+					<xs:element minOccurs="0" name="SKU" type="xs:string" />
+					<xs:element minOccurs="0" name="UPC" type="xs:string" />
+					<xs:element minOccurs="0" name="LineItemAmountTypeCode"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="CouponNumber" type="xs:string" />
+					<xs:element minOccurs="0" name="LineRequestorId" type="xs:string" />
+					<xs:element minOccurs="0" name="LineOrderStoreNumber"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="LinePickUpStoreNumber"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="DollarValuePreDisc"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="DollarValuePostDisc"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="PriceMatchAmount" type="xs:string" />
+					<xs:element minOccurs="0" name="PriceMatchBonusAmount"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="Quantity" type="xs:string" />
+					<xs:element minOccurs="0" name="PointsRedeemed" type="xs:string" />
+					<xs:element minOccurs="0" name="DollarValueOfPointsRedeemed"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="RedemptionExclusionFlag"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="LayawayFlag" type="xs:string" />
+					<xs:element minOccurs="0" name="PickUpStoreNumber" type="xs:string" />
+					<xs:element minOccurs="0" name="PickupStoreFormat" type="xs:string" />
+					<xs:element minOccurs="0" name="OriginalLineNumber"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="OriginalStoreNumber"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="OriginalRegisterNumber"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="OriginalTransactionNumber"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="OriginalTransactionDate"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="OriginalTransactionTime"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="TaxAmount" type="xs:string" />
+					<xs:element minOccurs="0" name="PostSalesAdjustmentAmount"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="NonMemberPrice" type="xs:string" />
+					<xs:element minOccurs="0" name="Coupons" type="tns:ArrayOfCoupon" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfCoupon">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Coupon"
+						nillable="true" type="tns:Coupon" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Coupon">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="CouponNumber" type="xs:string" />
+					<xs:element minOccurs="0" name="DiscountAmount" type="xs:string" />
+					<xs:element minOccurs="0" name="CouponType" type="xs:string" />
+					<xs:element minOccurs="0" name="AlternateCouponDecision"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="PointsDetails">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="PointsToExpiry">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element minOccurs="0" name="ExpiryDate" type="xs:string" />
+								<xs:element minOccurs="0" name="Points" type="xs:string" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="MemberOwnPointsList">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="MemberOwnPointsToExpire">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element minOccurs="0" name="MemberOwnExpiryDate"
+									type="xs:string" />
+								<xs:element minOccurs="0" name="MemberOwnPoints"
+									type="xs:string" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="TotalAvailableXROfferList">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="TotalAvailableXROffers">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element minOccurs="0" name="XROfferPointsAvailableFor"
+									type="xs:string" />
+								<xs:element minOccurs="0" name="XROfferMultiplier"
+									type="xs:string" />
+								<xs:element minOccurs="0" name="XROfferQualifier"
+									type="xs:string" />
+								<xs:element minOccurs="0" name="XROfferExpiryDate"
+									type="xs:string" />
+								<xs:element minOccurs="0" name="XRPointsExclusion"
+									type="xs:string" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="OfferMemberGroupResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="OfferCode" type="xs:string" />
+					<xs:element minOccurs="0" name="GroupName" type="xs:string" />
+					<xs:element minOccurs="0" name="Status" type="xs:string" />
+					<xs:element minOccurs="0" name="StatusText" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfExtendedProfilePreference">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="ExtendedProfilePreference" nillable="true"
+						type="tns:ExtendedProfilePreference" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ExtendedProfilePreference">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="PreferenceCode" type="xs:string" />
+					<xs:element minOccurs="0" name="PreferenceResponseCode"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="PreferenceValue" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfPhone">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Phone"
+						nillable="true" type="tns:Phone" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfAttr">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Attr"
+						nillable="true">
+						<xs:complexType>
+							<xs:sequence />
+							<xs:attribute name="attrname" type="xs:string" />
+							<xs:attribute name="attrvalue" type="xs:string" />
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfPOSPrompt">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="POSPromptQuestions"
+						type="tns:POSPromptQuestions" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="POSPromptQuestions">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="QuestionPackageID" type="xs:string" />
+					<xs:element minOccurs="0" name="AttributeID" type="xs:string" />
+					<xs:element minOccurs="0" name="AnswerChoice" type="xs:string" />
+					<xs:element minOccurs="0" name="QuestionTextID" type="xs:string" />
+					<xs:element minOccurs="0" name="AnswerChoices">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element maxOccurs="unbounded" name="AnswerOption">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element minOccurs="0" name="AnswerChoiceID"
+												type="xs:string" />
+											<xs:element minOccurs="0" name="AnswerTxt" type="xs:string" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element minOccurs="0" name="QuestionRuleID" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="AdditionalAttributes">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="AdditionalAttribute" type="tns:AdditionalAttribute" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="AdditionalAttribute">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="AttrName" type="xs:string" />
+					<xs:element minOccurs="0" name="AttrValue" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="UpdateMemberPinResponse">
+		<wsdl:part name="parameters" element="ns1:UpdateMemberPinResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RegisterMemberResponse">
+		<wsdl:part name="parameters" element="ns1:RegisterMemberResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="UpdateMemberExtendedProfile">
+		<wsdl:part name="parameters" element="ns1:UpdateMemberExtendedProfile">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetMemberAffinitySubscriptions">
+		<wsdl:part name="parameters" element="ns1:GetMemberAffinitySubscriptions">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="UpdateMemberEmail">
+		<wsdl:part name="parameters" element="ns1:UpdateMemberEmail">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetMemberPrimaryProfileResponse">
+		<wsdl:part name="parameters" element="ns1:GetMemberPrimaryProfileResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="UpdateMemberExtendedProfileResponse">
+		<wsdl:part name="parameters" element="ns1:UpdateMemberExtendedProfileResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetMemberTargetedOffersResponse">
+		<wsdl:part name="parameters" element="ns1:GetMemberTargetedOffersResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetMemberExtendedProfileResponse">
+		<wsdl:part name="parameters" element="ns1:GetMemberExtendedProfileResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetMemberAuditLookup">
+		<wsdl:part name="parameters" element="ns1:GetMemberAuditLookup">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="UpdateMemberPin">
+		<wsdl:part name="parameters" element="ns1:UpdateMemberPin">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetMemberAffinitySubscriptionsResponse">
+		<wsdl:part name="parameters" element="ns1:GetMemberAffinitySubscriptionsResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="MemberReplaceCardResponse">
+		<wsdl:part name="parameters" element="ns1:MemberReplaceCardResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetRewardBalanceResponse">
+		<wsdl:part name="parameters" element="ns1:GetRewardBalanceResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetPartnerEnrollmentDetails">
+		<wsdl:part name="parameters" element="ns1:GetPartnerEnrollmentDetails">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="CreateMember">
+		<wsdl:part name="parameters" element="ns1:CreateMember">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ValidateMemberResponse">
+		<wsdl:part name="parameters" element="ns1:ValidateMemberResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetPartnerEnrollmentDetailsResponse">
+		<wsdl:part name="parameters" element="ns1:GetPartnerEnrollmentDetailsResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="CreateMemberResponse">
+		<wsdl:part name="parameters" element="ns1:CreateMemberResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ValidatePinResponse">
+		<wsdl:part name="parameters" element="ns1:ValidatePinResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetMemberAuditLookupResponse">
+		<wsdl:part name="parameters" element="ns1:GetMemberAuditLookupResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="UpdateMemberPrimaryProfileResponse">
+		<wsdl:part name="parameters" element="ns1:UpdateMemberPrimaryProfileResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="CreatePartnerEnrollmentDetails">
+		<wsdl:part name="parameters" element="ns1:CreatePartnerEnrollmentDetails">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetMemberLookupResponse">
+		<wsdl:part name="parameters" element="ns1:GetMemberLookupResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="UpdateMemberEmailResponse">
+		<wsdl:part name="parameters" element="ns1:UpdateMemberEmailResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ValidateMember">
+		<wsdl:part name="parameters" element="ns1:ValidateMember">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="DateTimeOnServerResponse">
+		<wsdl:part name="parameters" element="ns1:DateTimeOnServerResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetMemberPrimaryProfile">
+		<wsdl:part name="parameters" element="ns1:GetMemberPrimaryProfile">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetMemberExtendedProfile">
+		<wsdl:part name="parameters" element="ns1:GetMemberExtendedProfile">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetMemberLevel">
+		<wsdl:part name="parameters" element="ns1:GetMemberLevel">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="UpdateEmailConfirmed">
+		<wsdl:part name="parameters" element="ns1:UpdateEmailConfirmed">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetMemberLevelResponse">
+		<wsdl:part name="parameters" element="ns1:GetMemberLevelResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="UpdateMemberAffinitySubscriptions">
+		<wsdl:part name="parameters" element="ns1:UpdateMemberAffinitySubscriptions">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="UpdateMemberAffinitySubscriptionsResponse">
+		<wsdl:part name="parameters"
+			element="ns1:UpdateMemberAffinitySubscriptionsResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetRewardBalance">
+		<wsdl:part name="parameters" element="ns1:GetRewardBalance">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="UpdateMemberPrimaryProfile">
+		<wsdl:part name="parameters" element="ns1:UpdateMemberPrimaryProfile">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetMemberLookup">
+		<wsdl:part name="parameters" element="ns1:GetMemberLookup">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RegisterMember">
+		<wsdl:part name="parameters" element="ns1:RegisterMember">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ValidatePin">
+		<wsdl:part name="parameters" element="ns1:ValidatePin">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetMemberTargetedOffers">
+		<wsdl:part name="parameters" element="ns1:GetMemberTargetedOffers">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="UpdateEmailConfirmedResponse">
+		<wsdl:part name="parameters" element="ns1:UpdateEmailConfirmedResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="CreatePartnerEnrollmentDetailsResponse">
+		<wsdl:part name="parameters" element="ns1:CreatePartnerEnrollmentDetailsResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="DateTimeOnServer">
+		<wsdl:part name="parameters" element="ns1:DateTimeOnServer">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="MemberReplaceCard">
+		<wsdl:part name="parameters" element="ns1:MemberReplaceCard">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="ProfileSoap">
+		<wsdl:operation name="UpdateMemberAffinitySubscriptions">
+			<wsdl:input name="UpdateMemberAffinitySubscriptions"
+				message="ns1:UpdateMemberAffinitySubscriptions">
+			</wsdl:input>
+			<wsdl:output name="UpdateMemberAffinitySubscriptionsResponse"
+				message="ns1:UpdateMemberAffinitySubscriptionsResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberAuditLookup">
+			<wsdl:input name="GetMemberAuditLookup" message="ns1:GetMemberAuditLookup">
+			</wsdl:input>
+			<wsdl:output name="GetMemberAuditLookupResponse" message="ns1:GetMemberAuditLookupResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetPartnerEnrollmentDetails">
+			<wsdl:input name="GetPartnerEnrollmentDetails" message="ns1:GetPartnerEnrollmentDetails">
+			</wsdl:input>
+			<wsdl:output name="GetPartnerEnrollmentDetailsResponse"
+				message="ns1:GetPartnerEnrollmentDetailsResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberTargetedOffers">
+			<wsdl:input name="GetMemberTargetedOffers" message="ns1:GetMemberTargetedOffers">
+			</wsdl:input>
+			<wsdl:output name="GetMemberTargetedOffersResponse"
+				message="ns1:GetMemberTargetedOffersResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ValidatePin">
+			<wsdl:input name="ValidatePin" message="ns1:ValidatePin">
+			</wsdl:input>
+			<wsdl:output name="ValidatePinResponse" message="ns1:ValidatePinResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberLevel">
+			<wsdl:input name="GetMemberLevel" message="ns1:GetMemberLevel">
+			</wsdl:input>
+			<wsdl:output name="GetMemberLevelResponse" message="ns1:GetMemberLevelResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetRewardBalance">
+			<wsdl:input name="GetRewardBalance" message="ns1:GetRewardBalance">
+			</wsdl:input>
+			<wsdl:output name="GetRewardBalanceResponse" message="ns1:GetRewardBalanceResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMemberExtendedProfile">
+			<wsdl:input name="UpdateMemberExtendedProfile" message="ns1:UpdateMemberExtendedProfile">
+			</wsdl:input>
+			<wsdl:output name="UpdateMemberExtendedProfileResponse"
+				message="ns1:UpdateMemberExtendedProfileResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DateTimeOnServer">
+			<wsdl:input name="DateTimeOnServer" message="ns1:DateTimeOnServer">
+			</wsdl:input>
+			<wsdl:output name="DateTimeOnServerResponse" message="ns1:DateTimeOnServerResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateEmailConfirmed">
+			<wsdl:input name="UpdateEmailConfirmed" message="ns1:UpdateEmailConfirmed">
+			</wsdl:input>
+			<wsdl:output name="UpdateEmailConfirmedResponse" message="ns1:UpdateEmailConfirmedResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberLookup">
+			<wsdl:input name="GetMemberLookup" message="ns1:GetMemberLookup">
+			</wsdl:input>
+			<wsdl:output name="GetMemberLookupResponse" message="ns1:GetMemberLookupResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMemberPin">
+			<wsdl:input name="UpdateMemberPin" message="ns1:UpdateMemberPin">
+			</wsdl:input>
+			<wsdl:output name="UpdateMemberPinResponse" message="ns1:UpdateMemberPinResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreatePartnerEnrollmentDetails">
+			<wsdl:input name="CreatePartnerEnrollmentDetails" message="ns1:CreatePartnerEnrollmentDetails">
+			</wsdl:input>
+			<wsdl:output name="CreatePartnerEnrollmentDetailsResponse"
+				message="ns1:CreatePartnerEnrollmentDetailsResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateMember">
+			<wsdl:input name="CreateMember" message="ns1:CreateMember">
+			</wsdl:input>
+			<wsdl:output name="CreateMemberResponse" message="ns1:CreateMemberResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMemberPrimaryProfile">
+			<wsdl:input name="UpdateMemberPrimaryProfile" message="ns1:UpdateMemberPrimaryProfile">
+			</wsdl:input>
+			<wsdl:output name="UpdateMemberPrimaryProfileResponse"
+				message="ns1:UpdateMemberPrimaryProfileResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberAffinitySubscriptions">
+			<wsdl:input name="GetMemberAffinitySubscriptions" message="ns1:GetMemberAffinitySubscriptions">
+			</wsdl:input>
+			<wsdl:output name="GetMemberAffinitySubscriptionsResponse"
+				message="ns1:GetMemberAffinitySubscriptionsResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="MemberReplaceCard">
+			<wsdl:input name="MemberReplaceCard" message="ns1:MemberReplaceCard">
+			</wsdl:input>
+			<wsdl:output name="MemberReplaceCardResponse" message="ns1:MemberReplaceCardResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ValidateMember">
+			<wsdl:input name="ValidateMember" message="ns1:ValidateMember">
+			</wsdl:input>
+			<wsdl:output name="ValidateMemberResponse" message="ns1:ValidateMemberResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMemberEmail">
+			<wsdl:input name="UpdateMemberEmail" message="ns1:UpdateMemberEmail">
+			</wsdl:input>
+			<wsdl:output name="UpdateMemberEmailResponse" message="ns1:UpdateMemberEmailResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RegisterMember">
+			<wsdl:input name="RegisterMember" message="ns1:RegisterMember">
+			</wsdl:input>
+			<wsdl:output name="RegisterMemberResponse" message="ns1:RegisterMemberResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberPrimaryProfile">
+			<wsdl:input name="GetMemberPrimaryProfile" message="ns1:GetMemberPrimaryProfile">
+			</wsdl:input>
+			<wsdl:output name="GetMemberPrimaryProfileResponse"
+				message="ns1:GetMemberPrimaryProfileResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberExtendedProfile">
+			<wsdl:input name="GetMemberExtendedProfile" message="ns1:GetMemberExtendedProfile">
+			</wsdl:input>
+			<wsdl:output name="GetMemberExtendedProfileResponse"
+				message="ns1:GetMemberExtendedProfileResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ProfileSoap" type="ns1:ProfileSoap">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="UpdateMemberAffinitySubscriptions">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/UpdateMemberAffinitySubscriptions"
+				style="document" />
+			<wsdl:input name="UpdateMemberAffinitySubscriptions">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="UpdateMemberAffinitySubscriptionsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberAuditLookup">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/GetMemberAuditLookup"
+				style="document" />
+			<wsdl:input name="GetMemberAuditLookup">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetMemberAuditLookupResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetPartnerEnrollmentDetails">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/GetPartnerEnrollmentDetails"
+				style="document" />
+			<wsdl:input name="GetPartnerEnrollmentDetails">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetPartnerEnrollmentDetailsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberTargetedOffers">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/GetMemberTargetedOffers"
+				style="document" />
+			<wsdl:input name="GetMemberTargetedOffers">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetMemberTargetedOffersResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ValidatePin">
+			<soap:operation soapAction="http://www.epsilon.com/webservices/ValidatePin"
+				style="document" />
+			<wsdl:input name="ValidatePin">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="ValidatePinResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberLevel">
+			<soap:operation soapAction="http://www.epsilon.com/webservices/GetMemberLevel"
+				style="document" />
+			<wsdl:input name="GetMemberLevel">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetMemberLevelResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetRewardBalance">
+			<soap:operation soapAction="http://www.epsilon.com/webservices/GetRewardBalance"
+				style="document" />
+			<wsdl:input name="GetRewardBalance">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetRewardBalanceResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMemberExtendedProfile">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/UpdateMemberExtendedProfile"
+				style="document" />
+			<wsdl:input name="UpdateMemberExtendedProfile">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="UpdateMemberExtendedProfileResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DateTimeOnServer">
+			<soap:operation soapAction="http://www.epsilon.com/webservices/DateTimeOnServer"
+				style="document" />
+			<wsdl:input name="DateTimeOnServer">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="DateTimeOnServerResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateEmailConfirmed">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/UpdateEmailConfirmed"
+				style="document" />
+			<wsdl:input name="UpdateEmailConfirmed">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="UpdateEmailConfirmedResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberLookup">
+			<soap:operation soapAction="http://www.epsilon.com/webservices/GetMemberLookup"
+				style="document" />
+			<wsdl:input name="GetMemberLookup">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetMemberLookupResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMemberPin">
+			<soap:operation soapAction="http://www.epsilon.com/webservices/UpdateMemberPin"
+				style="document" />
+			<wsdl:input name="UpdateMemberPin">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="UpdateMemberPinResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateMember">
+			<soap:operation soapAction="http://www.epsilon.com/webservices/CreateMember"
+				style="document" />
+			<wsdl:input name="CreateMember">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="CreateMemberResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreatePartnerEnrollmentDetails">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/CreatePartnerEnrollmentDetails"
+				style="document" />
+			<wsdl:input name="CreatePartnerEnrollmentDetails">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="CreatePartnerEnrollmentDetailsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMemberPrimaryProfile">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/UpdateMemberPrimaryProfile"
+				style="document" />
+			<wsdl:input name="UpdateMemberPrimaryProfile">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="UpdateMemberPrimaryProfileResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberAffinitySubscriptions">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/GetMemberAffinitySubscriptions"
+				style="document" />
+			<wsdl:input name="GetMemberAffinitySubscriptions">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetMemberAffinitySubscriptionsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="MemberReplaceCard">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/MemberReplaceCard"
+				style="document" />
+			<wsdl:input name="MemberReplaceCard">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="MemberReplaceCardResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMemberEmail">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/UpdateMemberEmail"
+				style="document" />
+			<wsdl:input name="UpdateMemberEmail">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="UpdateMemberEmailResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ValidateMember">
+			<soap:operation soapAction="http://www.epsilon.com/webservices/ValidateMember"
+				style="document" />
+			<wsdl:input name="ValidateMember">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="ValidateMemberResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RegisterMember">
+			<soap:operation soapAction="http://www.epsilon.com/webservices/RegisterMember"
+				style="document" />
+			<wsdl:input name="RegisterMember">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="RegisterMemberResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberExtendedProfile">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/GetMemberExtendedProfile"
+				style="document" />
+			<wsdl:input name="GetMemberExtendedProfile">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetMemberExtendedProfileResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberPrimaryProfile">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/GetMemberPrimaryProfile"
+				style="document" />
+			<wsdl:input name="GetMemberPrimaryProfile">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetMemberPrimaryProfileResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="ProfileSoap12" type="ns1:ProfileSoap">
+		<soap12:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="UpdateMemberAffinitySubscriptions">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/UpdateMemberAffinitySubscriptions"
+				style="document" />
+			<wsdl:input name="UpdateMemberAffinitySubscriptions">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="UpdateMemberAffinitySubscriptionsResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberAuditLookup">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/GetMemberAuditLookup"
+				style="document" />
+			<wsdl:input name="GetMemberAuditLookup">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetMemberAuditLookupResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetPartnerEnrollmentDetails">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/GetPartnerEnrollmentDetails"
+				style="document" />
+			<wsdl:input name="GetPartnerEnrollmentDetails">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetPartnerEnrollmentDetailsResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberTargetedOffers">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/GetMemberTargetedOffers"
+				style="document" />
+			<wsdl:input name="GetMemberTargetedOffers">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetMemberTargetedOffersResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ValidatePin">
+			<soap12:operation soapAction="http://www.epsilon.com/webservices/ValidatePin"
+				style="document" />
+			<wsdl:input name="ValidatePin">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="ValidatePinResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberLevel">
+			<soap12:operation soapAction="http://www.epsilon.com/webservices/GetMemberLevel"
+				style="document" />
+			<wsdl:input name="GetMemberLevel">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetMemberLevelResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetRewardBalance">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/GetRewardBalance"
+				style="document" />
+			<wsdl:input name="GetRewardBalance">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetRewardBalanceResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMemberExtendedProfile">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/UpdateMemberExtendedProfile"
+				style="document" />
+			<wsdl:input name="UpdateMemberExtendedProfile">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="UpdateMemberExtendedProfileResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DateTimeOnServer">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/DateTimeOnServer"
+				style="document" />
+			<wsdl:input name="DateTimeOnServer">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="DateTimeOnServerResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateEmailConfirmed">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/UpdateEmailConfirmed"
+				style="document" />
+			<wsdl:input name="UpdateEmailConfirmed">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="UpdateEmailConfirmedResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberLookup">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/GetMemberLookup"
+				style="document" />
+			<wsdl:input name="GetMemberLookup">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetMemberLookupResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMemberPin">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/UpdateMemberPin"
+				style="document" />
+			<wsdl:input name="UpdateMemberPin">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="UpdateMemberPinResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateMember">
+			<soap12:operation soapAction="http://www.epsilon.com/webservices/CreateMember"
+				style="document" />
+			<wsdl:input name="CreateMember">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="CreateMemberResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreatePartnerEnrollmentDetails">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/CreatePartnerEnrollmentDetails"
+				style="document" />
+			<wsdl:input name="CreatePartnerEnrollmentDetails">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="CreatePartnerEnrollmentDetailsResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMemberPrimaryProfile">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/UpdateMemberPrimaryProfile"
+				style="document" />
+			<wsdl:input name="UpdateMemberPrimaryProfile">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="UpdateMemberPrimaryProfileResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberAffinitySubscriptions">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/GetMemberAffinitySubscriptions"
+				style="document" />
+			<wsdl:input name="GetMemberAffinitySubscriptions">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetMemberAffinitySubscriptionsResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="MemberReplaceCard">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/MemberReplaceCard"
+				style="document" />
+			<wsdl:input name="MemberReplaceCard">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="MemberReplaceCardResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateMemberEmail">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/UpdateMemberEmail"
+				style="document" />
+			<wsdl:input name="UpdateMemberEmail">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="UpdateMemberEmailResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ValidateMember">
+			<soap12:operation soapAction="http://www.epsilon.com/webservices/ValidateMember"
+				style="document" />
+			<wsdl:input name="ValidateMember">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="ValidateMemberResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RegisterMember">
+			<soap12:operation soapAction="http://www.epsilon.com/webservices/RegisterMember"
+				style="document" />
+			<wsdl:input name="RegisterMember">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="RegisterMemberResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberExtendedProfile">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/GetMemberExtendedProfile"
+				style="document" />
+			<wsdl:input name="GetMemberExtendedProfile">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetMemberExtendedProfileResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMemberPrimaryProfile">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/GetMemberPrimaryProfile"
+				style="document" />
+			<wsdl:input name="GetMemberPrimaryProfile">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="GetMemberPrimaryProfileResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="Profile">
+		<wsdl:port name="ProfileSoap" binding="tns:ProfileSoap">
+			<soap:address
+				location="https://trqaeaesb2med1.vm.itg.corp.us.shldcorp.com:7443/ws/TellurideASProfileVirtualSvc" />
+		</wsdl:port>
+		<wsdl:port name="ProfileSoap12" binding="tns:ProfileSoap12">
+			<soap12:address
+				location="https://trqaeaesb2med1.vm.itg.corp.us.shldcorp.com:7443/ws/TellurideASProfileVirtualSvc" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

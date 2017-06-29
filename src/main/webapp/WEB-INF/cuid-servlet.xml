@@ -1,0 +1,116 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs-client="http://cxf.apache.org/jaxrs-client" 
+	xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:clustering="http://cxf.apache.org/clustering"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+		http://cxf.apache.org/jaxrs-client http://cxf.apache.org/schemas/jaxrs-client.xsd
+		http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd
+	    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	    http://cxf.apache.org/clustering http://cxf.apache.org/schemas/clustering.xsd
+	    http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
+
+	<context:component-scan base-package="com" />
+	<context:annotation-config />
+	<mvc:annotation-driven />
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url" value="${db_url}" />
+		<property name="username" value="${db_username}" />
+		<property name="password" value="${db_password}" />
+	</bean>
+	
+	<bean id="jdbcTemplate2" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource2"></property>
+	</bean>
+	
+	<bean  name="dataSource2" id="dataSource2" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="org.postgresql.Driver" />
+	    <property name="url" value="${db_url_2}" /> 
+	    <property name="username" value="${db_username_2}" />
+	    <property name="password" value="" />
+	</bean>
+	
+	<jaxrs-client:client id="MerchandiseServiceClient"
+	 address="${merchandise.url}"
+		serviceClass="com.searshc.hs.domi.merchandise.client.MerchandiseServiceClient"
+		inheritHeaders="true">
+		<jaxrs-client:headers>
+			<entry key="Accept" value="application/xml"/>
+			<entry key="servicename" value="MerchandiseList"/>
+			<entry key="serviceversion" value="1.0.0"/>
+			<entry key="clientid" value="CASE"/>
+		</jaxrs-client:headers>
+		<!-- <jaxrs-client:providers>
+			<bean class="com.searshc.hs.domi.create.service.provider.HsDOMIJacksonJSONProvider"/>
+		</jaxrs-client:providers> -->
+	</jaxrs-client:client>
+	
+	<jaxws:client
+		address="${partorder.direct.service.soap.address}"
+		serviceClass="com.searshc.hs.psc.partorderdirectservice.ws.service.PartOrderDirectSoapService"
+		serviceName="PartOrderDirectSoapService" name="PartOrderDirectSoapServiceClient">
+		<jaxws:features>
+			<clustering:loadDistributor>
+				<clustering:strategy>
+					<ref bean="partOrderDirectSoapServiceClient-RandomStrategy" />
+				</clustering:strategy>
+			</clustering:loadDistributor>
+		</jaxws:features>
+	</jaxws:client>
+
+	<http-conf:conduit
+		name="{http://service.ws.partorderdirectservice.psc.hs.searshc.com}PartOrderDirectSoapServicePort.http-conduit">
+		<http-conf:client ConnectionTimeout="${partorder.direct.service.connection.timeout}"
+			ReceiveTimeout="${partorder.direct.service.receive.timeout}" 
+			MaxRetransmits="${partorder.direct.service.max.retransmits}" />
+	</http-conf:conduit>
+	
+	<util:list id="partOrderDirectSoapServiceClient-addressList">
+        <value>${partorder.direct.service.soap.address}</value>
+    </util:list>
+    
+    <bean id="partOrderDirectSoapServiceClient-RandomStrategy" class="org.apache.cxf.clustering.RandomStrategy">
+		<property name="alternateAddresses">
+            <ref bean="partOrderDirectSoapServiceClient-addressList"/>
+        </property>
+    </bean>
+    
+    <bean id="logInbound" class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+	<bean id="logOutbound" class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+
+
+	<jaxrs-client:client name="agreementServiceRestClient" address="${agreement.service.soap.url}"
+		serviceClass="com.searshc.hs.agreement.agreementservice.service.AgreementService">
+		<jaxrs-client:inInterceptors>
+			<ref bean="logInbound" />
+		</jaxrs-client:inInterceptors>
+		<jaxrs-client:outInterceptors>
+			<ref bean="logOutbound" />
+		</jaxrs-client:outInterceptors>
+	</jaxrs-client:client>
+	
+</beans>
+
+
+

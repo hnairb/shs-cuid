@@ -1,0 +1,4611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="BankSoap"
+	targetNamespace="http://www.epsilon.com/webservices/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://www.epsilon.com/webservices/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.epsilon.com/webservices/">
+	<wsdl:types>
+		<xs:schema attributeFormDefault="unqualified"
+			elementFormDefault="unqualified" targetNamespace="http://www.epsilon.com/webservices/common"
+			xmlns="http://www.epsilon.com/webservices/common" xmlns:ns1="http://www.epsilon.com/webservices/"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:import namespace="http://www.epsilon.com/webservices/" />
+			<xs:element name="DollarValueOfPointsRedeemedOnBaseOffer"
+				type="xs:string" />
+			<xs:element name="DollarValueOfPointsRedeemedOnBonusOffer"
+				type="xs:string" />
+			<xs:element name="MemberSavingsDollarValue" type="xs:string" />
+			<xs:element name="Offer" type="ns1:Offer" />
+		</xs:schema>
+		<xs:schema attributeFormDefault="unqualified"
+			elementFormDefault="unqualified" targetNamespace="http://www.epsilon.com/webservices/"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="AddMemberToGroup" type="tns:AddMemberToGroup" />
+			<xs:element name="AddMemberToGroupReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="memberNumber" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AddMemberToGroupResponse" nillable="true"
+				type="xs:anyType" />
+			<xs:element name="Additional">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Status" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="StatusText"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="msg1"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="msg2"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="SysPulse"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="TrackingID"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AdditionalOptions">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:Cities" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:States" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:Zipcodes" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Address1" type="xs:string" />
+			<xs:element name="Address2" type="xs:string" />
+			<xs:element name="AddressLine1" type="xs:string" />
+			<xs:element name="AddressLine2" type="xs:string" />
+			<xs:element name="Affinities">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							minOccurs="0" name="Affinity" type="tns:Affinity" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:AffinityExtended" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:AffinityForMemberPricing" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AffinityExtended">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="tns:Affinity">
+							<xs:sequence>
+								<xs:element form="qualified" name="CreatedBy" type="xs:string" />
+								<xs:element form="qualified" name="AffinityStartDate"
+									type="xs:anySimpleType" />
+								<xs:element form="qualified" name="AffinityEndDate"
+									type="xs:anySimpleType" />
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AffinityForMemberPricing">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="tns:Affinity">
+							<xs:sequence>
+								<xs:element form="qualified" name="RequestorID" type="xs:string" />
+								<xs:element form="qualified" name="StoreNumber" type="xs:string" />
+								<xs:element form="qualified" name="Terminal" type="xs:string" />
+								<xs:element form="qualified" name="AssociateId" type="xs:string" />
+								<xs:element form="qualified" name="CreatedBy" type="xs:string" />
+								<xs:element form="qualified" name="AffinityStartDate"
+									type="xs:anySimpleType" />
+								<xs:element form="qualified" name="AffinityEndDate"
+									type="xs:anySimpleType" />
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AgeEligible" type="xs:string" />
+			<xs:element name="AgeEligibleFlag" type="xs:string" />
+			<xs:element name="AlternateCouponDecision" type="xs:string" />
+			<xs:element name="AlternateCouponFlag" type="xs:string" />
+			<xs:element name="AlternateCouponOfferPoints" type="xs:integer" />
+			<xs:element name="ApplicableCardType">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="CardTypeName" type="xs:string" />
+						<xs:element form="qualified" name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableCoupons">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="CouponNumber" type="xs:string" />
+						<xs:element form="qualified" name="Qualifying" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableMemberCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:MemberEarnTypes" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:MemberNumbers" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:MemberGroups" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:YearToDate" />
+						<xs:element minOccurs="0" name="EnrollmentTrackingCode"
+							type="xs:string" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:CurrentPointBalance" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:MemberAdditionalOptions" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableMemberNumber">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Number" type="xs:string" />
+						<xs:element form="qualified" name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableOffer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Conditional" type="xs:string" />
+						<xs:element form="qualified" name="Stackable" type="xs:string" />
+						<xs:element form="qualified" name="OfferRewardType"
+							type="xs:string" />
+						<xs:element form="qualified" name="RewardBasis" type="xs:string" />
+						<xs:element form="qualified" name="RewardCalculationType"
+							type="xs:string" />
+						<xs:element form="qualified" name="OfferCode" type="xs:string" />
+						<xs:element form="qualified" name="OfferName" type="xs:string" />
+						<xs:element form="qualified" name="Description" type="xs:string" />
+						<xs:element form="qualified" name="StartDTTM" type="xs:dateTime" />
+						<xs:element form="qualified" name="EndDTTM" type="xs:dateTime" />
+						<xs:element form="qualified" minOccurs="0" name="BenefitType"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="BenefitCategory" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RedemptionMode"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="ApproximateRetailValue" type="xs:decimal" />
+						<xs:element form="qualified" minOccurs="0" name="CostToBusiness"
+							type="xs:decimal" />
+						<xs:element form="qualified" minOccurs="0"
+							name="BenefitUsageDetails" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="ThirdPartyName"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="ThirdPartyURL"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="OnlineContent"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="ImageURL"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="CouponNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="AlreadySelected" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="AvailableForRedeem" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="MemberTimesRedeemed" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="MemberTimesAvailable" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="OfferCap"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="OfferTimesRedeemed" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="OfferTimesAvailable" type="xs:string" />
+						<xs:element minOccurs="0" ref="tns:VIPTiers" />
+						<xs:element minOccurs="0" ref="tns:RedemptionDetails" />
+						<xs:element form="qualified" minOccurs="0"
+							name="OfferRewardPotential" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="XRFlatOffer"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="XRMultiplier"
+							type="xs:string" />
+						<xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Rules" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableOfferTier">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Min" type="xs:string" />
+						<xs:element form="qualified" name="Max" type="xs:string" />
+						<xs:element form="qualified" name="PointsPerDollar"
+							type="xs:string" />
+						<xs:element form="qualified" name="Flat" type="xs:string" />
+						<xs:element form="qualified" name="ForEvery" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableOfferTiers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableOfferTier" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableProductCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ProductInfo" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:PriceFilter" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:Brands" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ProductGroups" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableQuantity">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Multiplier" type="xs:string" />
+						<xs:element form="qualified" name="ItemThreshold" type="xs:string" />
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableOfferTiers" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableStoreCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:StoreNumbers" />
+						<xs:element maxOccurs="unbounded" ref="tns:StoreTypes" />
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableStoreFormats" />
+						<xs:element maxOccurs="unbounded" ref="tns:AdditionalOptions" />
+						<xs:element maxOccurs="unbounded" ref="tns:LocationGroups" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableStoreFormats">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="ApplicableStoreFormat"
+							type="xs:string" />
+						<xs:element form="qualified" name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableStoreNumber">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Number" type="xs:string" />
+						<xs:element form="qualified" name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ApplicableXRQuantity">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Multiplier" type="xs:string" />
+						<xs:element form="qualified" name="ItemThreshold" type="xs:string" />
+						<xs:element maxOccurs="unbounded" ref="tns:XRTiers" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AssociateID" type="xs:string" />
+			<xs:element name="Attr">
+				<xs:complexType>
+					<xs:sequence />
+					<xs:attribute name="attrname" type="xs:string" />
+					<xs:attribute name="attrvalue" type="xs:string" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Attributes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:Attr" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AuthorizationCode" type="xs:string" />
+			<xs:element name="AvailCoupon">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="Source"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="Mode"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="OfferCode"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="AvailDTTM"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="AuthorizationCode" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="CouponNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="CouponDescription" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="VendorId"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="CouponStartDTTM" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="CouponEndDTTM"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="Usage"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="UsageStartDTTM"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="UsageEndDTTM"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RedemptionType"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="ExternalCoupons" type="tns:ExternalCoupons" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AvailCouponReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" ref="tns:ExternalCoupons" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AvailCouponResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="AvailCouponResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AvailableDollars" type="xs:decimal" />
+			<xs:element name="AvailablePoints" type="xs:integer" />
+			<xs:element name="AvailableSurprisePoints" nillable="true"
+				type="xs:anyType" />
+			<xs:element name="AvailableXRPoints">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="XROfferPointsAvailableFor"
+							type="xs:string" />
+						<xs:element form="qualified" name="XROfferMultiplier"
+							type="xs:string" />
+						<xs:element form="qualified" name="XROfferQualifier"
+							type="xs:string" />
+						<xs:element form="qualified" name="XROfferConditions"
+							type="xs:string" />
+						<xs:element form="qualified" name="XROfferExpiryDate"
+							type="xs:string" />
+						<xs:element form="qualified" name="XRPointsExclusion"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BasePointsEarned" type="xs:string" />
+			<xs:element name="BasePointsEarnedTxt" type="xs:string" />
+			<xs:element name="BirthDate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="BirthDateCondition"
+							type="xs:string" />
+						<xs:element form="qualified" name="Date" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BirthMonth">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="BirthMonthCondition"
+							type="xs:string" />
+						<xs:element form="qualified" name="Month" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BonusDescription" type="xs:string" />
+			<xs:element name="BonusExtended">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="tns:Bonus">
+							<xs:sequence>
+								<xs:element form="qualified" name="BonusCode" type="xs:string" />
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BonusID" type="xs:string" />
+			<xs:element name="BonusName" type="xs:string" />
+			<xs:element name="BonusPoints" type="xs:integer" />
+			<xs:element name="BonusPointsEarned" type="xs:integer" />
+			<xs:element name="BonusPointsEarnedTxt" type="xs:string" />
+			<xs:element name="BonusPointsSummary">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" ref="tns:TxnEarnOffers" />
+						<xs:element form="qualified" minOccurs="0"
+							name="CouponBonusPointsEarned" type="xs:integer" />
+						<xs:element form="qualified" minOccurs="0"
+							name="CouponBonusPointsEarnedTxt" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="OtherBonusPointsEarned" type="xs:integer" />
+						<xs:element form="qualified" minOccurs="0"
+							name="OtherBonusPointsEarnedTxt" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TotalBonusPointsEarned" type="xs:integer" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TotalBonusPointsEarnedTxt" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Bonuses">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							minOccurs="0" name="Bonus" type="tns:Bonus" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:BonusExtended" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Brand">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="BrandName" type="xs:string" />
+						<xs:element form="qualified" name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Brands">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:Brand" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CampaignControlID" type="xs:integer" />
+			<xs:element name="Caps">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="OfferTimes" type="xs:string" />
+						<xs:element form="qualified" name="OfferPoints" type="xs:string" />
+						<xs:element form="qualified" name="MemberTimes" type="xs:string" />
+						<xs:element form="qualified" name="MemberPoints" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardDesignType" type="xs:string" />
+			<xs:element name="CardDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							minOccurs="0" name="CardDetail" type="tns:CardDetail" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardNumber" type="xs:string" />
+			<xs:element name="CardType" type="xs:string" />
+			<xs:element name="CardTypes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableCardType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CashierID" type="xs:string" />
+			<xs:element name="Category" type="xs:string" />
+			<xs:element name="CategoryID" type="xs:integer" />
+			<xs:element name="ChallengeDesc" type="xs:string" />
+			<xs:element name="ChallengeOffer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Name" type="xs:string" />
+						<xs:element form="qualified" name="Completed" type="xs:string" />
+						<xs:element ref="tns:TargetValue" />
+						<xs:element form="qualified" name="CurrentValue" type="xs:decimal" />
+						<xs:element form="qualified" name="ChallengeStatusText"
+							type="xs:string" />
+						<xs:element form="qualified" name="OfferStartDate"
+							type="xs:anySimpleType" />
+						<xs:element form="qualified" name="OfferEndDate" type="xs:anySimpleType" />
+						<xs:element ref="tns:TimeLeft" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ProductInfo" />
+					</xs:sequence>
+					<xs:attribute name="Type" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ChallengeStatusText" type="xs:string" />
+			<xs:element name="Cities">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="CityName" type="xs:string" />
+						<xs:element form="qualified" name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="City" type="xs:string" />
+			<xs:element name="ClaimNumber" type="xs:string" />
+			<xs:element name="CloseDate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Condition" type="xs:string" />
+						<xs:element form="qualified" name="Date" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ClubDNPStatus" type="xs:string" />
+			<xs:element name="ClubEmailOptStatus" type="xs:string" />
+			<xs:element name="ClubMembershipCreatedBy" type="xs:string" />
+			<xs:element name="ClubMembershipUpdatedBy" type="xs:string" />
+			<xs:element name="ClubStatus" type="xs:string" />
+			<xs:element name="Completed" type="xs:string" />
+			<xs:element name="ContractNumber" type="xs:string" />
+			<xs:element name="CountryCode" type="xs:string" />
+			<xs:element name="Coupon">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="CouponNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="DiscountAmount"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="CouponType"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="AlternateCouponDecision" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="AlternateCouponFlag" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="AlternateCouponOfferPoints" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="Status"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="StatusText"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RedemptionMode"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="UserCoupon"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="UserCouponStartDate" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="UserCouponStartTime" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="UserCouponEndDate" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="UserCouponEndTime" type="xs:string" />
+						<xs:element minOccurs="0" ref="tns:CouponOffers" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CouponBonusPointsEarned" type="xs:integer" />
+			<xs:element name="CouponBonusPointsEarnedTxt" type="xs:string" />
+			<xs:element name="CouponItemLevelOffer" type="xs:string" />
+			<xs:element name="CouponNumber" type="xs:string" />
+			<xs:element name="CouponOffer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="CouponOfferCode" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="CouponOfferName" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="CouponEarnOfferReceiptDesc" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="CouponPointsEarned" type="xs:integer" />
+						<xs:element form="qualified" minOccurs="0"
+							name="CouponItemLevelOffer" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="CouponPointsEarnedTxt" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CouponOfferCode" type="xs:string" />
+			<xs:element name="CouponOfferDetail">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="CouponNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="CouponType"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="StartDateTime"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="EndDateTime"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="OfferDescription" type="xs:string" />
+						<xs:element minOccurs="0" ref="tns:StoreFormats" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CouponOfferDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:CouponOfferDetail" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CouponOfferName" type="xs:string" />
+			<xs:element name="CouponOffers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:CouponOffer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CouponPointsEarned" type="xs:integer" />
+			<xs:element name="CouponPointsEarnedTxt" type="xs:string" />
+			<xs:element name="CouponType" type="xs:string" />
+			<xs:element name="Coupons">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:Coupon" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateMemberResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="CreateMemberResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreatePartnerEnrollmentDetailsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="CreatePartnerEnrollmentDetailsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreatedBy" type="xs:string" />
+			<xs:element name="CreationChannel" type="xs:string" />
+			<xs:element name="CurrencyDebit" type="xs:string" />
+			<xs:element name="CurrentBalance" type="xs:integer" />
+			<xs:element name="CurrentDate" type="xs:anySimpleType" />
+			<xs:element name="CurrentPointBalance">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Condition" type="xs:string" />
+						<xs:element form="qualified" name="CurrentPointBalanceAmount"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CurrentTier" type="xs:string" />
+			<xs:element name="CurrentTime" type="xs:string" />
+			<xs:element name="CurrentValue" type="xs:integer" />
+			<xs:element name="DOB" type="xs:anySimpleType" />
+			<xs:element name="DateIssued" type="xs:anySimpleType" />
+			<xs:element name="DateTimeOnServer" nillable="true" type="xs:anyType" />
+			<xs:element name="DateTimeOnServerResponse" nillable="true"
+				type="xs:anyType" />
+			<xs:element name="DateUpdated" type="xs:anySimpleType" />
+			<xs:element name="Deceased" type="xs:boolean" />
+			<xs:element name="Description" type="xs:string" />
+			<xs:element name="DiscountAmount" type="xs:string" />
+			<xs:element name="Division" type="xs:string" />
+			<xs:element name="DollarValuePostDisc" type="xs:string" />
+			<xs:element name="DollarValuePreDisc" type="xs:string" />
+			<xs:element name="DollarsToThreshold" type="xs:decimal" />
+			<xs:element name="EarnCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ApplicableQuantity" />
+						<xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Spend" />
+						<xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Caps" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="EarnFlag" type="xs:string" />
+			<xs:element name="EarnOffer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="EarnOfferCode"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="EarnOfferName"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="EarnOfferReceiptDesc" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="EarnOfferType"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="ProgramType"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="PointsEarned"
+							type="xs:integer" />
+						<xs:element form="qualified" minOccurs="0" name="ItemLevelOffer"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="PointsEarnedTxt" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="EarnOfferCode" type="xs:string" />
+			<xs:element name="EarnOfferName" type="xs:string" />
+			<xs:element name="EarnOfferType" type="xs:string" />
+			<xs:element name="EarnOffers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:EarnOffer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ElevatedTier" type="xs:string" />
+			<xs:element name="EligibleDollarAmount" type="xs:decimal" />
+			<xs:element name="EmailAddress" type="xs:string" />
+			<xs:element name="EmailConfirmed" type="xs:string" />
+			<xs:element name="EmailStatusReturn" type="xs:string" />
+			<xs:element name="EndDTTM" type="xs:anySimpleType" />
+			<xs:element name="EndDTTMstr" type="xs:string" />
+			<xs:element name="EndingBalance" type="xs:integer" />
+			<xs:element name="EnrollmentDTTM" type="xs:anySimpleType" />
+			<xs:element name="EnrollmentOfferCode" type="xs:string" />
+			<xs:element name="EnrollmentSourceCode" type="xs:string" />
+			<xs:element name="EnrollmentStoreFormat" type="xs:string" />
+			<xs:element name="EnrollmentStoreNumber" type="xs:string" />
+			<xs:element name="EnrolmentDate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="EnrolmentDateCondition"
+							type="xs:string" />
+						<xs:element form="qualified" name="Date" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Epsilon">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="MTServerName"
+							nillable="true" type="xs:string" />
+						<xs:element minOccurs="0" ref="tns:Response" />
+						<xs:element minOccurs="0" ref="tns:Additional" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ErrorDesc">
+				<xs:complexType>
+					<xs:sequence />
+					<xs:attribute name="Type" type="xs:string" use="required" />
+					<xs:attribute name="Number" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ExtendedProfilePreference">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice maxOccurs="unbounded" minOccurs="0">
+							<xs:element ref="tns:PreferenceCode" />
+							<xs:element ref="tns:PreferenceResponseCode" />
+							<xs:element ref="tns:PreferenceValue" />
+						</xs:choice>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ExtendedProfilePreferences">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ExtendedProfilePreference" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ExternalCoupon">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="CouponNumber" type="xs:string" />
+						<xs:element form="qualified" name="CouponDescription"
+							type="xs:string" />
+						<xs:element form="qualified" name="VendorId" type="xs:string" />
+						<xs:element form="qualified" name="CouponStartDTTM"
+							type="xs:string" />
+						<xs:element form="qualified" name="CouponEndDTTM" type="xs:string" />
+						<xs:element form="qualified" name="Usage" type="xs:string" />
+						<xs:element form="qualified" name="UsageStartDTTM"
+							type="xs:string" />
+						<xs:element form="qualified" name="UsageEndDTTM" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ExternalCoupons">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ExternalCoupon" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FasttrackChallenge">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="ChallengeDesc" type="xs:string" />
+						<xs:element maxOccurs="unbounded" ref="tns:ChallengeOffer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FasttrackChallenges">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:FasttrackChallenge" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FinalPayment">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Condition" type="xs:string" />
+						<xs:element form="qualified" name="Date" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FinalPaymentDate" type="xs:anySimpleType" />
+			<xs:element name="FirstName" type="xs:string" />
+			<xs:element name="Function" type="xs:string" />
+			<xs:element name="GetApplicableOffers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RequestorID"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="OrderStoreNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TenderStoreNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="PickUpStoreNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="CurrentDTTM"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="TimeZone"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="UnconditionalPointsOnly" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="BenefitOnly"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MaxBenefits"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="ProductList"
+							type="tns:ArrayOfProductList" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetApplicableOffersReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+						<xs:element ref="tns:RewardsSummary" />
+						<xs:element form="qualified" minOccurs="0"
+							name="UnconditionalPointsSum" type="xs:string" />
+						<xs:element minOccurs="0" ref="tns:VIPTierInfo" />
+						<xs:element minOccurs="0" ref="tns:OffersSet" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetApplicableOffersResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetApplicableOffersResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetAvailableOffers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="StartDTTM"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="EndDTTM"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MaxRecords"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="LanguagePreference" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetAvailableOffersReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="StartDTTM" type="xs:string" />
+						<xs:element form="qualified" name="EndDTTM" type="xs:string" />
+						<xs:element default="50" form="qualified" name="MaxRecords"
+							type="xs:integer" />
+						<xs:element ref="tns:Offers" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetAvailableOffersResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetAvailableOffersResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetCouponOfferDetailsReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="tns:CouponOfferDetails" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetCouponOfferDetailsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetCouponOfferDetailsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetLineItemDetail">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="TransactionID"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionDTTM" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RequestorID"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="OrderID"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="OrderSource"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetLineItemDetailReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="TransactionID" type="xs:string" />
+						<xs:element form="qualified" name="TransactionDTTM"
+							type="xs:anySimpleType" />
+						<xs:element form="qualified" name="TotalPoints" type="xs:integer" />
+						<xs:element form="qualified" name="tenderDetailList">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded" ref="tns:TenderDetail" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element minOccurs="0" ref="tns:Coupons" />
+						<xs:element ref="tns:LineItems" />
+						<xs:element form="qualified" name="PointsRedeemedOnBaseOffer"
+							type="xs:integer" />
+						<xs:element form="qualified" name="PointsRedeemedOnBonusOffer"
+							type="xs:integer" />
+						<xs:element form="qualified" name="TotalDollarSaving"
+							type="xs:decimal" />
+						<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="OrderID"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="OrderSource"
+							type="xs:string" />
+						<xs:element minOccurs="0" ref="tns:TransactionList" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetLineItemDetailResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetLineItemDetailResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberActivityDetail">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="StartDTTM"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="EndDTTM"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="StoreFormat"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="StoreLocation"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="BenefitOnly"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberActivityDetailReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="tns:TransactionDetails" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberActivityDetailResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetMemberActivityDetailResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberActivityReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+						<xs:element form="qualified" name="StartDTTM" type="xs:dateTime" />
+						<xs:element form="qualified" name="EndDTTM" type="xs:dateTime" />
+						<xs:element form="qualified" name="StartingBalance"
+							type="xs:integer" />
+						<xs:element form="qualified" name="EndingBalance" type="xs:integer" />
+						<xs:element form="qualified" name="TotalEarned" type="xs:integer" />
+						<xs:element form="qualified" name="TotalRedeemed" type="xs:integer" />
+						<xs:element form="qualified" name="TotalExpired" type="xs:integer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberActivitySummary">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="StartDTTM"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="EndDTTM"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberActivitySummaryResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetMemberActivitySummaryResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberAffinitySubscriptionsReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+						<xs:element ref="tns:Affinities" />
+					</xs:sequence>
+					<xs:attribute name="Type" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberAffinitySubscriptionsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetMemberAffinitySubscriptionsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberAuditLookup">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="AuditType"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RequestorID"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="StartDateTime"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="EndDateTime"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberAuditLookupReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							minOccurs="0" name="profileNameAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element form="qualified" name="NamePrefix" type="xs:string" />
+									<xs:element form="qualified" name="FirstName" type="xs:string" />
+									<xs:element form="qualified" name="MiddleInitial"
+										type="xs:string" />
+									<xs:element form="qualified" name="LastName" type="xs:string" />
+									<xs:element form="qualified" name="NameSuffix" type="xs:string" />
+									<xs:element form="qualified" name="BirthDate" type="xs:string" />
+									<xs:element form="qualified" name="AssocIndicator"
+										type="xs:string" />
+									<xs:element form="qualified" name="Deceased" type="xs:string" />
+									<xs:element form="qualified" name="EarnType" type="xs:string" />
+									<xs:element form="qualified" name="NameStatusUpdateDate"
+										type="xs:string" />
+									<xs:element form="qualified" name="NameStatusUpdateUser"
+										type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							minOccurs="0" name="profileStatusAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element form="qualified" name="status" type="xs:string" />
+									<xs:element form="qualified" name="statusUpdateDate"
+										type="xs:string" />
+									<xs:element form="qualified" name="statusUpdateUser"
+										type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							minOccurs="0" name="profileEmailAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element form="qualified" name="emailAddress"
+										type="xs:string" />
+									<xs:element form="qualified" name="emailDeliveryStatus"
+										type="xs:string" />
+									<xs:element form="qualified" name="emailUpdateDate"
+										type="xs:string" />
+									<xs:element form="qualified" name="emailUpdateUser"
+										type="xs:string" />
+									<xs:element form="qualified" name="emailConfirmed"
+										type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							minOccurs="0" name="profilePhoneAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element form="qualified" name="phoneNumber"
+										type="xs:string" />
+									<xs:element form="qualified" name="prefferedFlag"
+										type="xs:string" />
+									<xs:element form="qualified" name="phoneType" type="xs:string" />
+									<xs:element form="qualified" name="mobileValid"
+										type="xs:string" />
+									<xs:element form="qualified" name="phoneUpdateDate"
+										type="xs:string" />
+									<xs:element form="qualified" name="phoneUpdateUser"
+										type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							minOccurs="0" name="profileAddressAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element form="qualified" name="address1" type="xs:string" />
+									<xs:element form="qualified" name="address2" type="xs:string" />
+									<xs:element form="qualified" name="city" type="xs:string" />
+									<xs:element form="qualified" name="zipCode" type="xs:string" />
+									<xs:element form="qualified" name="updateDate" type="xs:string" />
+									<xs:element form="qualified" name="updateUser" type="xs:string" />
+									<xs:element form="qualified" name="addressType"
+										type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							minOccurs="0" name="profileMergeAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element form="qualified" name="dateMerged" type="xs:string" />
+									<xs:element form="qualified" name="mergedMemberNumber"
+										type="xs:string" />
+									<xs:element form="qualified" name="mergeUpdateDate"
+										type="xs:string" />
+									<xs:element form="qualified" name="mergeUpdateUser"
+										type="xs:string" />
+									<xs:element form="qualified" name="postedStoreNumber"
+										type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							minOccurs="0" name="ProfileReceiptAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element form="qualified" name="recieptStatus"
+										type="xs:string" />
+									<xs:element form="qualified" name="recieptUpdateDate"
+										type="xs:string" />
+									<xs:element form="qualified" name="recieptUpdateUser"
+										type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							minOccurs="0" name="ProfileTnCAuditList" nillable="true">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element form="qualified" name="tncStatus" type="xs:string" />
+									<xs:element form="qualified" name="tncVersion" type="xs:string" />
+									<xs:element form="qualified" name="tncStoreNumber"
+										type="xs:string" />
+									<xs:element form="qualified" name="tncRegisterNumber"
+										type="xs:string" />
+									<xs:element form="qualified" name="tncUpdateUser"
+										type="xs:string" />
+									<xs:element form="qualified" name="tncUpdateDate"
+										type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberAuditLookupResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetMemberAuditResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberExtendedProfileReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ExtendedProfilePreference" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberExtendedProfileResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetMemberExtendedProfileResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberLevelReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+						<xs:element form="qualified" name="CurrentBalance"
+							type="xs:integer" />
+						<xs:element form="qualified" name="CurrentTier" type="xs:string" />
+						<xs:element form="qualified" name="TotalSpentYTD" type="xs:decimal" />
+						<xs:element ref="tns:Tiers" />
+						<xs:element ref="tns:FasttrackChallenges" />
+						<xs:element ref="tns:TierHistory" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberLevelResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetMemberLevelResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberLookupReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="ResponseDate" type="xs:date" />
+						<xs:element form="qualified" name="ResponseTime" type="xs:time" />
+						<xs:element form="qualified" name="NumRecordsReturned"
+							type="xs:integer" />
+						<xs:element minOccurs="0" ref="tns:Members" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberLookupResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetMemberLookupResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberPrimaryProfileReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+						<xs:element form="qualified" name="EmailAddress" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="Prefix"
+							type="xs:string" />
+						<xs:element form="qualified" name="FirstName" type="xs:string" />
+						<xs:element form="qualified" name="LastName" type="xs:string" />
+						<xs:element form="qualified" name="Address1" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="Address2"
+							type="xs:string" />
+						<xs:element form="qualified" name="City" type="xs:string" />
+						<xs:element form="qualified" name="State" type="xs:string" />
+						<xs:element form="qualified" name="ZipCode" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="ZipCodeExtension" type="xs:string" />
+						<xs:element form="qualified" name="DOB" type="xs:date" />
+						<xs:element form="qualified" name="CardType" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="SHCAssociateInd" type="xs:string" />
+						<xs:element form="qualified" name="EnrollmentDTTM"
+							type="xs:dateTime" />
+						<xs:element form="qualified" name="EnrollmentStoreFormat"
+							type="xs:string" />
+						<xs:element form="qualified" name="PinNumber" type="xs:string" />
+						<xs:element ref="tns:PhoneNumbers" />
+						<xs:element form="qualified" name="CurrentBalance"
+							type="xs:integer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberPrimaryProfileResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetMemberPrimaryProfileResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetMemberTargetedOffersResponse"
+				nillable="true" type="xs:anyType" />
+			<xs:element name="GetOrderTransactionsDetailReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="tns:TransactionDetails" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetOrderTransactionsDetailResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetOrderTransactionsDetailResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetPartnerEnrollmentDetailsReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+						<xs:element form="qualified" name="MessageVersion"
+							type="xs:string" />
+						<xs:element ref="tns:CardDetails" />
+						<xs:element form="qualified" name="StatusCode" type="xs:string" />
+						<xs:element form="qualified" name="StatusText" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetPartnerEnrollmentDetailsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetPartnerEnrollmentDetailsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetRewardBalanceReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MemberNumber" type="xs:unsignedLong" />
+						<xs:element form="qualified" name="EmailAddress" type="xs:string" />
+						<xs:element form="qualified" name="AvailablePoints"
+							type="xs:integer" />
+						<xs:element form="qualified" name="AvailableDollars"
+							type="xs:string" />
+						<xs:element form="qualified" name="Multiplier" type="xs:decimal" />
+						<xs:element form="qualified" minOccurs="0" name="PointsToExpire"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="PointExpirationDate" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="ExpiryPointsList" type="tns:PointsDetails" />
+						<xs:element minOccurs="0" ref="tns:TotalAvailablePointsSummary" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetRewardBalanceResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetRewardBalanceResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetSystemRewards">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetSystemRewardsReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" ref="tns:SystemRewards" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetSystemRewardsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetSystemRewardsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetTransactionBonusDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="TransactionID"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionDTTM" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RequestorID"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetTransactionBonusDetailsReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="TransactionID" type="xs:string" />
+						<xs:element ref="tns:Bonuses" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetTransactionBonusDetailsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="GetTransactionBonusDetailsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GrossDollarAmount" type="xs:decimal" />
+			<xs:element name="ImageName" type="xs:string" />
+			<xs:element name="IncompleteProfileInd" type="xs:string" />
+			<xs:element name="ItemDescription" type="xs:string" />
+			<xs:element name="ItemLevelOffer" type="xs:string" />
+			<xs:element name="ItemNumber" type="xs:string" />
+			<xs:element name="ItemType" type="xs:string" />
+			<xs:element name="KmartPriceType">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="TypeName" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LanguagePreference" type="xs:string" />
+			<xs:element name="LastName" type="xs:string" />
+			<xs:element name="LastUpdateChannel" type="xs:string" />
+			<xs:element name="LastUpdateDate" type="xs:anySimpleType" />
+			<xs:element name="LayAway">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:OpenDate" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:CloseDate" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:FinalPayment" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:PriceTypes" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LayawayNumber" type="xs:string" />
+			<xs:element name="LevelData">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="LevelValue"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="LevelValueDesc"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LevelInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" ref="tns:LevelMetaData" />
+						<xs:element minOccurs="0" ref="tns:LevelData" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LevelMetaData">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="LevelDesig"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="LevelDesigDesc"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LineItem" nillable="true" type="xs:anyType" />
+			<xs:element name="LineItemAmountTypeCode" type="xs:string" />
+			<xs:element name="LineItems" nillable="true" type="xs:anyType" />
+			<xs:element name="LineNumber" type="xs:string" />
+			<xs:element name="LocationGroups">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="LocationGroupName"
+							type="xs:string" />
+						<xs:element form="qualified" name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MTServerName" type="xs:string" />
+			<xs:element name="MaxRecords" type="xs:integer" />
+			<xs:element name="MaxRedeemableSurprisePointsList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:RedeemableSurprisePoints" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MaxRedeemableXRPointsList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							name="RedeemableXRPoints">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element form="qualified" name="XROfferPointsAvailableFor"
+										type="xs:string" />
+									<xs:element form="qualified" name="XROfferMultiplier"
+										type="xs:string" />
+									<xs:element form="qualified" name="XROfferQualifier"
+										type="xs:string" />
+									<xs:element form="qualified" name="XROfferConditions"
+										type="xs:string" />
+									<xs:element form="qualified" name="XROfferExpiryDate"
+										type="xs:string" />
+									<xs:element form="qualified" name="XRPointsExclusion"
+										type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Member" type="tns:Member" />
+			<xs:element name="MemberAdditionalOptions">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:BirthDate" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:BirthMonth" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:EnrolmentDate" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:CardTypes" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:SubClubs" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:VIPStatusList" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableMemberCriteria" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberEarnType" type="xs:string" />
+			<xs:element name="MemberEarnTypes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MemberEarnType"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberExtended">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="tns:Member">
+							<xs:sequence />
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberGroup">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MemberGroupName"
+							type="xs:string" />
+						<xs:element form="qualified" name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberGroups">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:MemberGroup" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberMergeReplaceReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+						<xs:element form="qualified" name="NewMemberNumber"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberNumber" type="xs:string" />
+			<xs:element name="MemberNumbers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableMemberNumber" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberOwnPointsToExpire" type="tns:MemberOwnPointsList" />
+			<xs:element name="MemberReplaceCardReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="NewMemberNumber"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberReplaceCardResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="MemberReplaceCardResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MemberSinceDate" type="xs:anySimpleType" />
+			<xs:element name="Members">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							minOccurs="0" name="Member" type="tns:Member" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:MemberExtended" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Message" type="xs:string" />
+			<xs:element name="MessageVersion" type="xs:string" />
+			<xs:element name="Messages">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							name="Message" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MiddleInitial" type="xs:string" />
+			<xs:element name="MobileValid" type="xs:string" />
+			<xs:element name="Multiplier" type="xs:decimal" />
+			<xs:element name="Name" type="xs:string" />
+			<xs:element name="NewMemberNumber" type="xs:string" />
+			<xs:element name="NumRecordsReturned" type="xs:integer" />
+			<xs:element name="NumberOfPhoneEntries" type="xs:integer" />
+			<xs:element name="OfferEndDate" type="xs:anySimpleType" />
+			<xs:element name="OfferExtended">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="tns:Offer">
+							<xs:sequence>
+								<xs:element form="qualified" name="OfferNumber" type="xs:string" />
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OfferId" type="xs:string" />
+			<xs:element name="OfferMemberGroupList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							minOccurs="0" name="OfferMemberGroupResponse" type="tns:OfferMemberGroupResponse" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OfferName" type="xs:string" />
+			<xs:element name="OfferNumber" type="xs:string" />
+			<xs:element name="OfferPointsRedeemed" type="xs:integer" />
+			<xs:element name="OfferRegistration" type="tns:OfferRegistration" />
+			<xs:element name="OfferRegistrationReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="memberNumber" type="xs:string" />
+						<xs:element form="qualified" name="offerMemberGroupList">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element form="qualified" maxOccurs="unbounded"
+										minOccurs="0" name="OfferMemberGroupResponse" type="tns:OfferMemberGroupResponse" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OfferRegistrationResponse" nillable="true"
+				type="xs:anyType" />
+			<xs:element name="OfferStartDate" type="xs:anySimpleType" />
+			<xs:element name="OfferType" type="xs:string" />
+			<xs:element name="Offers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							minOccurs="0" name="Offer" type="tns:Offer" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:OfferExtended" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OffersSet">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ApplicableOffer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OnlineValidationDate" type="xs:anySimpleType" />
+			<xs:element name="OnlineValidationFlag" type="xs:string" />
+			<xs:element name="OpenDate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Condition" type="xs:string" />
+						<xs:element form="qualified" name="Date" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OrderStoreNumber" type="xs:string" />
+			<xs:element name="OriginalLineNumber" type="xs:string" />
+			<xs:element name="OriginalMemberNumber" type="xs:string" />
+			<xs:element name="OriginalRegisterNumber" type="xs:string" />
+			<xs:element name="OriginalStoreNumber" type="xs:string" />
+			<xs:element name="OriginalTransactionDate" type="xs:string" />
+			<xs:element name="OriginalTransactionNumber" type="xs:string" />
+			<xs:element name="OriginalTransactionTime" type="xs:string" />
+			<xs:element name="OtherBonusPointsEarned" type="xs:integer" />
+			<xs:element name="OtherBonusPointsEarnedTxt" type="xs:string" />
+			<xs:element name="PhoneNumber" type="xs:string" />
+			<xs:element name="PhoneNumbers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							name="Phone" type="tns:Phone" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PhoneType" type="xs:string" />
+			<xs:element name="PickUpStoreNumber" type="xs:string" />
+			<xs:element name="PinNumber" type="xs:string" />
+			<xs:element name="PointBalance" type="xs:integer" />
+			<xs:element name="PointDebit" type="xs:string" />
+			<xs:element name="PointsDetails" type="tns:PointsDetails" />
+			<xs:element name="PointsEarned" type="xs:integer" />
+			<xs:element name="PointsEarnedTxt" type="xs:string" />
+			<xs:element name="PointsRedeemedOnBaseOffer" type="xs:string" />
+			<xs:element name="PointsRedeemedOnBonusOffer" type="xs:string" />
+			<xs:element name="PointsToAdd" type="xs:integer" />
+			<xs:element name="PointsToThreshold" type="xs:integer" />
+			<xs:element name="PostAdjustmentPoints" type="tns:PostAdjustmentPoints" />
+			<xs:element name="PostAdjustmentPointsReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="memberNumber" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PostAdjustmentPointsResponse" nillable="true"
+				type="xs:anyType" />
+			<xs:element name="PostExternalBonus">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="PointsToAdd"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="OfferId"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="Source"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RequestorID"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="FileIdentifier"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="StoreNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RegisterNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="DivisionNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="TransactionTs"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PostExternalBonusReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+						<xs:element form="qualified" name="CurrentBalance"
+							type="xs:integer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PostExternalBonusResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="PostExternalBonusResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PostPartnerPoints">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RequestorID"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="MarketPlaceVendorID" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="StoreNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="MarketPlaceEmployeeID" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RegisterNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionTotal" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionTotalTax" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="TenderType"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PostPartnerPointsReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+						<xs:element form="qualified" name="BasePointsEarned"
+							type="xs:string" />
+						<xs:element form="qualified" name="BasePointsEarnedTxt"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PostPartnerPointsResponse" nillable="true"
+				type="xs:anyType" />
+			<xs:element name="PostSalesAdjustmentAmount" type="xs:string" />
+			<xs:element name="PreferenceCode" type="xs:string" />
+			<xs:element name="PreferenceResponseCode" type="xs:string" />
+			<xs:element name="PreferenceValue" type="xs:string" />
+			<xs:element name="PreferredLanguage" type="xs:string" />
+			<xs:element name="Prefix" type="xs:string" />
+			<xs:element name="PriceFilter">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:UnitPriceBeforeDiscount" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:UnitPriceAfterDiscount" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PriceMatchAmount" type="xs:string" />
+			<xs:element name="PriceMatchBonusAmount" type="xs:string" />
+			<xs:element name="PriceTypes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:SearsPriceType" />
+						<xs:element maxOccurs="unbounded" ref="tns:KmartPriceType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProcessAlternateCouponReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MessageVersion"
+							type="xs:string" />
+						<xs:element form="qualified" name="RequestorID" type="xs:string" />
+						<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+						<xs:element form="qualified" name="PickUpStoreNumber"
+							type="xs:string" />
+						<xs:element form="qualified" name="OrderStoreNumber"
+							type="xs:string" />
+						<xs:element form="qualified" name="RegisterNumber"
+							type="xs:string" />
+						<xs:element form="qualified" name="TransactionDate"
+							type="xs:string" />
+						<xs:element form="qualified" name="TransactionTime"
+							type="xs:string" />
+						<xs:element form="qualified" name="TimeZone" type="xs:string" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:LineItem" />
+						<xs:element form="qualified" name="ResponseText" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProcessAlternateCouponResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="ProcessAlternateCouponResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProcessRedemptionReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+						<xs:element form="qualified" name="PickUpStoreNumber"
+							type="xs:string" />
+						<xs:element form="qualified" name="OrderStoreNumber"
+							type="xs:string" />
+						<xs:element form="qualified" name="RegisterNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="OrderId"
+							type="xs:string" />
+						<xs:element form="qualified" name="TransactionDate"
+							type="xs:date" />
+						<xs:element form="qualified" name="TransactionTime"
+							type="xs:time" />
+						<xs:element form="qualified" name="TimeZone" type="xs:string" />
+						<xs:element form="qualified" name="AssociateID" type="xs:string" />
+						<xs:element form="qualified" name="RedemptionPoints"
+							type="xs:integer" />
+						<xs:element form="qualified" name="RedemptionDollarValue"
+							type="xs:string" />
+						<xs:element form="qualified" name="MaxRedeemablePoints"
+							type="xs:integer" />
+						<xs:element form="qualified" name="MaxRedeemableDollarValue"
+							type="xs:string" />
+						<xs:element form="qualified" name="TotalAvailableRewardPoints"
+							type="xs:integer" />
+						<xs:element form="qualified" name="LayawayFlag" type="xs:string" />
+						<xs:element form="qualified" name="AuthorizationCode"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="MaxRedeemableMemberOwnPoints" type="xs:integer" />
+						<xs:element form="qualified" minOccurs="0"
+							name="MaxRedeemableMemberOwnPointsDollarValue" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="MaxRedeemableSurprisePoints" type="xs:integer" />
+						<xs:element form="qualified" minOccurs="0"
+							name="MaxRedeemableSurprisePointsDollarValue" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TotalAvailableMemberOwnPoints" type="xs:integer" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TotalAvailableMemberOwnPointsDollarValue" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TotalAvailableSurprisePoints" type="xs:integer" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TotalAvailableSurprisePointsDollarValue" type="xs:string" />
+						<xs:element minOccurs="0"
+							ref="tns:MaxRedeemableSurprisePointsList" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TotalAvailableSurprisePointsList">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded" ref="tns:AvailableSurprisePoints" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element minOccurs="0" ref="tns:MaxRedeemableXRPointsList" />
+						<xs:element minOccurs="0" ref="tns:TotalAvailableXRPointsList" />
+						<xs:element minOccurs="0" ref="tns:LineItems" />
+						<xs:element form="qualified" name="ResponseText" type="xs:string" />
+						<xs:element form="qualified" name="PointsToExpire"
+							type="xs:integer" />
+						<xs:element form="qualified" name="PointExpirationDate"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="PointsRedeemedOnBaseOffer" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="DollarValueOfPointsRedeemedOnBaseOffer" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="PointsRedeemedOnBonusOffer" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="DollarValueOfPointsRedeemedOnBonusOffer" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="DuplicateResponse" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProcessRedemptionResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="ProcessRedemptionResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProcessSuspendedMembersResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="ProcessSuspendedMembersResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProcessTransaction">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RequestorID"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="OrderStoreNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TenderStoreNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="PickUpStoreNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RegisterNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionTotal" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionTotalTax" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionDate" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionTime" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="AssociateID"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="EarnFlag"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="PointDebit"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="CurrencyDebit"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="OrderDetails"
+							type="tns:OrderDetails" />
+						<xs:element form="qualified" minOccurs="0" name="TenderList"
+							type="tns:ArrayOfTender" />
+						<xs:element form="qualified" minOccurs="0" name="LineItems"
+							type="tns:ArrayOfLineItem" />
+						<xs:element form="qualified" minOccurs="0" name="Source"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="LayawayContractNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="LayawayOpeningDate" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="LayawayScheduledClosingDate" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="LayawayFinalPaymentDate" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="ReprocessOffers" type="tns:ArrayOfOffer" />
+						<xs:element form="qualified" minOccurs="0" name="TimeZone"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProcessTransactionReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+							type="xs:string" />
+						<xs:element form="qualified" name="BasePointsEarned"
+							type="xs:string" />
+						<xs:element form="qualified" name="BasePointsEarnedTxt"
+							type="xs:string" />
+						<xs:element form="qualified" name="BonusPointsEarned"
+							type="xs:integer" />
+						<xs:element form="qualified" name="BonusPointsEarnedTxt"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="PointsRedeemedOnBaseOffer" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="DollarValueOfPointsRedeemedOnBaseOffer" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="PointsRedeemedOnBonusOffer" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="DollarValueOfPointsRedeemedOnBonusOffer" type="xs:string" />
+						<xs:element form="qualified" name="TotalPointsEarned"
+							type="xs:string" />
+						<xs:element form="qualified" name="TotalPointsEarnedTxt"
+							type="xs:string" />
+						<xs:element form="qualified" name="PointDebit" type="xs:string" />
+						<xs:element form="qualified" name="CurrencyDebit" type="xs:string" />
+						<xs:element form="qualified" name="MemberSavingsDollarValue"
+							type="xs:string" />
+						<xs:element form="qualified" name="TimeZone" type="xs:string" />
+						<xs:element form="qualified" name="LayawayContractNumber"
+							type="xs:string" />
+						<xs:element form="qualified" name="LayawayOpeningDate"
+							type="xs:string" />
+						<xs:element form="qualified" name="LayawayScheduledClosingDate"
+							type="xs:string" />
+						<xs:element form="qualified" name="LayawayFinalPaymentDate"
+							type="xs:string" />
+						<xs:element minOccurs="0" ref="tns:BonusPointsSummary" />
+						<xs:element form="qualified" minOccurs="0" name="PointsToExpire"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="PointExpirationDate" type="xs:string" />
+						<xs:element minOccurs="0" ref="tns:Messages" />
+						<xs:element minOccurs="0" ref="tns:TenderList" />
+						<xs:element minOccurs="0" ref="tns:LineItems" />
+						<xs:element form="qualified" name="ResponseText" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProcessTransactionResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="ProcessTransactionResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableProductCriteria" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductGroup">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="ProductGroupName"
+							type="xs:string" />
+						<xs:element form="qualified" name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductGroups">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ProductGroup" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" ref="tns:ProductLevelSets" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductLevel">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" ref="tns:LevelInfo" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductLevelSet">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ProductLevels" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductLevelSets">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ProductLevelSet" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductLevels">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ProductLevel" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Quantity" type="xs:string" />
+			<xs:element name="QuestionGroupID" type="xs:anyType" />
+			<xs:element name="QuestionID" type="xs:anyType" />
+			<xs:element name="QuestionText" type="xs:string" />
+			<xs:element name="RedeemablePointsInd" type="xs:string" />
+			<xs:element name="RedeemableSurprisePoints" nillable="true"
+				type="xs:anyType" />
+			<xs:element name="RedeemedDollarValue" type="xs:string" />
+			<xs:element name="RedeemedPoints" type="xs:integer" />
+			<xs:element name="RedeemedPointsOriginalDollarValue" type="xs:decimal" />
+			<xs:element name="RedeemedPointsXRDollarValue" type="xs:decimal" />
+			<xs:element name="RedeemedValue" type="xs:decimal" />
+			<xs:element name="RedeemedXRPointsWorth" type="xs:integer" />
+			<xs:element name="Redemption">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="Function"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RequestorID"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="StoreNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RegisterNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionDate" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionTime" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="RedemptionPoints" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="RedemptionDollarValue" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="AssociateID"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="PinNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="AuthorizationCode" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="Multiplier"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RedemptionCapDollarValue" type="xs:decimal" />
+			<xs:element name="RedemptionDetail">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="AuthorizationCode" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RedemptionDate"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RedemptionTime"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="UserCoupon"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="UserCouponStartDate" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="UserCouponStartTime" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="UserCouponEndDate" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="UserCouponEndTime" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RedemptionDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:RedemptionDetail" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RedemptionDollarValue" type="xs:decimal" />
+			<xs:element name="RedemptionMultiplier" type="xs:string" />
+			<xs:element name="RedemptionOffer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="OfferCode" type="xs:string" />
+						<xs:element form="qualified" name="RedemptionMultiplier"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="OfferPointsRedeemed" type="xs:integer" />
+						<xs:element form="qualified" minOccurs="0"
+							name="RedeemedPointsOriginalDollarValue" type="xs:decimal" />
+						<xs:element form="qualified" minOccurs="0"
+							name="RedeemedPointsXRDollarValue" type="xs:decimal" />
+						<xs:element form="qualified" minOccurs="0"
+							name="RedeemedXRPointsWorth" type="xs:integer" />
+						<xs:element form="qualified" minOccurs="0"
+							name="RedemptionCapDollarValue" type="xs:decimal" />
+						<xs:element form="qualified" name="OfferType" type="xs:string" />
+						<xs:element form="qualified" name="RedemptionOfferMultiplierAndCapTxt"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="MemberOwnPointsRedeemed" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="DollarValueOfMemberOwnPointsRedeemed" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="SurprisePointsRedeemed" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="DollarValueOfSurprisePointsRedeemed" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RedemptionOfferCode" type="xs:string" />
+			<xs:element name="RedemptionOfferMultiplierAndCapTxt"
+				type="xs:string" />
+			<xs:element name="RedemptionOffersList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:RedemptionOffer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RedemptionPoints" type="xs:integer" />
+			<xs:element name="RedemptionReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+						<xs:element form="qualified" name="PointBalance" type="xs:integer" />
+						<xs:element form="qualified" name="AuthorizationCode"
+							type="xs:string" />
+						<xs:element form="qualified" name="RedeemedPoints"
+							type="xs:integer" />
+						<xs:element form="qualified" name="RedeemedDollarValue"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RedemptionResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="RedemptionResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RedemptionSystemCode" type="xs:string" />
+			<xs:element name="RegisterMemberCardDetailsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="StatusCode" type="xs:string" />
+						<xs:element form="qualified" name="StatusText" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RegisterMemberResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="RegisterMemberResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RegisterNumber" type="xs:string" />
+			<xs:element name="RequestMissingTransaction">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="StoreNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="TransactionID"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="Terminal"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionDTTM" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="ReturnCode"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="SalesCheckNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="ContractNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="LayawayNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="StoreFlag"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="FinalPaymentDate" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionType" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="CashierNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="Source"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="DateSubmitted"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="User"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RequestMissingTransactionReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+						<xs:element form="qualified" name="StoreFlag" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="StoreNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="TransactionID"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="Terminal"
+							type="xs:string" />
+						<xs:element form="qualified" name="TransactionDTTM"
+							type="xs:date" />
+						<xs:element form="qualified" name="ClaimNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="SalesCheckNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="ContractNumber"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RequestMissingTransactionResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="RequestMissingTransactionResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RequestorID" type="xs:string" />
+			<xs:element name="Response">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="tns:GetMemberPrimaryProfileReply" />
+						<xs:element ref="tns:GetMemberExtendedProfileReply" />
+						<xs:element ref="tns:GetMemberAffinitySubscriptionsReply" />
+						<xs:element ref="tns:GetMemberLookupReply" />
+						<xs:element form="qualified" name="GetMemberTargetedOffersReply">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element form="qualified" name="CardNumber" type="xs:string" />
+									<xs:element form="qualified" name="StartDTTM" type="xs:string" />
+									<xs:element form="qualified" name="EndDTTM" type="xs:string" />
+									<xs:element ref="tns:Offers" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="tns:GetRewardBalanceReply" />
+						<xs:element ref="tns:GetPartnerEnrollmentDetailsReply" />
+						<xs:element ref="tns:MemberReplaceCardReply" />
+						<xs:element ref="tns:MemberMergeReplaceReply" />
+						<xs:element ref="tns:GetMemberLevelReply" />
+						<xs:element ref="tns:GetSystemRewardsReply" />
+						<xs:element ref="tns:GetAvailableOffersReply" />
+						<xs:element ref="tns:GetTransactionBonusDetailsReply" />
+						<xs:element ref="tns:GetLineItemDetailReply" />
+						<xs:element ref="tns:GetMemberActivityReply" />
+						<xs:element ref="tns:GetMemberActivityDetailReply" />
+						<xs:element ref="tns:PostExternalBonusReply" />
+						<xs:element ref="tns:ProcessTransactionReply" />
+						<xs:element ref="tns:ProcessRedemptionReply" />
+						<xs:element minOccurs="0" ref="tns:RedemptionReply" />
+						<xs:element form="qualified" name="PartnerEnrollmentDetailsResponse">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element form="qualified" name="StatusCode" type="xs:string" />
+									<xs:element form="qualified" name="StatusText" type="xs:string" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="tns:RequestMissingTransactionReply" />
+						<xs:element ref="tns:PostAdjustmentPointsReply" />
+						<xs:element ref="tns:PostPartnerPointsReply" />
+						<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+						<xs:element ref="tns:ProcessAlternateCouponReply" />
+						<xs:element ref="tns:ErrorDesc" />
+						<xs:element ref="tns:Affinities" />
+						<xs:element ref="tns:AddMemberToGroupReply" />
+						<xs:element ref="tns:OfferRegistrationReply" />
+						<xs:element ref="tns:GetMemberAuditLookupReply" />
+						<xs:element ref="tns:GetCouponOfferDetailsReply" />
+						<xs:element ref="tns:GetOrderTransactionsDetailReply" />
+						<xs:element ref="tns:GetApplicableOffersReply" />
+						<xs:element ref="tns:AvailCouponReply" />
+						<xs:element ref="tns:SendEmailReply" />
+					</xs:sequence>
+					<xs:attribute name="Type" type="xs:string" use="required" />
+					<xs:attribute name="ErrorType" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ResponseCode" type="xs:string" />
+			<xs:element name="ResponseDate" type="xs:anySimpleType" />
+			<xs:element name="ResponseText" type="xs:string" />
+			<xs:element name="ResponseTime" type="xs:anySimpleType" />
+			<xs:element name="ReturnCode" type="xs:string" />
+			<xs:element name="RewardDescription" type="xs:string" />
+			<xs:element name="RewardID" type="xs:string" />
+			<xs:element name="RewardPotential">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="RewardPotentialUnit"
+							type="xs:string" />
+						<xs:element form="qualified" name="RewardPotentialValue"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RewardPotentialDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Conditional" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="BasePoints"
+							type="xs:integer" />
+						<xs:element form="qualified" minOccurs="0" name="BonusPoints"
+							type="xs:integer" />
+						<xs:element form="qualified" minOccurs="0"
+							name="EarliestExpiringOfferDate" type="xs:dateTime" />
+						<xs:element form="qualified" name="RewardType" type="xs:string" />
+						<xs:element maxOccurs="unbounded" ref="tns:RewardPotential" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="RewardsSummary">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:RewardPotentialDetails" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Rules">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:StoreCriteria" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:MemberCriteria" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ProductCriteria" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:TransactionCriteria" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:EarnCriteria" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:XRCriteria" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SHCAssociateInd" type="xs:string" />
+			<xs:element name="SalesCheckNumber" type="xs:string" />
+			<xs:element name="SearchType" type="xs:string" />
+			<xs:element name="SearsEmailOptStatus" type="xs:string" />
+			<xs:element name="SearsPriceType">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="TypeName" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SendEmail">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="MessageVersion"
+							type="xs:string" />
+						<xs:element form="qualified" name="RequestorID" type="xs:string" />
+						<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+						<xs:element form="qualified" name="AuthorizationCode"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionDate" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionTime" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="CouponNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="OfferCode"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SendEmailReply">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="EmailResponseText" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SendEmailResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="SendEmailResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Spend">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Multiplier" type="xs:string" />
+						<xs:element form="qualified" name="SpendThreshold"
+							type="xs:string" />
+						<xs:element maxOccurs="unbounded" ref="tns:SpendTiers" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SpendNextTierLevel" type="xs:string" />
+			<xs:element name="SpendTier">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Min" type="xs:string" />
+						<xs:element form="qualified" name="Max" type="xs:string" />
+						<xs:element form="qualified" name="PointsPerDollar"
+							type="xs:string" />
+						<xs:element form="qualified" name="Flat" type="xs:string" />
+						<xs:element form="qualified" name="ForEvery" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SpendTiers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:SpendTier" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="StartDTTM" type="xs:anySimpleType" />
+			<xs:element name="StartDTTMstr" type="xs:string" />
+			<xs:element name="StartingBalance" type="xs:integer" />
+			<xs:element name="State" type="xs:string" />
+			<xs:element name="States">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="StateName" type="xs:string" />
+						<xs:element form="qualified" name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Status" type="xs:string" />
+			<xs:element name="StatusText" type="xs:string" />
+			<xs:element name="Store">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="StoreType" type="xs:string" />
+						<xs:element form="qualified" name="TenderCode" type="xs:string" />
+						<xs:element form="qualified" name="Min" type="xs:string" />
+						<xs:element form="qualified" name="Max" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="StoreCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableStoreCriteria" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="StoreFlag" type="xs:string" />
+			<xs:element name="StoreFormat" type="xs:string" />
+			<xs:element name="StoreFormats">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							name="StoreFormat" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="StoreLocation" type="xs:string" />
+			<xs:element name="StoreNumber" type="xs:string" />
+			<xs:element name="StoreNumbers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:ApplicableStoreNumber" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="StoreTypes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="StoreType" type="xs:string" />
+						<xs:element form="qualified" name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SubCategory" type="xs:string" />
+			<xs:element name="SubClub">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="SubClubName" type="xs:string" />
+						<xs:element form="qualified" name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SubClubs">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:SubClub" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Suffix" type="xs:string" />
+			<xs:element name="Survey">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="CampaignControlID" type="xs:integer" />
+						<xs:element form="qualified" name="SurveyID" type="xs:integer" />
+						<xs:element form="qualified" minOccurs="0" name="CategoryID"
+							type="xs:integer" />
+						<xs:element form="qualified" name="SurveyDescription"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SurveyAnswer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="AnswerGroupID" type="xs:anyType" />
+						<xs:element name="AnswerID" type="xs:anyType" />
+						<xs:element name="AnswerType" type="xs:anyType" />
+						<xs:element name="AnswerText" type="xs:anyType" />
+						<xs:element name="AnswerValue" type="xs:anyType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SurveyDescription" type="xs:string" />
+			<xs:element name="SurveyID" type="xs:integer" />
+			<xs:element name="SurveyQuestion">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="QuestionGroupID" type="xs:anyType" />
+						<xs:element form="qualified" name="QuestionID" type="xs:anyType" />
+						<xs:element form="qualified" name="QuestionText" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SysPulse" type="xs:string" />
+			<xs:element name="SystemReward">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="RewardID" type="xs:string" />
+						<xs:element form="qualified" name="RewardDescription"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SystemRewards">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:SystemReward" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TargetValue">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:decimal">
+							<xs:attribute name="Type" type="xs:string" use="required" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TaxAmount" type="xs:string" />
+			<xs:element name="Tender">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="TenderType" type="xs:string" />
+						<xs:element form="qualified" name="TenderAmount" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="AuthorizationCode" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TenderAmount" type="xs:string" />
+			<xs:element name="TenderDetail">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="TenderType" type="xs:string" />
+						<xs:element form="qualified" name="TenderAmount" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="ExcludeIndicator" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="TenderCode"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TenderDetailList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:TenderDetail" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TenderGroup">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="TenderGroupName"
+							type="xs:string" />
+						<xs:element form="qualified" name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TenderGroups">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:TenderGroup" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TenderList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:Tender" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TenderStoreNumber" type="xs:string" />
+			<xs:element name="TenderType" type="xs:string" />
+			<xs:element name="Tenders">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Store" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:TenderGroups" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Terminal" type="xs:string" />
+			<xs:element name="Terms" type="xs:string" />
+			<xs:element name="TermsAndConditions">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							name="TermAndCondition" type="tns:TermAndCondition" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TestCardIndicator" type="xs:string" />
+			<xs:element name="TestPostPointsResponse" type="tns:TestPostPointsResponse" />
+			<xs:element name="Tier">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="ElevatedTier" type="xs:string" />
+						<xs:element form="qualified" name="TierThreshold" type="xs:decimal" />
+						<xs:element form="qualified" name="DollarsToThreshold"
+							type="xs:decimal" />
+						<xs:element form="qualified" name="Description" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TierData">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="ElevatedTier" type="xs:string" />
+						<xs:element form="qualified" name="StartDate" type="xs:anySimpleType" />
+						<xs:element form="qualified" name="EndDate" type="xs:anySimpleType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TierHistory">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:TierData" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TierThreshold" type="xs:decimal" />
+			<xs:element name="Tiers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Tier" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TimeLeft">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:integer">
+							<xs:attribute name="Type" type="xs:string" use="required" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TotalAllocatedBasePoints" type="xs:integer" />
+			<xs:element name="TotalAllocatedPoints" type="xs:integer" />
+			<xs:element name="TotalAvailablePointsSummary">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="TotalAvailablePoints" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TotalAvailableMemberOwnPoints" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TotalAvailableSurprisePoints" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TotalAvailableMemberOwnPointsList" type="tns:MemberOwnPointsList" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TotalAvailableSurprisePointsList">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded" ref="tns:AvailableSurprisePoints" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element minOccurs="0" ref="tns:TotalAvailableXROfferList" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TotalAvailableXROfferList" type="tns:TotalAvailableXROfferList" />
+			<xs:element name="TotalAvailableXRPointsList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:AvailableXRPoints" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TotalBasePoints" type="xs:integer" />
+			<xs:element name="TotalBonusPoints" type="xs:integer" />
+			<xs:element name="TotalBonusPointsEarned" type="xs:integer" />
+			<xs:element name="TotalBonusPointsEarnedTxt" type="xs:string" />
+			<xs:element name="TotalEarned" type="xs:integer" />
+			<xs:element name="TotalExpired" type="xs:integer" />
+			<xs:element name="TotalPoints" type="xs:integer" />
+			<xs:element name="TotalPointsEarned" type="xs:string" />
+			<xs:element name="TotalPointsEarnedTxt" type="xs:string" />
+			<xs:element name="TotalPointsRedeemed" type="xs:integer" />
+			<xs:element name="TotalRedeemablePoints" type="xs:integer" />
+			<xs:element name="TotalRedeemed" type="xs:integer" />
+			<xs:element name="TotalSpentYTD" type="xs:decimal" />
+			<xs:element name="TrackingID" type="xs:string" />
+			<xs:element name="Transaction">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="TransactionID" type="xs:string" />
+						<xs:element form="qualified" name="TransactionDTTM"
+							type="xs:anySimpleType" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TransactionNumber" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="StoreNumber"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="RegisterNumber"
+							type="xs:string" />
+						<xs:element form="qualified" name="TotalPoints" type="xs:integer" />
+						<xs:element form="qualified" name="tenderDetailList">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded" ref="tns:TenderDetail" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element minOccurs="0" ref="tns:Coupons" />
+						<xs:element ref="tns:LineItems" />
+						<xs:element form="qualified" name="PointsRedeemedOnBaseOffer"
+							type="xs:integer" />
+						<xs:element form="qualified" name="PointsRedeemedOnBonusOffer"
+							type="xs:integer" />
+						<xs:element form="qualified" name="TotalDollarSaving"
+							type="xs:decimal" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TransactionCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ApplicableCoupons" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:LayAway" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:Tenders" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TransactionDTTM" type="xs:anySimpleType" />
+			<xs:element name="TransactionDate" type="xs:anySimpleType" />
+			<xs:element name="TransactionDescription" type="xs:string" />
+			<xs:element name="TransactionDetail">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="TransactionDTTM"
+							type="xs:anySimpleType" />
+						<xs:element form="qualified" name="TransactionID" type="xs:string" />
+						<xs:element form="qualified" name="TransactionDescription"
+							type="xs:string" />
+						<xs:element form="qualified" name="TransactionType"
+							type="xs:string" />
+						<xs:element form="qualified" name="TotalPoints" type="xs:integer" />
+						<xs:element form="qualified" name="TotalBasePoints"
+							type="xs:integer" />
+						<xs:element form="qualified" name="TotalBonusPoints"
+							type="xs:integer" />
+						<xs:element form="qualified" name="TotalPointsRedeemed"
+							type="xs:integer" />
+						<xs:element form="qualified" name="DollarValueOfPointsRedeemed"
+							type="xs:decimal" />
+						<xs:element form="qualified" name="TotalExpired" type="xs:integer" />
+						<xs:element form="qualified" name="StoreLocation" type="xs:string" />
+						<xs:element form="qualified" name="StoreFormat" type="xs:string" />
+						<xs:element form="qualified" name="EarnType" type="xs:string" />
+						<xs:element form="qualified" name="GrossSpend" type="xs:string" />
+						<xs:element form="qualified" name="ReasonCode" type="xs:string" />
+						<xs:element form="qualified" name="PostTS" type="xs:anySimpleType" />
+						<xs:element form="qualified" name="PickUpStoreNumber"
+							type="xs:string" />
+						<xs:element form="qualified" name="TotalTax" type="xs:string" />
+						<xs:element form="qualified" name="AssociateID" type="xs:string" />
+						<xs:element form="qualified" name="ProcessStatus" type="xs:string" />
+						<xs:element form="qualified" name="TransactionNumber"
+							type="xs:string" />
+						<xs:element form="qualified" name="RegisterNumber"
+							type="xs:string" />
+						<xs:element form="qualified" name="TotalDollarSaving"
+							type="xs:decimal" />
+						<xs:element form="qualified" name="OrderId" type="xs:string" />
+						<xs:element form="qualified" name="OrderSource" type="xs:string" />
+						<xs:element form="qualified" name="BenefitCode" type="xs:string" />
+						<xs:element form="qualified" name="BenefitName" type="xs:string" />
+						<xs:element form="qualified" name="BenefitStartDTTM"
+							type="xs:string" />
+						<xs:element form="qualified" name="BenefitEndDTTM"
+							type="xs:string" />
+						<xs:element form="qualified" name="BenefitType" type="xs:string" />
+						<xs:element form="qualified" name="BenefitCategory"
+							type="xs:string" />
+						<xs:element form="qualified" name="RedemptionMode"
+							type="xs:string" />
+						<xs:element form="qualified" name="ApproximateRetailValue"
+							type="xs:string" />
+						<xs:element form="qualified" name="CostToBusiness"
+							type="xs:string" />
+						<xs:element form="qualified" name="BenefitUsageDetails"
+							type="xs:string" />
+						<xs:element form="qualified" name="ThirdPartyName"
+							type="xs:string" />
+						<xs:element form="qualified" name="ThirdPartyURL" type="xs:string" />
+						<xs:element form="qualified" name="VIPTier" type="xs:string" />
+						<xs:element form="qualified" name="UserCoupon" type="xs:string" />
+						<xs:element form="qualified" name="UserCouponStartDate"
+							type="xs:string" />
+						<xs:element form="qualified" name="UserCouponStartTime"
+							type="xs:string" />
+						<xs:element form="qualified" name="UserCouponEndDate"
+							type="xs:string" />
+						<xs:element form="qualified" name="UserCouponEndTime"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TransactionDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:TransactionDetail" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TransactionID" type="xs:string" />
+			<xs:element name="TransactionList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:Transaction" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TransactionNumber" type="xs:string" />
+			<xs:element name="TransactionTime" type="xs:anySimpleType" />
+			<xs:element name="TransactionTotal" type="xs:string" />
+			<xs:element name="TransactionTotalTax" type="xs:string" />
+			<xs:element name="TransactionType" type="xs:string" />
+			<xs:element name="TxnEarnOffer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="TxnEarnOfferCode" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TxnEarnOfferName" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TxnEarnOfferReceiptDesc" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TxnEarnOfferType" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TxnPointsEarned" type="xs:integer" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TxnItemLevelOffer" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="TxnPointsEarnedTxt" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TxnEarnOfferCode" type="xs:string" />
+			<xs:element name="TxnEarnOfferName" type="xs:string" />
+			<xs:element name="TxnEarnOfferType" type="xs:string" />
+			<xs:element name="TxnEarnOffers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:TxnEarnOffer" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TxnItemLevelOffer" type="xs:string" />
+			<xs:element name="TxnPointsEarned" type="xs:integer" />
+			<xs:element name="TxnPointsEarnedTxt" type="xs:string" />
+			<xs:element name="UPC" type="xs:string" />
+			<xs:element name="UnitPriceAfterDiscount">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Condition" type="xs:string" />
+						<xs:element form="qualified" name="Amount" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UnitPriceBeforeDiscount">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Condition" type="xs:string" />
+						<xs:element form="qualified" name="Amount" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateEmailConfirmedResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="UpdateEmailConfirmedResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateMemberAffinitySubscriptionsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="UpdateMemberAffinitySubscriptionsResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateMemberEmailResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="UpdateMemberEmailResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateMemberExtendedProfileResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="UpdateMemberExtendedProfileResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateMemberPinResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="UpdateMemberPinResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateMemberPrimaryProfileResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="UpdateMemberPrimaryProfileResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="VIPStatus">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="VipName" type="xs:string" />
+						<xs:element form="qualified" name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="VIPStatusList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:VIPStatus" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="VIPTier" type="xs:string" />
+			<xs:element name="VIPTierInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="VIPTier"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0" name="VIPTierCap"
+							type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="SelectedBenefits" type="xs:string" />
+						<xs:element form="qualified" minOccurs="0"
+							name="RemainingBenefits" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="VIPTiers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" maxOccurs="unbounded"
+							minOccurs="0" name="VIPTier" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ValidateMemberResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="ValidateMemberResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ValidatePinResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0"
+							name="ValidatePinResult">
+							<xs:complexType mixed="true">
+								<xs:sequence>
+									<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+										processContents="lax" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="WirelessPermissionFlag" type="xs:string" />
+			<xs:element name="XRCriteria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:ApplicableXRQuantity" />
+						<xs:element maxOccurs="unbounded" minOccurs="0"
+							ref="tns:XRSpend" />
+						<xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:Caps" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="XRSpend">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Multiplier" type="xs:string" />
+						<xs:element form="qualified" name="SpendThreshold"
+							type="xs:string" />
+						<xs:element maxOccurs="unbounded" ref="tns:XRTiers" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="XRTier">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Min" type="xs:string" />
+						<xs:element form="qualified" name="Max" type="xs:string" />
+						<xs:element form="qualified" name="DollarValueOfPoints"
+							type="xs:string" />
+						<xs:element form="qualified" name="Cap" type="xs:string" />
+						<xs:element form="qualified" name="Flat" type="xs:string" />
+						<xs:element form="qualified" name="ForEvery" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="XRTiers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" ref="tns:XRTier" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="YearToDate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="SpendCondition"
+							type="xs:string" />
+						<xs:element form="qualified" name="SpendAmount" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ZipCode" type="xs:string" />
+			<xs:element name="ZipCodeExtension" type="xs:string" />
+			<xs:element name="Zipcodes">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="Zipcode" type="xs:string" />
+						<xs:element form="qualified" name="Include" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="msg1" type="xs:string" />
+			<xs:element name="msg2" type="xs:string" />
+			<xs:element name="msg3" type="xs:string" />
+			<xs:element name="msg4" type="xs:string" />
+			<xs:element name="msg5" type="xs:string" />
+			<xs:element name="testPostPoints" type="tns:testPostPoints" />
+			<xs:complexType name="AddMemberToGroup">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="GroupName"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="AddMemberToGroupResponse">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0"
+						name="AddMemberToGroupResult">
+						<xs:complexType mixed="true">
+							<xs:sequence>
+								<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+									processContents="lax" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="PostAdjustmentPoints">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="PointsToAdd"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="OfferID"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="LanguagePreference" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="TxnReferenceID"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="AdjCode"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Comments"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Source"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="UserID"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="PostDate"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="StoreFormat"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="StoreNumber"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="PostAdjustmentPointsResponse">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0"
+						name="PostAdjustmentPointsResult">
+						<xs:complexType mixed="true">
+							<xs:sequence>
+								<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+									processContents="lax" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="OfferRegistration">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="ActionTag"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="RequestorID"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="AssociateID"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="RegisterNumber"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="StoreNumber"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="RegistrationStartDTTM" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="RegistrationEndDTTM" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="OfferMemberGroupList" type="tns:ArrayOfOfferMemberGroupList" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfOfferMemberGroupList">
+				<xs:sequence>
+					<xs:element form="qualified" maxOccurs="unbounded"
+						minOccurs="0" name="OfferMemberGroup" nillable="true"
+						type="tns:OfferMemberGroup" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="OfferMemberGroup">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="OfferCode"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="GroupName"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="OfferRegistrationResponse">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0"
+						name="OfferRegistrationResult">
+						<xs:complexType mixed="true">
+							<xs:sequence>
+								<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+									processContents="lax" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="testPostPoints">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="MessageVersion"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="ClubCode"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="MemberNumber"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="TxnId"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="RequestorID"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="RegisterNumber"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="StoreNumber"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="txnTimeStamp"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="txnNumber"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="isReprocess"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="currentDate"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="currentTime"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="trialBalanceFlag" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="memberId"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="OfferMemberGroupList" type="tns:LineItemList" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="LineItemList">
+				<xs:sequence>
+					<xs:element form="qualified" maxOccurs="unbounded"
+						minOccurs="0" name="LineDetailsGroup" nillable="true"
+						type="tns:LineDetailsGroup" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="LineDetailsGroup">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="OfferCode"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="offerId"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="adjustCode"
+						type="xs:string" />
+					<xs:element form="qualified" name="points" type="xs:int" />
+					<xs:element form="qualified" minOccurs="0" name="earnRedeemFlag"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="redeemStartDate"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="pointsExprnDate"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="originalTxnId"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="authorizationCode" type="xs:string" />
+					<xs:element form="qualified" name="dollarValue" type="xs:double" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="arrayList">
+				<xs:complexContent>
+					<xs:extension base="tns:abstractList">
+						<xs:sequence />
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType abstract="true" name="abstractList">
+				<xs:complexContent>
+					<xs:extension base="tns:abstractCollection">
+						<xs:sequence />
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType abstract="true" name="abstractCollection">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="TestPostPointsResponse">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="TestBankResult">
+						<xs:complexType mixed="true">
+							<xs:sequence>
+								<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+									processContents="lax" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="PostPartnerPointsResponse">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0"
+						name="PostPartnerPointsResult">
+						<xs:complexType mixed="true">
+							<xs:sequence>
+								<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+									processContents="lax" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Phone">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="PhoneType"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="PreferredPhoneType" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="PhoneNumber"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Offer">
+				<xs:sequence>
+					<xs:element form="qualified" name="OfferName" type="xs:string" />
+					<xs:element form="qualified" name="Description" type="xs:string" />
+					<xs:element form="qualified" name="Terms" type="xs:string" />
+					<xs:element form="qualified" name="StartDTTM" type="xs:dateTime" />
+					<xs:element form="qualified" name="EndDTTM" type="xs:dateTime" />
+					<xs:element form="qualified" name="ImageName" type="xs:string" />
+					<xs:element form="qualified" name="Category" type="xs:string" />
+					<xs:element form="qualified" name="SubCategory" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Member">
+				<xs:sequence>
+					<xs:element form="qualified" name="EmailAddress" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Prefix"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="FirstName"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="LastName"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="MiddleInitial"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Address1"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Address2"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="City"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="State"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="ZipCode"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="ZipCodeExtension" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Suffix"
+						type="xs:string" />
+					<xs:element form="qualified" name="MemberNumber" type="xs:string" />
+					<xs:element form="qualified" name="ClubStatus" type="xs:string" />
+					<xs:element form="qualified" name="ClubStatusChangeDate"
+						type="xs:anySimpleType" />
+					<xs:element form="qualified" name="CreatedBy" type="xs:string" />
+					<xs:element form="qualified" name="DateIssued" type="xs:anySimpleType" />
+					<xs:element form="qualified" name="MemberSinceDate"
+						type="xs:anySimpleType" />
+					<xs:element form="qualified" name="ClubDNPStatus" type="xs:string" />
+					<xs:element form="qualified" name="AgeEligible" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="DOB"
+						type="xs:date" />
+					<xs:element form="qualified" name="OnlineValidationFlag"
+						type="xs:string" />
+					<xs:element form="qualified" name="OnlineValidationDate"
+						type="xs:anySimpleType" />
+					<xs:element form="qualified" minOccurs="0"
+						name="WirelessPermissionFlag" type="xs:string" />
+					<xs:element form="qualified" name="LanguagePreference"
+						type="xs:string" />
+					<xs:element form="qualified" name="VIPTier" type="xs:string" />
+					<xs:element form="qualified" name="TotalSpentYTD" type="xs:decimal" />
+					<xs:element form="qualified" name="SpendNextTierLevel"
+						type="xs:string" />
+					<xs:element form="qualified" name="CardDesignType" type="xs:string" />
+					<xs:element form="qualified" name="SHCAssociateInd"
+						type="xs:string" />
+					<xs:element form="qualified" name="TotalRedeemablePoints"
+						type="xs:integer" />
+					<xs:element form="qualified" minOccurs="0"
+						name="EmailStatusReturn" type="xs:string" />
+					<xs:element default="M" form="qualified" minOccurs="0"
+						name="RedemptionSystemCode" type="xs:string" />
+					<xs:element form="qualified" name="ClubEmailOptStatus"
+						type="xs:string" />
+					<xs:element form="qualified" name="SearchType" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Deceased"
+						type="xs:boolean" />
+					<xs:element default="US" form="qualified" name="CountryCode"
+						type="xs:string" />
+					<xs:element form="qualified" name="msg1" type="xs:string" />
+					<xs:element form="qualified" name="msg2" type="xs:string" />
+					<xs:element form="qualified" name="msg3" type="xs:string" />
+					<xs:element form="qualified" name="msg4" type="xs:string" />
+					<xs:element form="qualified" name="msg5" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="EmailConfirmed"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="MemberEarnType"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="TestCardIndicator" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="MobileValid"
+						type="xs:string" />
+					<xs:element ref="tns:PhoneNumbers" />
+					<xs:element form="qualified" name="IncompleteProfileInd"
+						type="xs:string" />
+					<xs:element minOccurs="0" ref="tns:Affinities" />
+					<xs:element minOccurs="0" ref="tns:Attributes" />
+					<xs:element minOccurs="0" ref="tns:TermsAndConditions" />
+					<xs:element form="qualified" minOccurs="0" name="CheckoutPrompt">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element form="qualified" maxOccurs="unbounded"
+									name="CheckoutPromptQuestions" type="tns:CheckoutPromptQuestions" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element form="qualified" name="EnrollmentSourceCode"
+						type="xs:string" />
+					<xs:element form="qualified" name="EnrollmentStoreNumber"
+						type="xs:string" />
+					<xs:element form="qualified" name="Charity" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Affinity">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="AffinityID"
+						type="xs:string" />
+					<xs:element form="qualified" name="AffinityStatus" type="xs:string" />
+					<xs:element form="qualified" name="AffiliationCode"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="OfferCode"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="TermAndCondition">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="TnCStatus"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Version"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Date"
+						type="xs:anySimpleType" />
+					<xs:element form="qualified" minOccurs="0" name="Time"
+						type="xs:anySimpleType" />
+					<xs:element form="qualified" minOccurs="0" name="StoreNumber"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="RegisterNumber"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="AssociateID"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Prompt"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="LatestVersion"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="CheckoutPromptQuestions">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="AttributeID"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="QuestionPackageID" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="QuestionRuleID"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="QuestionTextID"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="QuestionTitle"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="QuestionLine1"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="QuestionLine2"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="QuestionLine3"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="QuestionLine4"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="QuestionLine5"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="AnswerTemplate"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="AnswerChoice"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="AnswerChoices">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element form="qualified" maxOccurs="unbounded"
+									name="AnswerOption">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element form="qualified" minOccurs="0"
+												name="AnswerChoiceID" type="xs:string" />
+											<xs:element form="qualified" minOccurs="0" name="ButtonTxt"
+												type="xs:string" />
+											<xs:element form="qualified" minOccurs="0" name="AnswerTxt"
+												type="xs:string" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element form="qualified" minOccurs="0" name="ApiToUse"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="MemberAttribute"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="AttrName"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="FollowupQuestions">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element form="qualified" maxOccurs="unbounded"
+									name="FollowupQuestion">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element form="qualified" minOccurs="0"
+												name="FollowupQuestionTitle" type="xs:string" />
+											<xs:element form="qualified" minOccurs="0"
+												name="QuestionToFollowup" type="xs:string" />
+											<xs:element form="qualified" minOccurs="0"
+												name="AnswerstoFollowup">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element form="qualified" maxOccurs="unbounded"
+															name="Answer">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element form="qualified" minOccurs="0"
+																		name="AnswerID" type="xs:string" />
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element form="qualified" minOccurs="0"
+												name="FollowupQuestionTextID" type="xs:string" />
+											<xs:element form="qualified" minOccurs="0"
+												name="FollowupAttributeID" type="xs:string" />
+											<xs:element form="qualified" minOccurs="0"
+												name="FollowupQuestionLine1" type="xs:string" />
+											<xs:element form="qualified" minOccurs="0"
+												name="FollowupQuestionLine2" type="xs:string" />
+											<xs:element form="qualified" minOccurs="0"
+												name="FollowupQuestionLine3" type="xs:string" />
+											<xs:element form="qualified" minOccurs="0"
+												name="FollowupQuestionLine4" type="xs:string" />
+											<xs:element form="qualified" minOccurs="0"
+												name="FollowupQuestionLine5" type="xs:string" />
+											<xs:element form="qualified" minOccurs="0"
+												name="FollowupAnswerTemplate" type="xs:string" />
+											<xs:element form="qualified" minOccurs="0"
+												name="FollowupAnswerChoices">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element form="qualified" maxOccurs="unbounded"
+															name="FollowupAnswerChoice">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element form="qualified" minOccurs="0"
+																		name="FollowupAnswerID" type="xs:string" />
+																	<xs:element form="qualified" minOccurs="0"
+																		name="FollowupButtonText" type="xs:string" />
+																	<xs:element form="qualified" minOccurs="0"
+																		name="FollowupAnswerText" type="xs:string" />
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element form="qualified" minOccurs="0"
+												name="FollowupMemberAttribute" type="xs:string" />
+											<xs:element form="qualified" minOccurs="0"
+												name="FollowupAttrName" type="xs:string" />
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Bonus">
+				<xs:sequence>
+					<xs:element form="qualified" name="BonusID" type="xs:string" />
+					<xs:element form="qualified" name="BonusName" type="xs:string" />
+					<xs:element form="qualified" name="BonusDescription"
+						type="xs:string" />
+					<xs:element form="qualified" name="TotalAllocatedPoints"
+						type="xs:integer" />
+					<xs:element form="qualified" name="BonusPoints" type="xs:integer" />
+					<xs:element form="qualified" name="PointsRedeemed" type="xs:integer" />
+					<xs:element form="qualified" name="DollarValueOfPointsRedeemed"
+						type="xs:decimal" />
+					<xs:element form="qualified" name="SurprisePointsRedeemed"
+						type="xs:decimal" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="CardDetail">
+				<xs:sequence>
+					<xs:element form="qualified" name="MemberUniqueId" type="xs:string" />
+					<xs:element form="qualified" name="RegistrationUniqueId"
+						type="xs:string" />
+					<xs:element form="qualified" name="ServiceRegistrationNumber"
+						type="xs:string" />
+					<xs:element form="qualified" name="LastUpdatedTime"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfLineItem">
+				<xs:sequence>
+					<xs:element form="qualified" maxOccurs="unbounded"
+						minOccurs="0" name="LineItem" nillable="true" type="tns:LineItem" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="LineItem">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="LineNumber"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="ItemType"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Division"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="ItemNumber"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="SKU"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="UPC"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="LineItemAmountTypeCode" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="CouponNumber"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="LineRequestorId"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="LineOrderStoreNumber" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="LinePickUpStoreNumber" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="DollarValuePreDisc" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="DollarValuePostDisc" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="PriceMatchAmount" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="PriceMatchBonusAmount" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Quantity"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="PointsRedeemed"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="DollarValueOfPointsRedeemed" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="RedemptionExclusionFlag" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="LayawayFlag"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="PickUpStoreNumber" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="PickupStoreFormat" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="OriginalLineNumber" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="OriginalStoreNumber" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="OriginalRegisterNumber" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="OriginalTransactionNumber" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="OriginalTransactionDate" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="OriginalTransactionTime" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="TaxAmount"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="PostSalesAdjustmentAmount" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="NonMemberPrice"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Coupons"
+						type="tns:ArrayOfCoupon" />
+					<xs:element form="qualified" minOccurs="0" name="MapCompliance"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfCoupon">
+				<xs:sequence>
+					<xs:element form="qualified" maxOccurs="unbounded"
+						minOccurs="0" name="Coupon" nillable="true" type="tns:Coupon" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Coupon">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="CouponNumber"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="DiscountAmount"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="CouponType"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="AlternateCouponDecision" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="AlternateCouponFlag" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="AlternateCouponOfferPoints" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="OfferCode"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="PointsDetails">
+				<xs:sequence>
+					<xs:element form="qualified" maxOccurs="unbounded"
+						minOccurs="0" name="PointsToExpiry">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element form="qualified" minOccurs="0" name="ExpiryDate"
+									type="xs:string" />
+								<xs:element form="qualified" minOccurs="0" name="Points"
+									type="xs:string" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="MemberOwnPointsList">
+				<xs:sequence>
+					<xs:element form="qualified" maxOccurs="unbounded"
+						minOccurs="0" name="MemberOwnPointsToExpire">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element form="qualified" minOccurs="0"
+									name="MemberOwnExpiryDate" type="xs:string" />
+								<xs:element form="qualified" minOccurs="0"
+									name="MemberOwnPoints" type="xs:string" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="TotalAvailableXROfferList">
+				<xs:sequence>
+					<xs:element form="qualified" maxOccurs="unbounded"
+						minOccurs="0" name="TotalAvailableXROffers">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element form="qualified" minOccurs="0"
+									name="XROfferPointsAvailableFor" type="xs:string" />
+								<xs:element form="qualified" minOccurs="0"
+									name="XROfferMultiplier" type="xs:string" />
+								<xs:element form="qualified" minOccurs="0"
+									name="XROfferQualifier" type="xs:string" />
+								<xs:element form="qualified" minOccurs="0"
+									name="XROfferConditions" type="xs:string" />
+								<xs:element form="qualified" minOccurs="0"
+									name="XROfferExpiryDate" type="xs:string" />
+								<xs:element form="qualified" minOccurs="0"
+									name="XRPointsExclusion" type="xs:string" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="OfferMemberGroupResponse">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="OfferCode"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="GroupName"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Status"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="StatusText"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="OrderDetails">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="OrderId"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="OrderSource"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="TotalTransactions" type="xs:int" />
+					<xs:element form="qualified" minOccurs="0"
+						name="TransactionSequence" type="xs:int" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfTender">
+				<xs:sequence>
+					<xs:element form="qualified" maxOccurs="unbounded"
+						minOccurs="0" name="Tender" nillable="true" type="tns:Tender" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Tender">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="TenderType"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="TenderAmount"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="AuthorizationCode" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfOffer">
+				<xs:sequence>
+					<xs:element form="qualified" maxOccurs="unbounded"
+						minOccurs="0" name="OfferDetails" nillable="true" type="tns:OfferDetails" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="OfferDetails">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0" name="OfferId"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="MemberExperience" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfProductList">
+				<xs:sequence>
+					<xs:element form="qualified" maxOccurs="unbounded"
+						minOccurs="0" name="Product" nillable="true" type="tns:Product" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Product">
+				<xs:sequence>
+					<xs:element form="qualified" maxOccurs="unbounded"
+						minOccurs="0" name="HierarchyLevels" nillable="true"
+						type="tns:HierarchyLevels" />
+					<xs:element form="qualified" minOccurs="0" name="SKU"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="UPC"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="LineItemAmountTypeCode" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="ItemPrice"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Quantity"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="MapCompliance"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="HierarchyLevels">
+				<xs:sequence>
+					<xs:element form="qualified" maxOccurs="unbounded"
+						minOccurs="0" name="HierarchyLevel" nillable="true" type="tns:HierarchyLevel" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="HierarchyLevel">
+				<xs:sequence>
+					<xs:element form="qualified" name="LevelCode" type="xs:string" />
+					<xs:element form="qualified" name="LevelCodeDescription"
+						type="xs:string" />
+					<xs:element form="qualified" name="LevelValue" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ExternalCoupons">
+				<xs:sequence>
+					<xs:element form="qualified" maxOccurs="unbounded"
+						minOccurs="0" name="ExternalCoupon" nillable="true" type="tns:ExternalCoupon" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ExternalCoupon">
+				<xs:sequence>
+					<xs:element form="qualified" minOccurs="0"
+						name="ExternalCouponNumber" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="ExternalCouponDescription" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="ExternalCouponStartDTTM" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0"
+						name="ExternalCouponEndDTTM" type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="Pin"
+						type="xs:string" />
+					<xs:element form="qualified" minOccurs="0" name="RandValue"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="Exception" type="tns:Exception" />
+			<xs:complexType name="Exception">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="message" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="AddMemberToGroupResponse">
+		<wsdl:part name="parameters" element="ns1:AddMemberToGroupResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="PostPartnerPointsResponse">
+		<wsdl:part name="parameters" element="ns1:PostPartnerPointsResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="OfferRegistrationResponse">
+		<wsdl:part name="parameters" element="ns1:OfferRegistrationResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="Exception">
+		<wsdl:part name="Exception" element="ns1:Exception">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="OfferRegistration">
+		<wsdl:part name="parameters" element="ns1:OfferRegistration">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="PostAdjustmentPointsResponse">
+		<wsdl:part name="parameters" element="ns1:PostAdjustmentPointsResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="testPostPointsResponse">
+		<wsdl:part name="parameters" element="ns1:TestPostPointsResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="testPostPoints">
+		<wsdl:part name="parameters" element="ns1:testPostPoints">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="PostAdjustmentPoints">
+		<wsdl:part name="parameters" element="ns1:PostAdjustmentPoints">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="AddMemberToGroup">
+		<wsdl:part name="parameters" element="ns1:AddMemberToGroup">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="PostPartnerPoints">
+		<wsdl:part name="parameters" element="ns1:PostPartnerPoints">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="BankSoap">
+		<wsdl:operation name="AddMemberToGroup">
+			<wsdl:input name="AddMemberToGroup" message="ns1:AddMemberToGroup">
+			</wsdl:input>
+			<wsdl:output name="AddMemberToGroupResponse" message="ns1:AddMemberToGroupResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="PostAdjustmentPoints">
+			<wsdl:input name="PostAdjustmentPoints" message="ns1:PostAdjustmentPoints">
+			</wsdl:input>
+			<wsdl:output name="PostAdjustmentPointsResponse" message="ns1:PostAdjustmentPointsResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="OfferRegistration">
+			<wsdl:input name="OfferRegistration" message="ns1:OfferRegistration">
+			</wsdl:input>
+			<wsdl:output name="OfferRegistrationResponse" message="ns1:OfferRegistrationResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="testPostPoints">
+			<wsdl:input name="testPostPoints" message="ns1:testPostPoints">
+			</wsdl:input>
+			<wsdl:output name="testPostPointsResponse" message="ns1:testPostPointsResponse">
+			</wsdl:output>
+			<wsdl:fault name="Exception" message="ns1:Exception">
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="PostPartnerPoints">
+			<wsdl:input name="PostPartnerPoints" message="ns1:PostPartnerPoints">
+			</wsdl:input>
+			<wsdl:output name="PostPartnerPointsResponse" message="ns1:PostPartnerPointsResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BankSoap" type="tns:BankSoap">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="AddMemberToGroup">
+			<soap:operation soapAction="http://www.epsilon.com/webservices/AddMemberToGroup"
+				style="document" />
+			<wsdl:input name="AddMemberToGroup">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="AddMemberToGroupResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="PostAdjustmentPoints">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/PostAdjustmentPoints"
+				style="document" />
+			<wsdl:input name="PostAdjustmentPoints">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="PostAdjustmentPointsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="OfferRegistration">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/OfferRegistration"
+				style="document" />
+			<wsdl:input name="OfferRegistration">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="OfferRegistrationResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="testPostPoints">
+			<soap:operation soapAction="http://www.epsilon.com/webservices/TestPostPoints"
+				style="document" />
+			<wsdl:input name="testPostPoints">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="testPostPointsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="Exception">
+				<soap:fault name="Exception" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="PostPartnerPoints">
+			<soap:operation
+				soapAction="http://www.epsilon.com/webservices/PostPartnerPoints"
+				style="document" />
+			<wsdl:input name="PostPartnerPoints">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="PostPartnerPointsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="BankSoap12" type="tns:BankSoap">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="AddMemberToGroup">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/AddMemberToGroup"
+				style="document" />
+			<wsdl:input name="AddMemberToGroup">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="AddMemberToGroupResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="PostAdjustmentPoints">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/PostAdjustmentPoints"
+				style="document" />
+			<wsdl:input name="PostAdjustmentPoints">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="PostAdjustmentPointsResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="OfferRegistration">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/OfferRegistration"
+				style="document" />
+			<wsdl:input name="OfferRegistration">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="OfferRegistrationResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="testPostPoints">
+			<soap12:operation soapAction="http://www.epsilon.com/webservices/TestPostPoints"
+				style="document" />
+			<wsdl:input name="testPostPoints">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="testPostPointsResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="Exception">
+				<soap12:fault name="Exception" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="PostPartnerPoints">
+			<soap12:operation
+				soapAction="http://www.epsilon.com/webservices/PostPartnerPoints"
+				style="document" />
+			<wsdl:input name="PostPartnerPoints">
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="PostPartnerPointsResponse">
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="Bank">
+		<wsdl:port binding="tns:BankSoap" name="BankSoap">
+			<soap:address
+				location="http://trqaeaesb2med1.vm.itg.corp.us.shldcorp.com:7777/ws/BankQATellurideVirtualSvc" />
+		</wsdl:port>
+		<wsdl:port binding="tns:BankSoap12" name="BankSoap12">
+			<soap12:address
+				location="http://trqaeaesb2med1.vm.itg.corp.us.shldcorp.com:7777/ws/BankQATellurideVirtualSvc" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
