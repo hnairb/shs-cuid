@@ -32,7 +32,10 @@ import com.searshc.hs.agreement.contract.service.domain.response.HwpDetailsRespo
 import com.searshc.hs.domi.service.merchandise.lookup.list.response.LookupMerchandiseListResponse;
 import com.searshc.hs.psc.partorderdirectservice.ws.service.SearchPartOrderDirectRequestVO;
 import com.searshc.hs.psc.partorderdirectservice.ws.service.SearchPartOrderDirectResponseVO;
-import com.searshc.hs.som.thm.domain.sywr.GetMemberLookupResponse.GetMemberLookupResult;
+import com.searshc.hs.sywr.Type;
+import com.searshc.hs.sywr.hs.searshc.com.request.LookupRequest;
+import com.searshc.hs.sywr.hs.searshc.com.response.BalanceResponse;
+import com.searshc.hs.sywr.hs.searshc.com.response.LookupResponse;
 
 @RestController
 @RequestMapping("/allservices")
@@ -252,7 +255,6 @@ public class CuidCustomerController {
 			}
 			customerDetails = customerDetailsList.get(0);
 			LookupMerchandiseListResponse merchObject=null;
-			GetMemberLookupResult sywObject=null;
 			List<ServiceOrder> serviceOrderList=null;
 			OriginationDTO originationDTO=null;
 			SearchPartOrderDirectResponseVO partsResponseVO=null;
@@ -260,17 +262,35 @@ public class CuidCustomerController {
 			HwpDetailsResponse hwpDetailsResponse = null;
 			try{
 				merchObject = cuidRestService.getMerchandiseList(customerId);
-//						merchObject = cuidRestService.getMerchandiseList("1260052725");
 			} catch (Exception e){
 				e.printStackTrace();
 				logger.error("Exception is getting data from Merchandise API for customer Id {}.",customerId,e);
 			}
+			LookupRequest lookupRequest = new LookupRequest();
+			LookupResponse lookupResponse = new LookupResponse();
+			BalanceResponse balanceResponse = new BalanceResponse();
 			try{
-				sywObject = cuidRestService.getMemberLookup(customerDetails.getPhonePrimary());
-//						sywObject = cuidRestService.getMemberLookup("2291111112");			
+				lookupRequest.setValue(customerDetails.getEmailPrimary());
+				lookupRequest.setType(Type.EMAIL);
+				lookupResponse = cuidRestService.getMemberLookup(lookupRequest);
+				if(lookupResponse == null ){
+					lookupRequest.setValue(customerDetails.getPhonePrimary());
+					lookupRequest.setType(Type.PHONE);
+					lookupResponse = cuidRestService.getMemberLookup(lookupRequest);
+				}
 			} catch (Exception e){
 				e.printStackTrace();
-				logger.error("Exception is getting data from Telluride/SYW API for customer Id {}. ",customerId,e);
+				logger.error("Exception is getting data from New SYW API getMemberLookup for customer Id {}. ",customerId,e);
+			}
+			try {
+				if(null == lookupResponse){
+					balanceResponse = null;
+				} else {
+					balanceResponse = cuidRestService.getMemberBalance(lookupResponse.getMembers().get(0).getMemberNo());
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				logger.error("Exception is getting data from New SYW API getMemberLookup for customer Id {}. ",customerId,e);
 			}
 			try{
 //						String phoneNum = "%2B12062901009";
@@ -324,7 +344,8 @@ public class CuidCustomerController {
 			customerAssociatedDetailsDTO.setSearchPartOrderDirectResponseVO(partsResponseVO);
 			customerAssociatedDetailsDTO.setAgreementResponse(agreementResponse);
 			customerAssociatedDetailsDTO.setHwpDetailsResponse(hwpDetailsResponse);
-			customerAssociatedDetailsDTO.setGetMemberLookupResult(sywObject);
+			customerAssociatedDetailsDTO.setLookupResponse(lookupResponse);
+			customerAssociatedDetailsDTO.setBalanceResponse(balanceResponse);
 			customerAssociatedResponseDTO.setCustomerAssociatedDetailsDTO(customerAssociatedDetailsDTO);
 			response = new ResponseEntity<CustomerAssociatedResponseDTO>(customerAssociatedResponseDTO, HttpStatus.OK);
 		} catch (Exception e) {
@@ -368,7 +389,6 @@ public class CuidCustomerController {
 			}
 			customerDetails = customerDetailsList.get(0);*/
 			LookupMerchandiseListResponse merchObject=null;
-			GetMemberLookupResult sywObject=null;
 			List<ServiceOrder> serviceOrderList=null;
 			OriginationDTO originationDTO=null;
 			SearchPartOrderDirectResponseVO partsResponseVO=null;
@@ -376,28 +396,37 @@ public class CuidCustomerController {
 			HwpDetailsResponse hwpDetailsResponse = null;
 			try{
 //						merchObject = cuidRestService.getMerchandiseList(customerId);
-				merchObject = cuidRestService.getMerchandiseList("1260052725");
+				merchObject = cuidRestService.getMerchandiseList("74859293");//("1260052725")
 			} catch (Exception e){
 				e.printStackTrace();
 				logger.error("Exception is getting data from Merchandise API for customer Id {}.",customerId,e);
 			}
+			LookupRequest lookupRequest = new LookupRequest();
+			LookupResponse lookupResponse = new LookupResponse();
+			BalanceResponse balanceResponse = new BalanceResponse();
 			try{
-//						sywObject = cuidRestService.getMemberLookup(customerDetails.getPhonePrimary());
-				sywObject = cuidRestService.getMemberLookup("2291111112");			
+				lookupRequest.setValue("WDAILEY@CENTURYTEL.NET");
+				lookupRequest.setType(Type.EMAIL);
+				lookupResponse = cuidRestService.getMemberLookup(lookupRequest);
 			} catch (Exception e){
 				e.printStackTrace();
-				logger.error("Exception is getting data from Telluride/SYW API for customer Id {}. ",customerId,e);
+				logger.error("Exception is getting data from New SYW API getMemberLookup for customer Id {}. ",customerId,e);
+			}
+			try {
+				balanceResponse = cuidRestService.getMemberBalance("7081103574785670");
+//				balanceResponse.getAvailablePoints();
+			} catch (Exception e) {
+				e.printStackTrace();
+				logger.error("Exception is getting data from New SYW API getMemberLookup for customer Id {}. ",customerId,e);
 			}
 			try{
 				String phoneNum = "%2B12062901009";
-//						String phoneNum = "%2B"+customerDetails.getPhonePrimary();
 				serviceOrderList = cuidRestService.getServiceOrderDetails(phoneNum);
 			} catch (Exception e){
 				e.printStackTrace();
 				logger.error("Exception is getting data from SO API for customer Id {}.",customerId,e);
 			}
 			try{
-//						originationDTO = cuidRestService.fetchOriginationData(customerId);
 				originationDTO = cuidRestService.fetchOriginationData("18206581");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -406,8 +435,8 @@ public class CuidCustomerController {
 			try{
 				SearchPartOrderDirectRequestVO obj = new SearchPartOrderDirectRequestVO();
 				obj.setClientId("CASE");
-				obj.setCustomerNo("1260052725");
-//						obj.setCustomerNo(customerId);
+//				obj.setCustomerNo("1260052725");
+				obj.setCustomerNo("1260248363");
 				partsResponseVO = cuidRestService.searchPartOrder(obj);
 			} catch (Exception e){
 				e.printStackTrace();
@@ -415,8 +444,8 @@ public class CuidCustomerController {
 			}
 			try{
 				AgreementListRequest agreementListRequest= new AgreementListRequest();
-				agreementListRequest.setCustomerNumber("202054132");
-//						agreementListRequest.setCustomerNumber(customerId);
+//				agreementListRequest.setCustomerNumber("202054132");
+				agreementListRequest.setCustomerNumber("19475874");
 				agreementListRequest.setClient("CUID");
 				agreementResponse = cuidRestService.retrieveAgreementList(agreementListRequest);
 			} catch (Exception e){
@@ -425,8 +454,8 @@ public class CuidCustomerController {
 			}
 			try{
 				HwpDetailsRequest hwpDetailsRequest = new HwpDetailsRequest();
-				hwpDetailsRequest.setCustNum("1259523985");
-//						hwpDetailsRequest.setCustNum(customerId);
+//				hwpDetailsRequest.setCustNum("1259523985");
+				hwpDetailsRequest.setCustNum("19475874");
 				hwpDetailsRequest.setClient("CUID");
 				hwpDetailsResponse = cuidRestService.getContractDetail(hwpDetailsRequest);
 			} catch (Exception e){
@@ -440,7 +469,8 @@ public class CuidCustomerController {
 			customerAssociatedDetailsDTO.setSearchPartOrderDirectResponseVO(partsResponseVO);
 			customerAssociatedDetailsDTO.setAgreementResponse(agreementResponse);
 			customerAssociatedDetailsDTO.setHwpDetailsResponse(hwpDetailsResponse);
-			customerAssociatedDetailsDTO.setGetMemberLookupResult(sywObject);
+			customerAssociatedDetailsDTO.setLookupResponse(lookupResponse);
+			customerAssociatedDetailsDTO.setBalanceResponse(balanceResponse);
 			customerAssociatedResponseDTO.setCustomerAssociatedDetailsDTO(customerAssociatedDetailsDTO);
 			response = new ResponseEntity<CustomerAssociatedResponseDTO>(customerAssociatedResponseDTO, HttpStatus.OK);
 		} catch (Exception e) {

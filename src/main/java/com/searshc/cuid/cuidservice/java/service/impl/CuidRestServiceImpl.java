@@ -3,6 +3,7 @@ package com.searshc.cuid.cuidservice.java.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.searshc.cuid.cuidservice.java.agreementclient.AgreementServiceConnector;
@@ -23,7 +24,9 @@ import com.searshc.hs.domi.service.merchandise.lookup.details.response.LookupMer
 import com.searshc.hs.domi.service.merchandise.lookup.list.response.LookupMerchandiseListResponse;
 import com.searshc.hs.psc.partorderdirectservice.ws.service.SearchPartOrderDirectRequestVO;
 import com.searshc.hs.psc.partorderdirectservice.ws.service.SearchPartOrderDirectResponseVO;
-import com.searshc.hs.som.thm.domain.sywr.GetMemberLookupResponse.GetMemberLookupResult;
+import com.searshc.hs.sywr.hs.searshc.com.request.LookupRequest;
+import com.searshc.hs.sywr.hs.searshc.com.response.BalanceResponse;
+import com.searshc.hs.sywr.hs.searshc.com.response.LookupResponse;
 
 @Service
 public class CuidRestServiceImpl implements CuidRestService {
@@ -35,6 +38,7 @@ public class CuidRestServiceImpl implements CuidRestService {
 	private MerchandiseServiceConnector merchandiseServiceConnector;
 	
 	@Autowired
+	@Lazy
 	private SywrServiceConnector sywrServiceConnector;
 	
 	@Autowired
@@ -89,21 +93,12 @@ public class CuidRestServiceImpl implements CuidRestService {
 		return cuidServiceDao.retrieveByWildcardMatch(fieldName, values);
 	}
 	
-	public GetMemberLookupResult getMemberLookup(String phoneNumber) throws Exception{
-		/*GetMemberLookupResult resultObject = sywrServiceConnector.getMemberLookup(phoneNumber);
-		for(Object obj :resultObject.getContent()){
-			Epsilon mobj = Epsilon.class.cast(obj);
-			Response res = mobj.getResponse();
-			GetMemberLookupReply reply = res.getGetMemberLookupReply();
-			List<MemberExtended> memberList = reply.getMembers().getMemberExtended();
-		    for(Member mem:memberList){
-		    	System.out.println(mem.getClubStatusChangeDate());
-		    	System.out.println(mem.getDateIssued());
-		    	System.out.println(mem.getMemberSinceDate());
-		    }
-		}*/
-		
-		return sywrServiceConnector.getMemberLookup(phoneNumber);
+	public BalanceResponse getMemberBalance(String memberNo) throws Exception {
+		return sywrServiceConnector.getBalancememberNo(memberNo);
+	}
+	
+	public LookupResponse getMemberLookup(LookupRequest request) throws Exception {
+		return sywrServiceConnector.postLookup(request);
 	}
 	
 	public List<ServiceOrder> getServiceOrderDetails(String emailAddress) throws Exception {

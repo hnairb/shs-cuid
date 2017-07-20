@@ -61,10 +61,13 @@
 			<entry key="serviceversion" value="1.0.0"/>
 			<entry key="clientid" value="CASE"/>
 		</jaxrs-client:headers>
-		<!-- <jaxrs-client:providers>
-			<bean class="com.searshc.hs.domi.create.service.provider.HsDOMIJacksonJSONProvider"/>
-		</jaxrs-client:providers> -->
 	</jaxrs-client:client>
+	
+	<!-- <jaxrs-client:client id="SywrClient"
+	 address="${sywr.url}"
+		serviceClass="com.searshc.hs.sywr.SywrClient"
+		inheritHeaders="true">
+	</jaxrs-client:client> -->
 	
 	<jaxws:client
 		address="${partorder.direct.service.soap.address}"
