@@ -9,7 +9,8 @@ import com.searshc.hs.agreement.agreementservice.domain.response.AgreementRespon
 import com.searshc.hs.agreement.contract.service.domain.response.HwpDetailsResponse;
 import com.searshc.hs.domi.service.merchandise.lookup.list.response.LookupMerchandiseListResponse;
 import com.searshc.hs.psc.partorderdirectservice.ws.service.SearchPartOrderDirectResponseVO;
-import com.searshc.hs.som.thm.domain.sywr.GetMemberLookupResponse.GetMemberLookupResult;
+import com.searshc.hs.sywr.hs.searshc.com.response.BalanceResponse;
+import com.searshc.hs.sywr.hs.searshc.com.response.LookupResponse;
 
 public class CustomerAssociatedDetailsDTO {
 	
@@ -20,7 +21,8 @@ public class CustomerAssociatedDetailsDTO {
 	public SearchPartOrderDirectResponseVO searchPartOrderDirectResponseVO;
 	public AgreementResponse agreementResponse;
 	public HwpDetailsResponse hwpDetailsResponse;
-	public GetMemberLookupResult getMemberLookupResult;
+	public LookupResponse lookupResponse;
+	BalanceResponse balanceResponse;
 	
 	public CustomerDetails getCustomerDetails() {
 		return customerDetails;
@@ -33,12 +35,6 @@ public class CustomerAssociatedDetailsDTO {
 	}
 	public void setMerchandise(LookupMerchandiseListResponse merchandise) {
 		this.merchandise = merchandise;
-	}
-	public GetMemberLookupResult getGetMemberLookupResult() {
-		return getMemberLookupResult;
-	}
-	public void setGetMemberLookupResult(GetMemberLookupResult getMemberLookupResult) {
-		this.getMemberLookupResult = getMemberLookupResult;
 	}
 	public List<ServiceOrder> getServiceOrderList() {
 		return serviceOrderList;
@@ -70,5 +66,17 @@ public class CustomerAssociatedDetailsDTO {
 	}
 	public void setHwpDetailsResponse(HwpDetailsResponse hwpDetailsResponse) {
 		this.hwpDetailsResponse = hwpDetailsResponse;
+	}
+	public LookupResponse getLookupResponse() {
+		return lookupResponse;
+	}
+	public void setLookupResponse(LookupResponse lookupResponse) {
+		this.lookupResponse = lookupResponse;
+	}
+	public BalanceResponse getBalanceResponse() {
+		return balanceResponse;
+	}
+	public void setBalanceResponse(BalanceResponse balanceResponse) {
+		this.balanceResponse = balanceResponse;
 	}
 }

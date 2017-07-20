@@ -13,7 +13,9 @@ import com.searshc.hs.domi.service.merchandise.lookup.details.response.LookupMer
 import com.searshc.hs.domi.service.merchandise.lookup.list.response.LookupMerchandiseListResponse;
 import com.searshc.hs.psc.partorderdirectservice.ws.service.SearchPartOrderDirectRequestVO;
 import com.searshc.hs.psc.partorderdirectservice.ws.service.SearchPartOrderDirectResponseVO;
-import com.searshc.hs.som.thm.domain.sywr.GetMemberLookupResponse.GetMemberLookupResult;
+import com.searshc.hs.sywr.hs.searshc.com.request.LookupRequest;
+import com.searshc.hs.sywr.hs.searshc.com.response.BalanceResponse;
+import com.searshc.hs.sywr.hs.searshc.com.response.LookupResponse;
 
 public interface CuidRestService {
 	
@@ -31,7 +33,9 @@ public interface CuidRestService {
 	
 	public LookupMerchandiseListResponse getMerchandiseList(String customerId) throws Exception;
 	
-	public GetMemberLookupResult getMemberLookup(String emailAddress) throws Exception;
+	public LookupResponse getMemberLookup(LookupRequest request) throws Exception;
+	
+	public BalanceResponse getMemberBalance(String memberId) throws Exception;
 	
 	public List<ServiceOrder> getServiceOrderDetails(String emailAddress) throws Exception;
 	
