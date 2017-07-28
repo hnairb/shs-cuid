@@ -3,7 +3,7 @@ package com.searshc.cuid.cuidservice.java.dto;
 public class CustomerAssociatedResponseDTO {
 	
 	public CustomerAssociatedDetailsDTO customerAssociatedDetailsDTO;
-	public boolean isCorrectResponse = true;
+	public boolean correctResponse = true;
 	public String errorMessage;
 	
 	public CustomerAssociatedDetailsDTO getCustomerAssociatedDetailsDTO() {
@@ -14,10 +14,10 @@ public class CustomerAssociatedResponseDTO {
 		this.customerAssociatedDetailsDTO = customerAssociatedDetailsDTO;
 	}
 	public boolean isCorrectResponse() {
-		return isCorrectResponse;
+		return correctResponse;
 	}
-	public void setCorrectResponse(boolean isCorrectResponse) {
-		this.isCorrectResponse = isCorrectResponse;
+	public void setCorrectResponse(boolean correctResponse) {
+		this.correctResponse = correctResponse;
 	}
 	public String getErrorMessage() {
 		return errorMessage;

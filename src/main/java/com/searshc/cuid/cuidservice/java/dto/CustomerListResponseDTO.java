@@ -6,7 +6,7 @@ import com.searshc.cuid.cuidservice.java.model.CustomerDetails;
 
 public class CustomerListResponseDTO {
 	public List<CustomerDetails> customerDetails;
-	public boolean isCorrectResponse = true;
+	public boolean correctResponse = true;
 	public String errorMessage;
 	
 	public List<CustomerDetails> getCustomerDetails() {
@@ -16,10 +16,10 @@ public class CustomerListResponseDTO {
 		this.customerDetails = customerDetails;
 	}
 	public boolean isCorrectResponse() {
-		return isCorrectResponse;
+		return correctResponse;
 	}
-	public void setCorrectResponse(boolean isCorrectResponse) {
-		this.isCorrectResponse = isCorrectResponse;
+	public void setCorrectResponse(boolean correctResponse) {
+		this.correctResponse = correctResponse;
 	}
 	public String getErrorMessage() {
 		return errorMessage;
