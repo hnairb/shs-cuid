@@ -211,8 +211,15 @@ public class CuidCustomerController {
 				return response;
 			}
 			customerDetailsList = cuidRestService.retrieveByWildcardMatch(fieldNames, values);
-			customerListResponseDTO.setCustomerDetails(customerDetailsList);
-			response = new ResponseEntity<CustomerListResponseDTO>(customerListResponseDTO, HttpStatus.OK);
+			if(customerDetailsList.size()>100){
+				logger.info("CustomerDetailsList returned contains more than 100 records");
+				customerListResponseDTO.setCorrectResponse(false);
+				customerListResponseDTO.setErrorMessage("Returning too many rows! Please change the filter crtieria and try again.");
+				response = new ResponseEntity<CustomerListResponseDTO>(customerListResponseDTO, HttpStatus.BAD_REQUEST);
+			} else{
+				customerListResponseDTO.setCustomerDetails(customerDetailsList);
+				response = new ResponseEntity<CustomerListResponseDTO>(customerListResponseDTO, HttpStatus.OK);				
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("Exception CuidRestController retrievBulkCustDetailsById method",e);
@@ -293,8 +300,7 @@ public class CuidCustomerController {
 				logger.error("Exception is getting data from New SYW API getMemberLookup for customer Id {}. ",customerId,e);
 			}
 			try{
-//						String phoneNum = "%2B12062901009";
-				String phoneNum = "%2B"+customerDetails.getPhonePrimary();
+				String phoneNum = "%2B1"+customerDetails.getPhonePrimary();
 				serviceOrderList = cuidRestService.getServiceOrderDetails(phoneNum);
 			} catch (Exception e){
 				e.printStackTrace();
@@ -302,7 +308,6 @@ public class CuidCustomerController {
 			}
 			try{
 				originationDTO = cuidRestService.fetchOriginationData(customerId);
-//						originationDTO = cuidRestService.fetchOriginationData("18206581");
 			} catch (Exception e) {
 				e.printStackTrace();
 				logger.error("Exception is getting data from origination details for customer Id {}.",customerId,e);
@@ -310,7 +315,6 @@ public class CuidCustomerController {
 			try{
 				SearchPartOrderDirectRequestVO obj = new SearchPartOrderDirectRequestVO();
 				obj.setClientId("CUID");
-//						obj.setCustomerNo("1260052725");
 				obj.setCustomerNo(customerId);
 				partsResponseVO = cuidRestService.searchPartOrder(obj);
 			} catch (Exception e){
@@ -319,7 +323,6 @@ public class CuidCustomerController {
 			}
 			try{
 				AgreementListRequest agreementListRequest= new AgreementListRequest();
-//						agreementListRequest.setCustomerNumber("202054132");
 				agreementListRequest.setCustomerNumber(customerId);
 				agreementListRequest.setClient("CUID");
 				agreementResponse = cuidRestService.retrieveAgreementList(agreementListRequest);
@@ -329,7 +332,6 @@ public class CuidCustomerController {
 			}
 			try{
 				HwpDetailsRequest hwpDetailsRequest = new HwpDetailsRequest();
-//						hwpDetailsRequest.setCustNum("1259523985");
 				hwpDetailsRequest.setCustNum(customerId);
 				hwpDetailsRequest.setClient("CUID");
 				hwpDetailsResponse = cuidRestService.getContractDetail(hwpDetailsRequest);

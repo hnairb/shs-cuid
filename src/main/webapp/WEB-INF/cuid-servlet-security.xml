@@ -129,7 +129,7 @@
                   authorities="ROLE_CLIENT, ROLE_TRUSTED_CLIENT"
                   redirect-uri="/web"
                   scope="read,write,trust"
-                  access-token-validity="300"
+                  access-token-validity="30"
                   refresh-token-validity="600"/>
 
 </oauth:client-details-service>

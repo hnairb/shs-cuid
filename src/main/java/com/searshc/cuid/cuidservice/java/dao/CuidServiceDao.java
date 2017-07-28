@@ -1,5 +1,7 @@
 package com.searshc.cuid.cuidservice.java.dao;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -126,6 +128,8 @@ public class CuidServiceDao extends BaseDao {
 			customerDetails.setNameLast(String.valueOf(values.get("Name_last")));
 			customerDetails.setNameFirst(String.valueOf(values.get("Name_first")));
 			customerDetails.setNameSuffix(String.valueOf(values.get("Name_suffix")));
+			DateFormat formatter = new SimpleDateFormat("yyyy-dd-MM");
+			customerDetails.setCnDateEffect(formatter.parse(String.valueOf(values.get("CN_date_effect"))));
 			customerDetails.setAddressNumber(String.valueOf(values.get("Address_number")));
 			customerDetails.setAddressStreetPrefix(String.valueOf(values.get("Address_Street_Prefix")));
 			customerDetails.setAddressStreetName(String.valueOf(values.get("Address_Street_Name")));
@@ -224,6 +228,8 @@ public class CuidServiceDao extends BaseDao {
 			customerDetails.setNameLast(String.valueOf(values.get("Name_last")));
 			customerDetails.setNameFirst(String.valueOf(values.get("Name_first")));
 			customerDetails.setNameSuffix(String.valueOf(values.get("Name_suffix")));
+			DateFormat formatter = new SimpleDateFormat("yyyy-dd-MM");
+			customerDetails.setCnDateEffect(formatter.parse(String.valueOf(values.get("CN_date_effect"))));
 			customerDetails.setAddressNumber(String.valueOf(values.get("Address_number")));
 			customerDetails.setAddressStreetPrefix(String.valueOf(values.get("Address_Street_Prefix")));
 			customerDetails.setAddressStreetName(String.valueOf(values.get("Address_Street_Name")));
@@ -241,6 +247,7 @@ public class CuidServiceDao extends BaseDao {
 			customerDetails.setPhonePrimary(String.valueOf(values.get("Phone_Primary")));
 			customerDetails.setPhoneSecondary(String.valueOf(values.get("Phone_Secondary")));
 			customerDetails.setAddressLine2(String.valueOf(values.get("address_line2")));
+			customerDetails.setAssocIndRec1(Integer.parseInt(String.valueOf(values.get("Assoc_Ind_Rec_1"))));
 			customerList.add(customerDetails);
 		}
 		logger.info("Leaving retrieveByWildcardMatch Dao method");
