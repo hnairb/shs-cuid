@@ -49,4 +49,76 @@ public class ServiceOrderClient {
 
 		return serviceOrderList;
 	}
+	
+	public AuthenticationResult authenticateService() {
+		String REST_URI = "https://api-st.shs-core.com:443/sis/v1/auth";
+		ObjectMapper objectMapper = null;
+		WebResource service = null;
+		AuthenticationResult authenticationResult = null;
+		ClientResponse response = null;
+		String output = "";
+		try {
+			objectMapper = new ObjectMapper();
+			service = createClient(REST_URI);
+			response = service.header("Authorization", "Basic U0hTOmMyaHpOVWcxWkROV1FXTXpjelU9")
+					.get(ClientResponse.class);
+			if (response.getStatus() != 200) {
+				throw new RuntimeException("Failed : HTTP error code : "
+						+ response.getStatus());
+			}
+			output = response.getEntity(String.class);
+			authenticationResult = objectMapper.readValue(output, new TypeReference<AuthenticationResult>(){});
+		} catch (Exception e) {
+			System.out.println("in exception");
+			e.printStackTrace();
+		}
+		return authenticationResult;
+	}
+	
+	public ServiceOrderNew getServiceOrderDetailsNew(String customerID) {
+		ServiceOrderNew serviceOrderNew = null;
+		String REST_URI = "https://api-st.shs-core.com/sis/v2/orders/customer/"+customerID;
+		String authToken = "";
+		AuthenticationResult authenticationResult = null;
+		MultivaluedMap<String, String> queryParams = null;
+		ObjectMapper objectMapper = null;
+		WebResource service = null;
+		ClientResponse response = null;
+		String output = "";
+		try {
+			serviceOrderNew = new ServiceOrderNew();
+			queryParams = new MultivaluedMapImpl();
+			objectMapper = new ObjectMapper();
+			service = createClient(REST_URI);
+			queryParams.add("ordStatus", "");
+			authenticationResult = authenticateService();
+			authToken = authenticationResult.getToken();
+			response = service.queryParams(queryParams)
+					.header("Authorization", "Bearer "+authToken)
+					.get(ClientResponse.class);			
+			if (response.getStatus() != 200) {
+				throw new RuntimeException("Failed : HTTP error code : "
+						+ response.getStatus());
+			}
+			output = response.getEntity(String.class);
+			serviceOrderNew = objectMapper.readValue(output, new TypeReference<ServiceOrderNew>(){});
+		} catch (Exception e) {
+			System.out.println("in exception");
+			e.printStackTrace();
+		}
+		return serviceOrderNew;
+	}
+	
+	public WebResource createClient(String url) {
+		WebResource service = null;
+		try {
+			ClientConfig config = new DefaultClientConfig();
+			Client client = Client.create(config);
+			service = client.resource(UriBuilder.fromUri(url).build());
+		} catch (Exception e) {
+			System.out.println("in exception");
+			e.printStackTrace();
+		}
+		return service;
+	}
 }

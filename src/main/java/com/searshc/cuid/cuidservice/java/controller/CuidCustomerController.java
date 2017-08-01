@@ -25,6 +25,7 @@ import com.searshc.cuid.cuidservice.java.model.CustomerDetails;
 import com.searshc.cuid.cuidservice.java.model.OriginationDTO;
 import com.searshc.cuid.cuidservice.java.service.CuidRestService;
 import com.searshc.cuid.cuidservice.java.serviceorderclient.ServiceOrder;
+import com.searshc.cuid.cuidservice.java.serviceorderclient.ServiceOrderNew;
 import com.searshc.hs.agreement.agreementservice.domain.request.AgreementListRequest;
 import com.searshc.hs.agreement.agreementservice.domain.response.AgreementResponse;
 import com.searshc.hs.agreement.contract.service.domain.request.HwpDetailsRequest;
@@ -263,6 +264,7 @@ public class CuidCustomerController {
 			customerDetails = customerDetailsList.get(0);
 			LookupMerchandiseListResponse merchObject=null;
 			List<ServiceOrder> serviceOrderList=null;
+			ServiceOrderNew serviceOrderNew = null;
 			OriginationDTO originationDTO=null;
 			SearchPartOrderDirectResponseVO partsResponseVO=null;
 			AgreementResponse agreementResponse=null;
@@ -302,6 +304,7 @@ public class CuidCustomerController {
 			try{
 				String phoneNum = "%2B1"+customerDetails.getPhonePrimary();
 				serviceOrderList = cuidRestService.getServiceOrderDetails(phoneNum);
+				serviceOrderNew = cuidRestService.getServiceOrderDetailsNew(customerId);
 			} catch (Exception e){
 				e.printStackTrace();
 				logger.error("Exception is getting data from SO API for customer Id {}.",customerId,e);
@@ -342,6 +345,7 @@ public class CuidCustomerController {
 			customerAssociatedDetailsDTO.setCustomerDetails(customerDetails);
 			customerAssociatedDetailsDTO.setMerchandise(merchObject);
 			customerAssociatedDetailsDTO.setServiceOrderList(serviceOrderList);
+			customerAssociatedDetailsDTO.setServiceOrderNew(serviceOrderNew);
 			customerAssociatedDetailsDTO.setOriginationDTO(originationDTO);
 			customerAssociatedDetailsDTO.setSearchPartOrderDirectResponseVO(partsResponseVO);
 			customerAssociatedDetailsDTO.setAgreementResponse(agreementResponse);
@@ -392,6 +396,7 @@ public class CuidCustomerController {
 			customerDetails = customerDetailsList.get(0);*/
 			LookupMerchandiseListResponse merchObject=null;
 			List<ServiceOrder> serviceOrderList=null;
+			ServiceOrderNew serviceOrderNew = null;
 			OriginationDTO originationDTO=null;
 			SearchPartOrderDirectResponseVO partsResponseVO=null;
 			AgreementResponse agreementResponse=null;
@@ -424,6 +429,7 @@ public class CuidCustomerController {
 			try{
 				String phoneNum = "%2B12062901009";
 				serviceOrderList = cuidRestService.getServiceOrderDetails(phoneNum);
+				serviceOrderNew = cuidRestService.getServiceOrderDetailsNew("180049035");
 			} catch (Exception e){
 				e.printStackTrace();
 				logger.error("Exception is getting data from SO API for customer Id {}.",customerId,e);
@@ -467,6 +473,7 @@ public class CuidCustomerController {
 			customerAssociatedDetailsDTO.setCustomerDetails(customerDetails);
 			customerAssociatedDetailsDTO.setMerchandise(merchObject);
 			customerAssociatedDetailsDTO.setServiceOrderList(serviceOrderList);
+			customerAssociatedDetailsDTO.setServiceOrderNew(serviceOrderNew);
 			customerAssociatedDetailsDTO.setOriginationDTO(originationDTO);
 			customerAssociatedDetailsDTO.setSearchPartOrderDirectResponseVO(partsResponseVO);
 			customerAssociatedDetailsDTO.setAgreementResponse(agreementResponse);
