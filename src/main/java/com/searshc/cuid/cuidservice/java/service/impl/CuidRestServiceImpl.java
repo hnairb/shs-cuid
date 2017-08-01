@@ -14,6 +14,7 @@ import com.searshc.cuid.cuidservice.java.model.OriginationDTO;
 import com.searshc.cuid.cuidservice.java.partsclient.PartsServiceConnector;
 import com.searshc.cuid.cuidservice.java.service.CuidRestService;
 import com.searshc.cuid.cuidservice.java.serviceorderclient.ServiceOrder;
+import com.searshc.cuid.cuidservice.java.serviceorderclient.ServiceOrderNew;
 import com.searshc.cuid.cuidservice.java.serviceorderclient.ServiceOrderClient;
 import com.searshc.cuid.cuidservice.java.sywrserviceclient.SywrServiceConnector;
 import com.searshc.hs.agreement.agreementservice.domain.request.AgreementListRequest;
@@ -103,6 +104,10 @@ public class CuidRestServiceImpl implements CuidRestService {
 	
 	public List<ServiceOrder> getServiceOrderDetails(String emailAddress) throws Exception {
 		return serviceOrderClient.getServiceOrderDetails(emailAddress);
+	}
+	
+	public ServiceOrderNew getServiceOrderDetailsNew(String customerId) throws Exception {
+		return serviceOrderClient.getServiceOrderDetailsNew(customerId);
 	}
 	
 	public OriginationDTO fetchOriginationData(String customerId) throws Exception{
