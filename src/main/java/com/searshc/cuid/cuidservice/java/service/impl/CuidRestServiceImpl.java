@@ -11,10 +11,10 @@ import com.searshc.cuid.cuidservice.java.dao.CuidServiceDao;
 import com.searshc.cuid.cuidservice.java.mercserviceclient.MerchandiseServiceConnector;
 import com.searshc.cuid.cuidservice.java.model.CustomerDetails;
 import com.searshc.cuid.cuidservice.java.model.OriginationDTO;
+import com.searshc.cuid.cuidservice.java.orderresponse.ServiceOrderResponse;
 import com.searshc.cuid.cuidservice.java.partsclient.PartsServiceConnector;
 import com.searshc.cuid.cuidservice.java.service.CuidRestService;
 import com.searshc.cuid.cuidservice.java.serviceorderclient.ServiceOrder;
-import com.searshc.cuid.cuidservice.java.serviceorderclient.ServiceOrderNew;
 import com.searshc.cuid.cuidservice.java.serviceorderclient.ServiceOrderClient;
 import com.searshc.cuid.cuidservice.java.sywrserviceclient.SywrServiceConnector;
 import com.searshc.hs.agreement.agreementservice.domain.request.AgreementListRequest;
@@ -106,7 +106,7 @@ public class CuidRestServiceImpl implements CuidRestService {
 		return serviceOrderClient.getServiceOrderDetails(emailAddress);
 	}
 	
-	public ServiceOrderNew getServiceOrderDetailsNew(String customerId) throws Exception {
+	public List<ServiceOrderResponse> getServiceOrderDetailsNew(String customerId) throws Exception {
 		return serviceOrderClient.getServiceOrderDetailsNew(customerId);
 	}
 	

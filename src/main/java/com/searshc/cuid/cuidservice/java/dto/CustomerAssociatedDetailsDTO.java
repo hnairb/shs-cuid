@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.searshc.cuid.cuidservice.java.model.CustomerDetails;
 import com.searshc.cuid.cuidservice.java.model.OriginationDTO;
+import com.searshc.cuid.cuidservice.java.orderresponse.ServiceOrderResponse;
 import com.searshc.cuid.cuidservice.java.serviceorderclient.ServiceOrder;
-import com.searshc.cuid.cuidservice.java.serviceorderclient.ServiceOrderNew;
 import com.searshc.hs.agreement.agreementservice.domain.response.AgreementResponse;
 import com.searshc.hs.agreement.contract.service.domain.response.HwpDetailsResponse;
 import com.searshc.hs.domi.service.merchandise.lookup.list.response.LookupMerchandiseListResponse;
@@ -18,7 +18,7 @@ public class CustomerAssociatedDetailsDTO {
 	public CustomerDetails customerDetails;
 	public LookupMerchandiseListResponse merchandise;
 	public List<ServiceOrder> serviceOrderList;
-	public ServiceOrderNew serviceOrderNew;
+	public List<ServiceOrderResponse> serviceOrderNewList;
 	public OriginationDTO originationDTO;
 	public SearchPartOrderDirectResponseVO searchPartOrderDirectResponseVO;
 	public AgreementResponse agreementResponse;
@@ -81,10 +81,12 @@ public class CustomerAssociatedDetailsDTO {
 	public void setBalanceResponse(BalanceResponse balanceResponse) {
 		this.balanceResponse = balanceResponse;
 	}
-	public ServiceOrderNew getServiceOrderNew() {
-		return serviceOrderNew;
+	public List<ServiceOrderResponse> getServiceOrderNewList() {
+		return serviceOrderNewList;
 	}
-	public void setServiceOrderNew(ServiceOrderNew serviceOrderNew) {
-		this.serviceOrderNew = serviceOrderNew;
+	public void setServiceOrderNewList(
+			List<ServiceOrderResponse> serviceOrderNewList) {
+		this.serviceOrderNewList = serviceOrderNewList;
 	}
+		
 }

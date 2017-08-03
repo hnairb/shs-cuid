@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.searshc.cuid.cuidservice.java.model.CustomerDetails;
 import com.searshc.cuid.cuidservice.java.model.OriginationDTO;
+import com.searshc.cuid.cuidservice.java.orderresponse.ServiceOrderResponse;
 import com.searshc.cuid.cuidservice.java.serviceorderclient.ServiceOrder;
-import com.searshc.cuid.cuidservice.java.serviceorderclient.ServiceOrderNew;
 import com.searshc.hs.agreement.agreementservice.domain.request.AgreementListRequest;
 import com.searshc.hs.agreement.agreementservice.domain.response.AgreementResponse;
 import com.searshc.hs.agreement.contract.service.domain.request.HwpDetailsRequest;
@@ -40,7 +40,7 @@ public interface CuidRestService {
 	
 	public List<ServiceOrder> getServiceOrderDetails(String emailAddress) throws Exception;
 	
-	public ServiceOrderNew getServiceOrderDetailsNew(String customerId) throws Exception;
+	public List<ServiceOrderResponse> getServiceOrderDetailsNew(String customerId) throws Exception;
 	
 	public OriginationDTO fetchOriginationData(String customerId) throws Exception;
 	
