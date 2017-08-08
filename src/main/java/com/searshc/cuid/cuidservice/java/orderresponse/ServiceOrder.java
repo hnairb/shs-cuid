@@ -15,15 +15,17 @@ public class ServiceOrder {
 	private String createEmployee;
 
 	private String createUnit;
+	
+	private Customer customer;
 
 	private Estimate estimate;
 
-	//private ArrayList<String> jobCodes;
+	private ArrayList<Jobcode> jobCodes;
 
 	private String lastUpdateBy;
 
 	private Date lastUpdateDate;
-	
+
 	private Merchandise merchandise;
 
 	private ArrayList<Message> messages;
@@ -31,7 +33,7 @@ public class ServiceOrder {
 	private String orderNumber;
 
 	private String paymentMethod;
-
+	
 	private ArrayList<Parts> parts;
 
 	private PaymentTotalInformation paymentTotalInformation;
@@ -45,6 +47,8 @@ public class ServiceOrder {
 	private String serviceUnit;
 
 	private String statusCode;
+	
+	private ArrayList<UserDefinedField> userDefinedFields;
 
 	private String providerId;
 
@@ -64,8 +68,16 @@ public class ServiceOrder {
 		return createUnit;
 	}
 
+	public Customer getCustomer() {
+		return customer;
+	}
+
 	public Estimate getEstimate() {
 		return estimate;
+	}
+
+	public ArrayList<Jobcode> getJobCodes() {
+		return jobCodes;
 	}
 
 	public String getLastUpdateBy() {
@@ -78,10 +90,6 @@ public class ServiceOrder {
 
 	public Merchandise getMerchandise() {
 		return merchandise;
-	}
-
-	public void setMerchandise(Merchandise merchandise) {
-		this.merchandise = merchandise;
 	}
 
 	public ArrayList<Message> getMessages() {
@@ -104,14 +112,6 @@ public class ServiceOrder {
 		return paymentTotalInformation;
 	}
 
-	/*public ArrayList<String> getJobCodes() {
-		return jobCodes;
-	}
-
-	public void setJobCodes(ArrayList<String> jobCodes) {
-		this.jobCodes = jobCodes;
-	}*/
-
 	public ArrayList<PreferredContact> getPreferredContacts() {
 		return preferredContacts;
 	}
@@ -128,6 +128,10 @@ public class ServiceOrder {
 		return serviceInfo;
 	}
 
+	public String getServiceUnit() {
+		return serviceUnit;
+	}
+
 /*	public ArrayList<String> getMessages() {
 		return messages;
 	}
@@ -135,10 +139,6 @@ public class ServiceOrder {
 	public void setMessages(ArrayList<String> messages) {
 		this.messages = messages;
 	}*/
-
-	public String getServiceUnit() {
-		return serviceUnit;
-	}
 
 	public String getStatusCode() {
 		return statusCode;
@@ -151,17 +151,25 @@ public class ServiceOrder {
 	public void setCallCreatedTime(String callCreatedTime) {
 		this.callCreatedTime = callCreatedTime;
 	}
-	
+
 	public void setCreateEmployee(String createEmployee) {
 		this.createEmployee = createEmployee;
 	}
-
+	
 	public void setCreateUnit(String createUnit) {
 		this.createUnit = createUnit;
 	}
 
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 	public void setEstimate(Estimate estimate) {
 		this.estimate = estimate;
+	}
+
+	public void setJobCodes(ArrayList<Jobcode> jobCodes) {
+		this.jobCodes = jobCodes;
 	}
 
 	public void setLastUpdateBy(String lastUpdateBy) {
@@ -170,6 +178,10 @@ public class ServiceOrder {
 
 	public void setLastUpdateDate(Date lastUpdateDate) {
 		this.lastUpdateDate = lastUpdateDate;
+	}
+
+	public void setMerchandise(Merchandise merchandise) {
+		this.merchandise = merchandise;
 	}
 
 	public void setMessages(ArrayList<Message> messages) {
@@ -208,13 +220,21 @@ public class ServiceOrder {
 	public void setServiceInfo(ServiceInfo serviceInfo) {
 		this.serviceInfo = serviceInfo;
 	}
-
+	
 	public void setServiceUnit(String serviceUnit) {
 		this.serviceUnit = serviceUnit;
 	}
 
 	public void setStatusCode(String statusCode) {
 		this.statusCode = statusCode;
+	}
+
+	public ArrayList<UserDefinedField> getUserDefinedFields() {
+		return userDefinedFields;
+	}
+
+	public void setUserDefinedFields(ArrayList<UserDefinedField> userDefinedFields) {
+		this.userDefinedFields = userDefinedFields;
 	}
 
 }

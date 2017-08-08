@@ -140,7 +140,7 @@ public class ServiceOrderClient {
 			queryParams = new MultivaluedMapImpl();
 			objectMapper = new ObjectMapper();
 			service = createClient(REST_URI);
-			queryParams.add("ordStatus", "ALL");
+			queryParams.add("ordStatus", "");
 			response = service.queryParams(queryParams)
 					.header("Authorization", "Bearer "+authToken)
 					.get(ClientResponse.class);			
